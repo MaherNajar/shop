@@ -1,0 +1,15 @@
+<div style="margin-top:10px;">
+  <i
+    class="fas fa-heart"
+    [ngStyle]="{ color: liked ? 'red' : 'lightgrey' }"
+    (click)="changeHeart()"
+    id="heart"
+    style="font-size:20px; "
+  ></i>
+  <span
+    *ngIf="(likes$ | async) as likes"
+    style="margin-left:2px;"
+    class="badge badge-info"
+    >{{ likes.totalLikes }}</span
+  >
+</div>

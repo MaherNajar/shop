@@ -1,0 +1,27 @@
+<div class="card" *ngIf="(order$ | async) as order">
+  <div class="card-body">
+    <ul class="list-group-flush">
+      <p class="card-text">{{ order.datePlaced | date: "fullDate" }}</p>
+      <p class="card-text">{{ order.shipping.nom }}</p>
+      <p class="card-text">{{ order.shipping.adresse }}</p>
+      <p class="card-text">{{ order.shipping.adresseBis }}</p>
+      <p class="card-text">{{ order.shipping.ville }}</p>
+      <li class="list-group-item" *ngFor="let item of order.items">
+        <img
+          src="../../assets/images/{{ item.product.imageUrl }}"
+          class="mr-5 thumbnail"
+        />
+        <span class="float-right">
+          {{ item.product.title }} : {{ item.quantity }} x
+          {{ item.product.price }} = {{ item.totalPrice }}
+        </span>
+      </li>
+      <li class="font-weight-bold list-group-item">
+        Total
+        <span class="float-right">{{
+          order.totalPrice | currency: "EUR"
+        }}</span>
+      </li>
+    </ul>
+  </div>
+</div>
