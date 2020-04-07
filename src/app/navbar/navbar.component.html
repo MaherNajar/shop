@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
   <a class="navbar-brand" routerLink="/">
-    <i class="fas fa-leaf" style="color:yellowgreen"></i>
+    <span class="fas fa-leaf" style="color: yellowgreen;"></span>
   </a>
   <button
     class="navbar-toggler"
@@ -17,12 +17,12 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <a class="nav-link" routerLink="/shopping-cart">
-          <div style="text-align:center">
-            <i class="fas fa-shopping-cart"></i>
+          <div style="text-align: center;">
+            <span class="fas fa-shopping-cart"></span>
             <span
-              style="margin-left:2px;"
+              style="margin-left: 2px;"
               class="badge badge-warning"
-              *ngIf="(cart$ | async) as cart"
+              *ngIf="cart$ | async as cart"
               >{{ cart.totalItemsCount }}</span
             >
           </div></a

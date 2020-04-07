@@ -1,10 +1,12 @@
-import { ShoppingCartService } from "./../services/shopping-cart.service";
-import { AngularFireDatabase } from "@angular/fire/database";
-import { Injectable } from "@angular/core";
-import { map } from "rxjs/operators";
+import { ShoppingCartService } from './../services/shopping-cart.service';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { Order } from 'src/models/order';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class OrderService {
   constructor(
@@ -13,14 +15,14 @@ export class OrderService {
   ) {}
 
   placeOrder(order) {
-    let result = this.db.list("/orders").push(order);
+    let result = this.db.list('/orders').push(order);
     this.cartService.clearCart();
     return result;
   }
 
-  getOrders() {
+  getOrders(): Observable<Order[]> {
     return this.db
-      .list("/orders")
+      .list('/orders')
       .snapshotChanges()
       .pipe(
         map((orders) =>
@@ -31,7 +33,7 @@ export class OrderService {
 
   getOrdersByUser(userId: string) {
     return this.db
-      .list("/orders", (ref) => ref.orderByChild("userId").equalTo(userId))
+      .list('/orders', (ref) => ref.orderByChild('userId').equalTo(userId))
       .snapshotChanges()
       .pipe(
         map((orders) =>
@@ -40,7 +42,10 @@ export class OrderService {
       );
   }
 
-  getOrder(orderId: string) {
-    return this.db.object("/orders/" + orderId).valueChanges();
+  getOrder(orderId: string): Observable<Order> {
+    return this.db
+      .object('/orders/' + orderId)
+      .snapshotChanges()
+      .pipe(map((o: any) => ({ key: o.payload.key, ...o.payload.val() })));
   }
 }

@@ -1,10 +1,14 @@
 <h1>Mes commandes</h1>
-<table class="table" *ngIf="(orders$ | async) as orders">
+<table
+  aria-describedby="my orders"
+  class="table"
+  *ngIf="orders$ | async as orders"
+>
   <thead>
     <tr>
-      <th>Customer</th>
-      <th>Date</th>
-      <th></th>
+      <th id="customerName">Customer</th>
+      <th id="orderDate">Date</th>
+      <th id="orderDetails"></th>
     </tr>
   </thead>
   <tbody *ngFor="let order of orders">

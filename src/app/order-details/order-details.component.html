@@ -1,4 +1,4 @@
-<div class="card" *ngIf="(order$ | async) as order">
+<div class="card" *ngIf="order$ | async as order">
   <div class="card-body">
     <ul class="list-group-flush">
       <p class="card-text">{{ order.datePlaced | date: "fullDate" }}</p>
@@ -10,6 +10,7 @@
         <img
           src="../../assets/images/{{ item.product.imageUrl }}"
           class="mr-5 thumbnail"
+          alt="{{ item.product.title }}"
         />
         <span class="float-right">
           {{ item.product.title }} : {{ item.quantity }} x

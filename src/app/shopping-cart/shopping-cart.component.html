@@ -1,21 +1,24 @@
 <h1>Panier</h1>
-<ng-container *ngIf="(cart$ | async) as cart">
+<ng-container *ngIf="cart$ | async as cart">
   <p>
     Vous avez {{ cart.totalItemsCount }} produits dans le panier.
     <button (click)="clearCart()" class="btn btn-light">Vider le panier</button>
   </p>
-  <table class="table table-bordered">
+  <table aria-describedby="panier" class="table table-bordered">
     <thead>
       <tr>
-        <th>Products</th>
-        <th class="text-center" style="width:230px;">Quantity</th>
-        <th class="text-right" style="widows: 200px;">Price</th>
+        <th id="product">Products</th>
+        <th id="quantity" class="text-center" style="width: 230px;">
+          Quantity
+        </th>
+        <th id="price" class="text-right" style="widows: 200px;">Price</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let item of cart.items">
         <td>
           <img
+            alt="{{ item.title }}"
             class="float-left thumbnail"
             src="../../assets/images/{{ item.imageUrl }}"
           />
@@ -31,9 +34,11 @@
       </tr>
     </tbody>
     <tfoot>
-      <th></th>
-      <th></th>
-      <th class="text-right">{{ cart.totalPrice | currency: "EUR" }}</th>
+      <th id="blank1"></th>
+      <th id="blank2"></th>
+      <th id="totalPrice" class="text-right">
+        {{ cart.totalPrice | currency: "EUR" }}
+      </th>
     </tfoot>
   </table>
   <button

@@ -1,22 +1,23 @@
-import { Component } from "@angular/core";
-import { LikeService } from "../../services/like.service";
-import { User } from "../../models/user";
-import { AuthService } from "src/services/auth.service";
+import { Component } from '@angular/core';
+import { LikeService } from '../../services/like.service';
+import { User } from '../../models/user';
+import { AuthService } from 'src/services/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
-  selector: "like",
-  templateUrl: "./like.component.html",
+  selector: 'like',
+  templateUrl: './like.component.html',
   styles: [
     `
       #heart {
         cursor: pointer;
       }
-    `
-  ]
+    `,
+  ],
 })
 export class LikeComponent {
   liked;
-  likes$;
+  likes$: Observable<any>;
 
   constructor(private likeService: LikeService, auth: AuthService) {
     this.likes$ = likeService.totalLikes;
