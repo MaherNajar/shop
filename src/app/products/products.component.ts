@@ -33,7 +33,7 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.populateProducts();
-    this.cart$ = this.cartService.getCart();
+    this.cart$ = this.cartService.cart$;
   }
 
   private populateProducts() {

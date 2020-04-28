@@ -3,7 +3,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { auth } from 'firebase';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
 import { switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { User } from 'src/models/user';
@@ -37,7 +38,7 @@ export class AuthService {
   }
 
   async googleSignin() {
-    const provider = new auth.GoogleAuthProvider();
+    const provider = new firebase.auth.GoogleAuthProvider();
     await this.afAuth.signInWithRedirect(provider);
   }
 

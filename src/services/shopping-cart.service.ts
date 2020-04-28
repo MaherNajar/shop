@@ -1,21 +1,23 @@
-import { Observable } from "rxjs";
-import { Product } from "../models/product";
-import { AngularFireDatabase } from "@angular/fire/database";
-import { Injectable } from "@angular/core";
-import { take, map } from "rxjs/operators";
-import { ShoppingCart } from "../models/shopping-cart";
-import { ShoppingCartItem } from "../models/shopping-cart-item";
+import { Observable } from 'rxjs';
+import { Product } from '../models/product';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { Injectable } from '@angular/core';
+import { take, map } from 'rxjs/operators';
+import { ShoppingCart } from '../models/shopping-cart';
+import { ShoppingCartItem } from '../models/shopping-cart-item';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root',
 })
 export class ShoppingCartService {
   constructor(private db: AngularFireDatabase) {}
 
-  getCart(): Observable<ShoppingCart> {
+  cart$: Observable<ShoppingCart>;
+
+  getCart() {
     let cartId = this.getOrCreateCartId();
-    return this.db
-      .object("/shopping-carts/" + cartId)
+    this.cart$ = this.db
+      .object('/shopping-carts/' + cartId)
       .valueChanges()
       .pipe(
         map((x: any) => {
@@ -35,25 +37,25 @@ export class ShoppingCartService {
 
   clearCart() {
     let cartId = this.getOrCreateCartId();
-    this.db.object("/shopping-carts/" + cartId + "/items").remove();
+    this.db.object('/shopping-carts/' + cartId + '/items').remove();
   }
 
   private create() {
-    return this.db.list("/shopping-carts").push({
-      dateCreated: new Date().getTime()
+    return this.db.list('/shopping-carts').push({
+      dateCreated: new Date().getTime(),
     });
   }
 
   private getItem(cartId: string, productId: string) {
-    return this.db.object("/shopping-carts/" + cartId + "/items/" + productId);
+    return this.db.object('/shopping-carts/' + cartId + '/items/' + productId);
   }
 
   private getOrCreateCartId(): string {
-    let cartId = localStorage.getItem("cartId");
+    let cartId = localStorage.getItem('cartId');
     if (cartId) return cartId;
 
     let result = this.create();
-    localStorage.setItem("cartId", result.key);
+    localStorage.setItem('cartId', result.key);
     return result.key;
   }
 
