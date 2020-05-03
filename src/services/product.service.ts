@@ -1,37 +1,30 @@
-import { AngularFireDatabase } from "@angular/fire/database";
-import { Injectable } from "@angular/core";
-import { map } from "rxjs/operators";
+import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Product } from 'src/models/product';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class ProductService {
-  constructor(private db: AngularFireDatabase) {}
+  constructor(private db: AngularFirestore) {}
 
-  create(product) {
-    return this.db.list("/products").push(product);
+  create(product: Product) {
+    return this.db.collection('products').add(product);
   }
 
-  update(productId, product) {
-    return this.db.object("/products/" + productId).update(product);
+  update(product: Product) {
+    return this.db.doc('products/' + product.id).update(product);
   }
 
-  delete(productId) {
-    return this.db.object("/products" + productId).remove();
+  delete(id: string) {
+    return this.db.doc('products/' + id).delete();
   }
 
   getAll() {
-    return this.db
-      .list("/products")
-      .snapshotChanges()
-      .pipe(
-        map((products) =>
-          products.map((p: any) => ({ key: p.key, ...p.payload.val() }))
-        )
-      );
+    return this.db.collection('products').valueChanges({ idField: 'id' });
   }
 
-  get(productId) {
-    return this.db.object("/products/" + productId).valueChanges();
+  get(id: string) {
+    return this.db.doc('products/' + id).valueChanges();
   }
 }

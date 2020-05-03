@@ -1,30 +1,25 @@
-import { Observable } from 'rxjs';
-import { Product } from '../models/product';
-import { AngularFireDatabase } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
-import { take, map } from 'rxjs/operators';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Product } from '../models/product';
 import { ShoppingCart } from '../models/shopping-cart';
 import { ShoppingCartItem } from '../models/shopping-cart-item';
+import { Observable } from 'rxjs';
+import { take, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ShoppingCartService {
-  constructor(private db: AngularFireDatabase) {}
+  constructor(private db: AngularFirestore) {}
 
   cart$: Observable<ShoppingCart>;
 
-  getCart() {
-    let cartId = this.getOrCreateCartId();
+  async getCart() {
+    let cartId = await this.getOrCreateCartId();
     this.cart$ = this.db
-      .object('/shopping-carts/' + cartId)
+      .collection('shopping-carts/' + cartId + '/items')
       .valueChanges()
-      .pipe(
-        map((x: any) => {
-          if (!x) return new ShoppingCart({});
-          return new ShoppingCart(x.items);
-        })
-      );
+      .pipe(map((x: any) => new ShoppingCart(x)));
   }
 
   addToCart(product: Product) {
@@ -35,39 +30,39 @@ export class ShoppingCartService {
     this.updateItem(product, -1);
   }
 
-  clearCart() {
-    let cartId = this.getOrCreateCartId();
-    this.db.object('/shopping-carts/' + cartId + '/items').remove();
+  async clearCart() {
+    let cartId = await this.getOrCreateCartId();
+    this.db.doc(`shopping-carts/${cartId}`).delete();
   }
 
   private create() {
-    return this.db.list('/shopping-carts').push({
-      dateCreated: new Date().getTime(),
+    return this.db.collection('shopping-carts/').add({
+      dateCreation: new Date(Date.now()).toLocaleDateString(),
     });
   }
 
   private getItem(cartId: string, productId: string) {
-    return this.db.object('/shopping-carts/' + cartId + '/items/' + productId);
+    return this.db.doc(`shopping-carts/${cartId}/items/${productId}`);
   }
 
-  private getOrCreateCartId(): string {
+  private async getOrCreateCartId() {
     let cartId = localStorage.getItem('cartId');
     if (cartId) return cartId;
 
-    let result = this.create();
-    localStorage.setItem('cartId', result.key);
-    return result.key;
+    let result = await this.create();
+    localStorage.setItem('cartId', result.id);
+    return result.id;
   }
 
-  private updateItem(product: Product, change: number) {
-    let cartId = this.getOrCreateCartId();
-    let item$ = this.getItem(cartId, product.key);
-    item$
+  private async updateItem(product: Product, change: number) {
+    let cartId = await this.getOrCreateCartId();
+    let docRef = this.getItem(cartId, product.id);
+    docRef
       .valueChanges()
       .pipe(take(1))
       .subscribe((item: ShoppingCartItem) => {
-        if (item) item$.update({ quantity: item.quantity + change });
-        else item$.update({ ...product, quantity: 1 });
+        if (item) docRef.update({ quantity: item.quantity + change });
+        else docRef.set({ ...product, quantity: 1 });
       });
   }
 }

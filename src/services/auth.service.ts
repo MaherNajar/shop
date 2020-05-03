@@ -1,13 +1,16 @@
 import { UserService } from './user.service';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 import 'firebase/auth';
+import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { User } from 'src/models/user';
+import {
+  AngularFirestore,
+  AngularFirestoreDocument,
+} from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -19,7 +22,7 @@ export class AuthService {
     private afAuth: AngularFireAuth,
     private userService: UserService,
     private router: Router,
-    private afDb: AngularFireDatabase
+    private db: AngularFirestore
   ) {
     afAuth
       .getRedirectResult()
@@ -31,7 +34,7 @@ export class AuthService {
       });
     this.user$ = afAuth.authState.pipe(
       switchMap((user) => {
-        if (user) return this.afDb.object(`users/${user.uid}`).valueChanges();
+        if (user) return this.db.doc(`users/${user.uid}`).valueChanges();
         else return of(null);
       })
     );
@@ -43,7 +46,7 @@ export class AuthService {
   }
 
   private updateUserData({ uid, email, displayName, photoURL }) {
-    const userRef: AngularFireObject<User> = this.afDb.object(`users/${uid}`);
+    const userRef: AngularFirestoreDocument<User> = this.db.doc(`users/${uid}`);
 
     const data = { uid, email, displayName, photoURL };
 

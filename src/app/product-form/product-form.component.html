@@ -50,7 +50,7 @@
           required
         >
           <option value="">Choisissez une catégorie</option>
-          <option [value]="c.key" *ngFor="let c of categories$ | async">{{
+          <option [value]="c.key" *ngFor="let c of categories">{{
             c.name
           }}</option>
         </select>
@@ -78,7 +78,7 @@
       >&nbsp;
       <button
         type="button"
-        *ngIf="id"
+        *ngIf="product.id"
         (click)="delete()"
         class="btn btn-danger"
       >

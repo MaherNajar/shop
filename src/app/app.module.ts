@@ -1,6 +1,5 @@
 import { LikeComponent } from './like/like.component';
 import { CustomFormsModule } from 'ng2-validation';
-import { CategoryService } from '../services/category.service';
 import { UserService } from '../services/user.service';
 import { AdminGuard } from '../services/admin-guard.service';
 import { AuthService } from '../services/auth.service';
@@ -11,7 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -69,7 +68,7 @@ registerLocaleData(localeFr, 'fr');
     NgbModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFireDatabaseModule,
+    AngularFirestoreModule,
     FormsModule,
     CustomFormsModule,
     BrowserAnimationsModule,
@@ -82,7 +81,6 @@ registerLocaleData(localeFr, 'fr');
     AuthService,
     AdminGuard,
     UserService,
-    CategoryService,
     ShoppingCartService,
     { provide: LOCALE_ID, useValue: 'fr' },
   ],

@@ -1,21 +1,21 @@
-import { ShoppingCart } from "./../../models/shopping-cart";
-import { Component, OnInit, Input } from "@angular/core";
-import { Subscription } from "rxjs";
-import { AuthService } from "../../services/auth.service";
-import { Order } from "src/models/order";
-import { OrderService } from "../../services/order.service";
-import { Router } from "@angular/router";
+import { ShoppingCart } from './../../models/shopping-cart';
+import { Component, OnInit, Input } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
+import { Order } from 'src/models/order';
+import { OrderService } from '../../services/order.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: "shipping-form",
-  templateUrl: "./shipping-form.component.html"
+  selector: 'shipping-form',
+  templateUrl: './shipping-form.component.html',
 })
 export class ShippingFormComponent implements OnInit {
   shipping: Shipping = {
-    nom: "",
-    adresse: "",
-    adresseBis: "",
-    ville: ""
+    nom: '',
+    adresse: '',
+    adresseBis: '',
+    ville: '',
   };
   subscription: Subscription;
   userId: string;
@@ -28,14 +28,14 @@ export class ShippingFormComponent implements OnInit {
 
   ngOnInit() {
     this.subscription = this.authService.user$.subscribe(
-      user => (this.userId = user ? user.uid : this.authService.newGuid)
+      (user) => (this.userId = user ? user.uid : this.authService.newGuid)
     );
   }
 
   async placeOrder() {
     let order = new Order(this.userId, this.shipping, this.cart);
-    const id = await this.orderService.placeOrder(order);
-    this.router.navigate(["/order-success", id.key]);
+    const result = await this.orderService.placeOrder(order);
+    this.router.navigate(['/order-success', result.id]);
   }
 
   ngOnDestroy() {

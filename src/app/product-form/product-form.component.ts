@@ -1,5 +1,5 @@
 import { ProductService } from '../../services/product.service';
-import { CategoryService } from '../../services/category.service';
+import { Categories, Category } from '../../services/categories';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { Product } from '../../models/product';
@@ -20,29 +20,27 @@ import 'firebase/storage';
   ],
 })
 export class ProductFormComponent {
-  categories$;
+  categories: Category[];
   percentage: number = 0;
-  id;
   product: any = {};
 
   constructor(
-    categoryService: CategoryService,
     private route: ActivatedRoute,
     private router: Router,
     private productService: ProductService
   ) {
-    this.categories$ = categoryService.getAll();
+    this.categories = Categories;
 
-    this.id = this.route.snapshot.paramMap.get('id');
+    let id = this.route.snapshot.paramMap.get('id');
 
-    if (this.id)
-      productService.get(this.id).subscribe((p: Product) => {
-        this.product = p;
+    if (id)
+      productService.get(id).subscribe((p: Product) => {
+        this.product = { ...p, id };
       });
   }
 
   save() {
-    if (this.id) this.productService.update(this.id, this.product);
+    if (this.product.id) this.productService.update(this.product);
     else this.productService.create(this.product);
 
     this.router.navigate(['/admin/products']);

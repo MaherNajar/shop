@@ -42,4 +42,7 @@ e2e/*.map
 .runtimeconfig.json
 .firebase/
 
+omyshop-db.ts
+batch.service.ts
+
 # End of https://www.gitignore.io/api/angular,firebase

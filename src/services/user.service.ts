@@ -1,33 +1,33 @@
-import { Injectable } from "@angular/core";
-import { AngularFireDatabase } from "@angular/fire/database";
-import { Observable } from "rxjs";
-import { take } from "rxjs/operators";
-import { User } from "src/models/user";
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { take } from 'rxjs/operators';
+import { User } from 'src/models/user';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root',
 })
 export class UserService {
-  constructor(private db: AngularFireDatabase) {}
+  constructor(private db: AngularFirestore) {}
 
   save(user: User) {
-    this.db.object("/users/" + user.uid).update({
+    this.db.doc('users/' + user.uid).update({
       uid: user.uid,
       name: user.displayName,
       email: user.email,
       isAdmin: true,
-      liked: false
+      liked: false,
     });
   }
 
   get(uid: string): Observable<User> {
     return this.db
-      .object<User>("/users/" + uid)
+      .doc<User>('users/' + uid)
       .valueChanges()
       .pipe(take(1));
   }
 
   generateGuid() {
-    return this.db.createPushId();
+    return this.db.createId();
   }
 }

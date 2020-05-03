@@ -1,28 +1,25 @@
-import { AuthService } from "../services/auth.service";
-import { AngularFireDatabase } from "@angular/fire/database";
-import { Injectable } from "@angular/core";
-import { take } from "rxjs/operators";
-import { User } from "src/models/user";
+import { AuthService } from '../services/auth.service';
+import { Injectable } from '@angular/core';
+import { take } from 'rxjs/operators';
+import { User } from 'src/models/user';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root',
 })
 export class LikeService {
-  constructor(
-    private db: AngularFireDatabase,
-    private authService: AuthService
-  ) {}
+  constructor(private db: AngularFirestore, private authService: AuthService) {}
 
   get totalLikes() {
-    return this.db.object("/likes/-L_P0eyAJeLJn4Ydmbvy").valueChanges();
+    return this.db.doc('likes/-L_P0eyAJeLJn4Ydmbvy').valueChanges();
   }
 
   save(liked) {
     this.authService.user$.pipe(take(1)).subscribe(async (user: User) => {
-      await this.db.object("/users/" + user.uid).update({ liked });
+      await this.db.doc('users/' + user.uid).update({ liked });
       const log = { ...user, liked, datetime: dateNow() };
-      let logsRef = this.db.list("logs");
-      let likesRef = this.db.object("likes/-L_P0eyAJeLJn4Ydmbvy");
+      let logsRef = this.db.collection('logs');
+      let likesRef = this.db.doc('likes/-L_P0eyAJeLJn4Ydmbvy');
 
       likesRef
         .valueChanges()
@@ -34,7 +31,7 @@ export class LikeService {
             let newValue = l.totalLikes + (liked ? 1 : -1);
             likesRef.update({ totalLikes: newValue });
           }
-          logsRef.push(log);
+          logsRef.add(log);
         });
     });
   }
@@ -42,5 +39,5 @@ export class LikeService {
 
 function dateNow() {
   let date = new Date();
-  return date.toLocaleDateString() + " " + date.toLocaleTimeString();
+  return date.toLocaleDateString() + ' ' + date.toLocaleTimeString();
 }
