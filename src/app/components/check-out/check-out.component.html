@@ -1,0 +1,7 @@
+<h1>Livraison</h1>
+<div class="row" *ngIf="cartService.cart as cart">
+  <div class="col-6"><shipping-form></shipping-form></div>
+  <div class="col">
+    <shopping-cart-summary></shopping-cart-summary>
+  </div>
+</div>

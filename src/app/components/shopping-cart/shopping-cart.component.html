@@ -1,0 +1,48 @@
+<h1>Panier</h1>
+<ng-container *ngIf="cartService.cart as cart">
+  <p>
+    Vous avez {{ cart.totalItemsCount }} produits dans le panier.
+    <button (click)="clearCart()" class="btn btn-light">Vider le panier</button>
+  </p>
+  <table aria-describedby="panier" class="table table-bordered">
+    <thead>
+      <tr>
+        <th id="product">Products</th>
+        <th id="quantity" class="text-center" style="width: 230px;">
+          Quantity
+        </th>
+        <th id="price" class="text-right" style="widows: 200px;">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cart.items">
+        <td>
+          <img
+            alt="{{ item.title }}"
+            class="float-left thumbnail"
+            src="../../assets/images/{{ item.imageUrl }}"
+          />
+          {{ item.title }}
+        </td>
+        <td>
+          <product-quantity [product]="item"></product-quantity>
+        </td>
+        <td class="text-right">{{ item.totalPrice | currency: "EUR" }}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <th id="blank1"></th>
+      <th id="blank2"></th>
+      <th id="totalPrice" class="text-right">
+        {{ cart.totalPrice | currency: "EUR" }}
+      </th>
+    </tfoot>
+  </table>
+  <button
+    [disabled]="cart.totalItemsCount === 0"
+    routerLink="/check-out"
+    class="btn btn-primary"
+  >
+    Passer en caisse
+  </button>
+</ng-container>

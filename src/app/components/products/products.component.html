@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-3">
+    <div class="justify-content-center">
+      <product-filter [category]="category"></product-filter>
+    </div>
+  </div>
+  <div class="col">
+    <div class="row">
+      <ng-container *ngFor="let p of filteredProducts; let i = index">
+        <div class="col">
+          <product-card [product]="p"></product-card>
+        </div>
+        <div *ngIf="(i + 1) % 2 === 0" class="w-100"></div>
+      </ng-container>
+      <div
+        *ngIf="filteredProducts.length === 0"
+        class="alert alert-light"
+        role="alert"
+      >
+        <p>
+          Aucun produit de la catégorie
+          <span class="text-capitalize font-weight-bold">{{ category }}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
