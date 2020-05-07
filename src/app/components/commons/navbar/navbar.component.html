@@ -1,6 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
-  <a class="navbar-brand" routerLink="/">
-    <!-- <span class="fas fa-leaf" style="color: yellowgreen;"></span> -->
+  <a class="navbar-brand float-right" routerLink="/">
     <img
       height="30px"
       width="30px"
@@ -8,72 +7,58 @@
       alt=""
     />
   </a>
-  <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarsExampleDefault"
-    aria-controls="navbarsExampleDefault"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
+  <ul class="navbar-nav mr-auto">
+    <ng-template #anonymousUser>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/shopping-cart">
-          <div style="text-align: center;">
-            <span class="fas fa-shopping-cart"></span>
-            <span
-              style="margin-left: 2px;"
-              class="badge badge-warning"
-              *ngIf="cartService.cart as cart"
-              >{{ cart.totalItemsCount }}</span
-            >
-          </div></a
-        >
+        <a class="nav-link" (click)="signIn()">Connexion</a>
       </li>
-      <ng-template #anonymousUser>
-        <li class="nav-item">
-          <a class="nav-link" (click)="signIn()">Connexion</a>
-        </li>
-      </ng-template>
-      <li
-        ngbDropdown
-        *ngIf="user$ | async as user; else anonymousUser"
-        class="nav-item dropdown"
+    </ng-template>
+    <li
+      ngbDropdown
+      *ngIf="user$ | async as user; else anonymousUser"
+      class="nav-item dropdown"
+    >
+      <a
+        ngbDropdownToggle
+        class="nav-link dropdown-toggle"
+        id="dropdown01"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+        >{{ user.displayName }}</a
       >
-        <a
-          ngbDropdownToggle
-          class="nav-link dropdown-toggle"
-          id="dropdown01"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-          >{{ user.displayName }}</a
+      <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
+        <a class="dropdown-item" routerLink="/profile/{{ user.uid }}"
+          >Mon profil</a
         >
-        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" routerLink="/profile/{{ user.uid }}"
-            >Mon profil</a
+        <a class="dropdown-item" routerLink="/my/orders">Mes commandes</a>
+        <ng-container *ngIf="user.userType === 'registered'">
+          <a class="dropdown-item" routerLink="/admin/orders"
+            >Gérer les commandes</a
           >
-          <a class="dropdown-item" routerLink="/my/orders">Mes commandes</a>
-          <ng-container *ngIf="user.userType === 'registered'">
-            <a class="dropdown-item" routerLink="/admin/orders"
-              >Gérer les commandes</a
-            >
-            <a class="dropdown-item" routerLink="/admin/products"
-              >Gérer les produits</a
-            >
-          </ng-container>
-          <a class="dropdown-item" [routerLink]="" (click)="signOut()"
-            >Déconnexion</a
+          <a class="dropdown-item" routerLink="/admin/products"
+            >Gérer les produits</a
           >
-        </div>
-      </li>
-      <li *ngIf="user$ | async as user">
-        <like></like>
-      </li>
-    </ul>
-  </div>
+        </ng-container>
+        <a class="dropdown-item" [routerLink]="" (click)="signOut()"
+          >Déconnexion</a
+        >
+      </div>
+    </li>
+  </ul>
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item -right">
+      <a class="nav-link" routerLink="/shopping-cart">
+        <div style="text-align: center;">
+          <span
+            style="margin-right: 2px;"
+            class="badge badge-warning"
+            *ngIf="cartService.cart as cart"
+            >{{ cart.totalItemsCount }}</span
+          >
+          <span>🛒</span>
+        </div></a
+      >
+    </li>
+  </ul>
 </nav>

@@ -17,7 +17,7 @@ export class OrderService {
   ) {}
 
   placeOrder(order) {
-    let result = this.db.collection('orders').add(order);
+    let result = this.db.collection('orders').add({ ...order });
     this.cartService.clearCart();
     return result;
   }
