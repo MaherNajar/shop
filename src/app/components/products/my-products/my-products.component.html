@@ -1,0 +1,38 @@
+<p>
+  <button routerLink="/admin/products/new" class="btn btn-primary">
+    Nouveau Produit
+  </button>
+</p>
+<p>
+  <input
+    (keyup)="filter(query.value)"
+    #query
+    type="text"
+    class="form-control"
+    placeholder="Rechercher..."
+  />
+</p>
+<br />
+<table
+  aria-describedby="admin products"
+  class="table table-bordered text-center"
+>
+  <thead>
+    <tr>
+      <th id="titre">Produit</th>
+      <th id="category">Categorie</th>
+      <th id="prix">prix</th>
+      <th id="modifier"></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of items">
+      <td>{{ p.title }}</td>
+      <td>{{ p.category }}</td>
+      <td>{{ p.price }}</td>
+      <td><a routerLink="/my/products/{{ p.id }}">Modifier</a></td>
+      <td><a [routerLink]="" (click)="productService.delete(p.id)">🚮</a></td>
+    </tr>
+  </tbody>
+</table>

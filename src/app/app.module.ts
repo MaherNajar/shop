@@ -22,17 +22,18 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { CheckOutComponent } from './components/check-out/check-out.component';
 import { OrderSuccessComponent } from './components/orders/order-success/order-success.component';
 import { MyOrdersComponent } from './components/orders/my-orders/my-orders.component';
-import { AdminProductsComponent } from './components/admin/admin-products/admin-products.component';
-import { AdminOrdersComponent } from './components/admin/admin-orders/admin-orders.component';
+import { AdminProductsComponent } from './components/products/admin-products/admin-products.component';
+import { AdminOrdersComponent } from './components/orders/admin-orders/admin-orders.component';
 import { ProductFormComponent } from './components/product/product-form/product-form.component';
 import { ProductsComponent } from './components/products/products.component';
-import { ProductFilterComponent } from './components/products/product-filter/product-filter.component';
+import { ProductFilterComponent } from './components/product/product-filter/product-filter.component';
 import { ProductCardComponent } from './components/product/product-card/product-card.component';
 import { ProductQuantityComponent } from './components/product/product-quantity/product-quantity.component';
 import { OrderDetailsComponent } from './components/orders/order-details/order-details.component';
 import { ShoppingCartSummaryComponent } from './components/shopping-cart/shopping-cart-summary/shopping-cart-summary.component';
-import { ContactFormComponent } from './components/orders/contact-form/contact-form.component';
+import { ContactFormComponent } from './components/check-out/contact-form/contact-form.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { MyProductsComponent } from './components/products/my-products/my-products.component';
 
 import { AdminGuard } from './services/admin-guard.service';
 import { AuthGuard } from './services/auth-guard.service';
@@ -58,6 +59,7 @@ registerLocaleData(localeFr, 'fr');
     ShoppingCartSummaryComponent,
     ContactFormComponent,
     ProfileComponent,
+    MyProductsComponent,
   ],
   imports: [
     BrowserModule,

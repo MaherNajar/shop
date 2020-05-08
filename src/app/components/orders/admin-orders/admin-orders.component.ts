@@ -6,5 +6,8 @@ import { OrderService } from 'src/app/services/order.service';
   templateUrl: './admin-orders.component.html',
 })
 export class AdminOrdersComponent {
-  constructor(public orderService: OrderService) {}
+  orders$;
+  constructor(orderService: OrderService) {
+    this.orders$ = orderService.getOrders();
+  }
 }

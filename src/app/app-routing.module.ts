@@ -2,8 +2,8 @@ import { ProductFormComponent } from './components/product/product-form/product-
 import { AdminGuard } from './services/admin-guard.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { MyOrdersComponent } from './components/orders/my-orders/my-orders.component';
-import { AdminOrdersComponent } from './components/admin/admin-orders/admin-orders.component';
-import { AdminProductsComponent } from './components/admin/admin-products/admin-products.component';
+import { AdminOrdersComponent } from './components/orders/admin-orders/admin-orders.component';
+import { AdminProductsComponent } from './components/products/admin-products/admin-products.component';
 import { CheckOutComponent } from './components/check-out/check-out.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -12,6 +12,7 @@ import { OrderSuccessComponent } from './components/orders/order-success/order-s
 import { ProductsComponent } from './components/products/products.component';
 import { OrderDetailsComponent } from './components/orders/order-details/order-details.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { MyProductsComponent } from './components/products/my-products/my-products.component';
 
 const routes: Routes = [
   {
@@ -41,13 +42,24 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
+    path: 'my/products',
+    component: MyProductsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'my/products/:id',
+    component: ProductFormComponent,
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'order-success/:id',
     component: OrderSuccessComponent,
+    canActivate: [AuthGuard],
   },
-
   {
     path: 'order-details/:id',
     component: OrderDetailsComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'admin/products/:id',
@@ -62,7 +74,7 @@ const routes: Routes = [
   {
     path: 'admin/orders',
     component: AdminOrdersComponent,
-    canActivate: [AdminGuard, AuthGuard],
+    canActivate: [AuthGuard],
   },
 ];
 

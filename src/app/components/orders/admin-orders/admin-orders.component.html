@@ -1,20 +1,22 @@
 <h1>Toutes les commandes</h1>
 <table
   aria-describedby="admin orders table"
-  class="table"
-  *ngIf="orderService.getOrders() | async as orders"
+  class="table text-center"
+  *ngIf="orders$ | async as orders"
 >
   <thead>
     <tr>
-      <th id="customer">Customer</th>
+      <th id="orderId">Id</th>
       <th id="date">Date</th>
+      <th id="totalPrice">Total</th>
       <th id="Details"></th>
     </tr>
   </thead>
   <tbody *ngFor="let order of orders">
     <tr>
-      <td>{{ order.shipping.nom }}</td>
+      <td>xxx{{ order.id | slice: -8 }}</td>
       <td>{{ order.datePlaced | date: "longDate" }}</td>
+      <td>{{ order.totalPrice | currency: "EUR" }}</td>
       <td><a [routerLink]="['/order-details', order.id]">Voir</a></td>
     </tr>
   </tbody>
