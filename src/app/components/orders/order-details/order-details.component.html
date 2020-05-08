@@ -1,11 +1,12 @@
 <div class="card" *ngIf="order$ | async as order">
   <div class="card-body">
     <ul class="list-group-flush">
-      <p class="card-text">{{ order.datePlaced | date: "fullDate" }}</p>
-      <p class="card-text">{{ order.shipping.nom }}</p>
-      <p class="card-text">{{ order.shipping.adresse }}</p>
-      <p class="card-text">{{ order.shipping.adresseBis }}</p>
-      <p class="card-text">{{ order.shipping.ville }}</p>
+      <p class="card-text">
+        <strong>Commande du : </strong>
+        {{ order.datePlaced | date: "fullDate" }}
+      </p>
+      <p class="card-text"><strong>Email : </strong> {{ order.email }}</p>
+      <p class="card-text"><strong>Message : </strong> {{ order.message }}</p>
       <li class="list-group-item" *ngFor="let item of order.items">
         <img
           src="../../assets/images/{{ item.product.imageUrl }}"

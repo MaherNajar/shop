@@ -1,9 +1,7 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
-  selector: "app-order-success",
-  templateUrl: "./order-success.component.html"
+  selector: 'app-order-success',
+  templateUrl: './order-success.component.html',
 })
-export class OrderSuccessComponent {
-  constructor() {}
-}
+export class OrderSuccessComponent {}

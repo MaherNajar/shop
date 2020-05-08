@@ -1,11 +1,16 @@
-export interface User {
-  displayName?: string;
+export class User {
   email: string;
-  lastTimeConnected: string;
-  liked: boolean;
-  phoneNumber?: string;
+  createdAt: string;
+  type: string;
+  displayName?: string;
   photoURL?: string;
-  providerId?: string;
-  uid: string;
-  userType: string;
+  phoneNumber?: string;
+
+  constructor(init: Partial<User>) {
+    Object.assign(this, init);
+  }
+
+  get isAdmin() {
+    return this.type === 'admin';
+  }
 }

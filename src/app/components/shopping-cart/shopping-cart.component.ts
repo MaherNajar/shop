@@ -7,8 +7,4 @@ import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 })
 export class ShoppingCartComponent {
   constructor(public cartService: ShoppingCartService) {}
-
-  clearCart() {
-    this.cartService.clearCart();
-  }
 }

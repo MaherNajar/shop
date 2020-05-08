@@ -6,9 +6,5 @@ import { OrderService } from 'src/app/services/order.service';
   templateUrl: './my-orders.component.html',
 })
 export class MyOrdersComponent {
-  orders$;
-
-  constructor(orderService: OrderService) {
-    this.orders$ = orderService.getMyOrders();
-  }
+  constructor(public orderService: OrderService) {}
 }

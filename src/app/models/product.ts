@@ -4,6 +4,7 @@ export class Product {
   price: number;
   category: string;
   imageUrl: string;
+  author: string;
 
   constructor(init?: Partial<Product>) {
     Object.assign(this, init);

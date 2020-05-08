@@ -14,7 +14,7 @@ export class AdminGuard implements CanActivate {
   canActivate(): Observable<boolean> {
     return this.authService.user$.pipe(
       map((user: User) => {
-        if (user) return user.userType === 'registered';
+        if (user) return user.isAdmin;
         return false;
       })
     );

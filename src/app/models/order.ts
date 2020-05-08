@@ -6,8 +6,8 @@ export class Order {
   totalPrice: number;
 
   constructor(
-    public userId: string,
-    public shipping,
+    public email: string,
+    public message: string,
     shoppingCart: ShoppingCart
   ) {
     this.datePlaced = Date.now();

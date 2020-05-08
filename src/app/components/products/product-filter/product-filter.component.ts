@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CategoryService } from 'src/app/services/categories.service';
 
 @Component({
@@ -12,10 +12,8 @@ import { CategoryService } from 'src/app/services/categories.service';
     `,
   ],
 })
-export class ProductFilterComponent implements OnInit {
+export class ProductFilterComponent {
   @Input()
   category: string;
   constructor(public catService: CategoryService) {}
-
-  ngOnInit() {}
 }

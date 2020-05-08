@@ -10,10 +10,13 @@ import { Order } from 'src/app/models/order';
 })
 export class OrderDetailsComponent implements OnInit {
   order$: Observable<Order>;
-  constructor(router: ActivatedRoute, orderService: OrderService) {
-    const id = router.snapshot.paramMap.get('id');
-    this.order$ = orderService.getOrder(id);
-  }
+  constructor(
+    private router: ActivatedRoute,
+    private orderService: OrderService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    const id = this.router.snapshot.paramMap.get('id');
+    this.order$ = this.orderService.getOrder(id);
+  }
 }

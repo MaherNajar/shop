@@ -18,7 +18,6 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/commons/navbar/navbar.component';
-import { LikeComponent } from './components/commons/like/like.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { CheckOutComponent } from './components/check-out/check-out.component';
 import { OrderSuccessComponent } from './components/orders/order-success/order-success.component';
@@ -32,7 +31,7 @@ import { ProductCardComponent } from './components/product/product-card/product-
 import { ProductQuantityComponent } from './components/product/product-quantity/product-quantity.component';
 import { OrderDetailsComponent } from './components/orders/order-details/order-details.component';
 import { ShoppingCartSummaryComponent } from './components/shopping-cart/shopping-cart-summary/shopping-cart-summary.component';
-import { ShippingFormComponent } from './components/orders/shipping-form/shipping-form.component';
+import { ContactFormComponent } from './components/orders/contact-form/contact-form.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
 import { AdminGuard } from './services/admin-guard.service';
@@ -52,13 +51,12 @@ registerLocaleData(localeFr, 'fr');
     AdminOrdersComponent,
     ProductFormComponent,
     ProductsComponent,
-    LikeComponent,
     ProductFilterComponent,
     ProductCardComponent,
     ProductQuantityComponent,
     OrderDetailsComponent,
     ShoppingCartSummaryComponent,
-    ShippingFormComponent,
+    ContactFormComponent,
     ProfileComponent,
   ],
   imports: [

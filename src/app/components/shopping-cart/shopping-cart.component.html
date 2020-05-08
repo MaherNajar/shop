@@ -2,7 +2,9 @@
 <ng-container *ngIf="cartService.cart as cart">
   <p>
     Vous avez {{ cart.totalItemsCount }} produits dans le panier.
-    <button (click)="clearCart()" class="btn btn-light">Vider le panier</button>
+    <button (click)="cartService.clearCart()" class="btn btn-light">
+      Vider le panier
+    </button>
   </p>
   <table aria-describedby="panier" class="table table-bordered">
     <thead>

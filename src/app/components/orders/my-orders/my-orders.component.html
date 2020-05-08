@@ -2,7 +2,7 @@
 <table
   aria-describedby="my orders"
   class="table"
-  *ngIf="orders$ | async as orders"
+  *ngIf="orderService.getMyOrders() | async as orders"
 >
   <thead>
     <tr>
