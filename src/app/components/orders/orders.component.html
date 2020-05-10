@@ -1,23 +1,23 @@
-<h1>Toutes les commandes</h1>
+<h1>{{ title }}</h1>
 <table
   aria-describedby="admin orders table"
-  class="table text-center"
+  class="table table-bordered text-center"
   *ngIf="orders$ | async as orders"
 >
   <thead>
     <tr>
-      <th id="orderId">Id</th>
       <th id="date">Date</th>
       <th id="totalPrice">Total</th>
+      <th id="status">Statut</th>
       <th id="Details"></th>
     </tr>
   </thead>
   <tbody *ngFor="let order of orders">
     <tr>
-      <td>xxx{{ order.id | slice: -8 }}</td>
-      <td>{{ order.datePlaced | date: "longDate" }}</td>
+      <td>{{ order.datePlaced | date: "short" }}</td>
       <td>{{ order.totalPrice | currency: "EUR" }}</td>
-      <td><a [routerLink]="['/order-details', order.id]">Voir</a></td>
+      <td>{{ order.status }}</td>
+      <td><a [routerLink]="['/order-details', order.id]">👁️</a></td>
     </tr>
   </tbody>
 </table>

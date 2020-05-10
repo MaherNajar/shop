@@ -22,6 +22,10 @@ export class OrderService {
     return result;
   }
 
+  updateOrder(order: Order) {
+    this.db.doc(`orders/${order.id}`).update({ ...order });
+  }
+
   getOrders(): Observable<Order[]> {
     return this.db
       .collection<Order>('orders', (ref) => ref.orderBy('datePlaced', 'desc'))

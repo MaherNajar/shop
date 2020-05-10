@@ -20,10 +20,9 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/commons/navbar/navbar.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { CheckOutComponent } from './components/check-out/check-out.component';
+import { OrdersComponent } from './components/orders/orders.component';
 import { OrderSuccessComponent } from './components/orders/order-success/order-success.component';
-import { MyOrdersComponent } from './components/orders/my-orders/my-orders.component';
 import { AdminProductsComponent } from './components/products/admin-products/admin-products.component';
-import { AdminOrdersComponent } from './components/orders/admin-orders/admin-orders.component';
 import { ProductFormComponent } from './components/product/product-form/product-form.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ProductFilterComponent } from './components/product/product-filter/product-filter.component';
@@ -47,14 +46,13 @@ registerLocaleData(localeFr, 'fr');
     ShoppingCartComponent,
     CheckOutComponent,
     OrderSuccessComponent,
-    MyOrdersComponent,
     AdminProductsComponent,
-    AdminOrdersComponent,
     ProductFormComponent,
     ProductsComponent,
     ProductFilterComponent,
     ProductCardComponent,
     ProductQuantityComponent,
+    OrdersComponent,
     OrderDetailsComponent,
     ShoppingCartSummaryComponent,
     ContactFormComponent,
@@ -70,10 +68,10 @@ registerLocaleData(localeFr, 'fr');
     AngularFirestoreModule,
     FormsModule,
     BrowserAnimationsModule,
+    NgbModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
     }),
-    NgbModule,
   ],
   providers: [AuthGuard, AdminGuard, { provide: LOCALE_ID, useValue: 'fr' }],
   bootstrap: [AppComponent],

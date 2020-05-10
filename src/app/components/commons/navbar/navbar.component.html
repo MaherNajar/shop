@@ -4,20 +4,17 @@
       height="30px"
       width="30px"
       src="assets/coeur-des-fruits-et-légumes.png"
-      alt=""
+      alt="coeur-des-fruits-et-légumes"
+      [ngStyle]="{ filter: user ? 'initial' : 'grayScale(1)' }"
     />
   </a>
   <ul class="navbar-nav mr-auto">
     <ng-template #anonymousUser>
       <li class="nav-item">
-        <a class="nav-link" (click)="authService.googleSignin()">Connexion</a>
+        <a class="nav-link" (click)="googleSignin()">Connexion</a>
       </li>
     </ng-template>
-    <li
-      ngbDropdown
-      *ngIf="authService.user$ | async as user; else anonymousUser"
-      class="nav-item dropdown"
-    >
+    <li ngbDropdown *ngIf="user; else anonymousUser" class="nav-item dropdown">
       <a
         ngbDropdownToggle
         class="nav-link dropdown-toggle"
@@ -28,7 +25,7 @@
         >{{ user.displayName }}</a
       >
       <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
-        <a class="dropdown-item" routerLink="/profile/{{ user.displayName }}"
+        <a class="dropdown-item" routerLink="/profile/{{ user.uid }}"
           >Mon profil</a
         >
         <!-- <ng-container *ngIf="user.isAdmin"> -->
@@ -48,7 +45,7 @@
 
         <div class="dropdown-divider"></div>
 
-        <a class="dropdown-item" [routerLink]="" (click)="authService.signOut()"
+        <a class="dropdown-item" [routerLink]="" (click)="signOut()"
           >Déconnexion</a
         >
       </div>

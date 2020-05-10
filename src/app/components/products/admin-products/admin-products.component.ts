@@ -22,7 +22,7 @@ export class AdminProductsComponent {
   products: Product[];
 
   constructor(public productService: ProductService) {
-    productService.getAll().subscribe((products: Product[]) => {
+    productService.getAllProducts().subscribe((products: Product[]) => {
       this.items = this.products = products;
     });
   }

@@ -30,7 +30,12 @@ export class ContactFormComponent implements OnInit {
 
   async placeOrder() {
     const orderMail = this.user ? this.user.email : this.email;
-    const order = new Order(orderMail, this.message, this.cartService.cart);
+    const order = new Order(
+      orderMail,
+      this.message,
+      'confirmed',
+      this.cartService.cart
+    );
     const result = await this.orderService.placeOrder(order);
     this.router.navigate(['/order-success', result.id]);
   }

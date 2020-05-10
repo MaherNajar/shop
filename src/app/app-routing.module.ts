@@ -1,8 +1,5 @@
 import { ProductFormComponent } from './components/product/product-form/product-form.component';
-import { AdminGuard } from './services/admin-guard.service';
 import { AuthGuard } from './services/auth-guard.service';
-import { MyOrdersComponent } from './components/orders/my-orders/my-orders.component';
-import { AdminOrdersComponent } from './components/orders/admin-orders/admin-orders.component';
 import { AdminProductsComponent } from './components/products/admin-products/admin-products.component';
 import { CheckOutComponent } from './components/check-out/check-out.component';
 import { NgModule } from '@angular/core';
@@ -13,6 +10,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { OrderDetailsComponent } from './components/orders/order-details/order-details.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { MyProductsComponent } from './components/products/my-products/my-products.component';
+import { OrdersComponent } from './components/orders/orders.component';
 
 const routes: Routes = [
   {
@@ -20,8 +18,33 @@ const routes: Routes = [
     component: ProductsComponent,
   },
   {
+    path: 'profile/:id',
+    component: ProfileComponent,
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'products',
     component: ProductsComponent,
+  },
+  {
+    path: 'my/products',
+    component: MyProductsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/products',
+    component: AdminProductsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'my/products/:id',
+    component: ProductFormComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/products/:id',
+    component: ProductFormComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'shopping-cart',
@@ -31,24 +54,15 @@ const routes: Routes = [
     path: 'check-out',
     component: CheckOutComponent,
   },
-  {
-    path: 'profile/:id',
-    component: ProfileComponent,
-    canActivate: [AuthGuard],
-  },
+
   {
     path: 'my/orders',
-    component: MyOrdersComponent,
+    component: OrdersComponent,
     canActivate: [AuthGuard],
   },
   {
-    path: 'my/products',
-    component: MyProductsComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'my/products/:id',
-    component: ProductFormComponent,
+    path: 'admin/orders',
+    component: OrdersComponent,
     canActivate: [AuthGuard],
   },
   {
@@ -59,21 +73,6 @@ const routes: Routes = [
   {
     path: 'order-details/:id',
     component: OrderDetailsComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'admin/products/:id',
-    component: ProductFormComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'admin/products',
-    component: AdminProductsComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'admin/orders',
-    component: AdminOrdersComponent,
     canActivate: [AuthGuard],
   },
 ];

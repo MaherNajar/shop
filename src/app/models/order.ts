@@ -8,6 +8,7 @@ export class Order {
   constructor(
     public email: string,
     public message: string,
+    public status: string,
     shoppingCart: ShoppingCart
   ) {
     this.datePlaced = Date.now();

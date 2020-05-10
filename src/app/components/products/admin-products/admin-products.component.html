@@ -19,8 +19,10 @@
 >
   <thead>
     <tr>
-      <th id="author">Auteur</th>
+      <th id="author">Author</th>
       <th id="titre">Produit</th>
+      <th id="image">Image</th>
+      <th id="category">Categorie</th>
       <th id="prix">prix</th>
       <th id="modifier"></th>
       <th></th>
@@ -28,10 +30,18 @@
   </thead>
   <tbody>
     <tr *ngFor="let p of items">
-      <td>{{ p.author }}</td>
+      <td><a routerLink="/profile/{{ p.uid }}">🕴️</a></td>
       <td>{{ p.title }}</td>
+      <td>
+        <img
+          alt="{{ p.title }}"
+          class="thumbnail"
+          src="../../assets/images/{{ p.imageUrl }}"
+        />
+      </td>
+      <td>{{ p.category }}</td>
       <td>{{ p.price }}</td>
-      <td><a routerLink="/admin/products/{{ p.id }}">Modifier</a></td>
+      <td><a routerLink="/admin/products/{{ p.id }}">👁️</a></td>
       <td><a [routerLink]="" (click)="productService.delete(p.id)">🚮</a></td>
     </tr>
   </tbody>

@@ -37,7 +37,7 @@ export class ProductsComponent implements OnInit {
 
   private populateProducts() {
     this.productService
-      .getAll()
+      .getAllProducts()
       .pipe(
         switchMap((products: Product[]) => {
           this.products = products;

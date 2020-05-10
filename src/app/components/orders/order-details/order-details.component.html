@@ -1,9 +1,26 @@
-<div class="card" *ngIf="order$ | async as order">
+<div class="card" *ngIf="order">
   <div class="card-body">
     <ul class="list-group-flush">
       <p class="card-text">
+        <strong>Référence : {{ order.id }}</strong>
+      </p>
+      <p class="card-text">
+        <strong>Status : </strong
+        ><span
+          (click)="updateStatus()"
+          style="cursor: pointer;"
+          class="badge"
+          [ngClass]="{
+            'badge-primary': order.status === 'confirmed',
+            'badge-warning': order.status === 'canceled',
+            'badge-success': order.status === 'sold'
+          }"
+          >{{ order.status }}</span
+        >
+      </p>
+      <p class="card-text">
         <strong>Commande du : </strong>
-        {{ order.datePlaced | date: "fullDate" }}
+        {{ order.datePlaced | date: "long" }}
       </p>
       <p class="card-text"><strong>Email : </strong> {{ order.email }}</p>
       <p class="card-text"><strong>Message : </strong> {{ order.message }}</p>

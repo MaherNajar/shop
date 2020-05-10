@@ -22,7 +22,7 @@ export class ProductService {
     return this.db.doc('products/' + id).delete();
   }
 
-  getAll() {
+  getAllProducts() {
     return this.db
       .collection('products', (ref) => ref.orderBy('category'))
       .valueChanges({ idField: 'id' });
@@ -34,7 +34,7 @@ export class ProductService {
       switchMap((user) =>
         this.db
           .collection('products', (ref) =>
-            ref.where('author', '==', user.email).orderBy('category')
+            ref.where('uid', '==', user.uid).orderBy('category')
           )
           .valueChanges({ idField: 'id' })
       )
