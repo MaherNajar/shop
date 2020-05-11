@@ -3,17 +3,22 @@
     <ul class="list-group-flush">
       <p class="card-text">
         <strong>Référence : {{ order.id }}</strong>
+        <button
+          *ngIf="order.status !== 'terminée'"
+          class="btn btn-light float-right"
+          (click)="cancelOrder()"
+        >
+          Annuler la commande
+        </button>
       </p>
       <p class="card-text">
         <strong>Status : </strong
         ><span
-          (click)="updateStatus()"
-          style="cursor: pointer;"
           class="badge"
           [ngClass]="{
-            'badge-primary': order.status === 'confirmed',
-            'badge-warning': order.status === 'canceled',
-            'badge-success': order.status === 'sold'
+            'badge-primary': order.status === 'confirmée',
+            'badge-warning': order.status === 'annulée',
+            'badge-success': order.status === 'terminée'
           }"
           >{{ order.status }}</span
         >

@@ -6,6 +6,7 @@
 >
   <thead>
     <tr>
+      <th *ngIf="showCustomer" id="customer">Client</th>
       <th id="date">Date</th>
       <th id="totalPrice">Total</th>
       <th id="status">Statut</th>
@@ -14,6 +15,7 @@
   </thead>
   <tbody *ngFor="let order of orders">
     <tr>
+      <td>{{ order.email }}</td>
       <td>{{ order.datePlaced | date: "short" }}</td>
       <td>{{ order.totalPrice | currency: "EUR" }}</td>
       <td>{{ order.status }}</td>

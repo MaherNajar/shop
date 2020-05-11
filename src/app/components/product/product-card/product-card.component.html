@@ -6,19 +6,45 @@
     alt="{{ product.title }}"
   />
   <div class="card-body">
-    <h5 class="card-title">{{ product.title }}</h5>
-    <p class="card-text">{{ product.price | currency: "EUR" }}</p>
+    <p class="card-title">
+      <strong>
+        {{ product.title }}
+      </strong>
+    </p>
+    <p class="card-text">
+      {{ product.price | currency: "EUR"
+      }}<span
+        class="float-right badge"
+        [ngClass]="{
+          'badge-primary': product.status === 'réservé',
+          'badge-danger': product.status === 'vendu',
+          'badge-success': product.status === 'disponible'
+        }"
+        >{{ product.status }}</span
+      >
+    </p>
   </div>
   <div *ngIf="showActions && cartService.cart as cart" class="card-footer p-0">
     <button
       (click)="addToCart()"
-      *ngIf="cart.getItemQuantity(product.id) === 0; else updateQuantity"
+      [disabled]="product.status !== 'disponible'"
+      *ngIf="
+        product.status === 'disponible' &&
+          cartService.cart.getItemQuantity(product.id) === 0;
+        else removeProduct
+      "
       class="btn btn-secondary btn-block"
     >
       Ajouter au panier
     </button>
-    <ng-template #updateQuantity>
-      <product-quantity [product]="product"></product-quantity>
+    <ng-template #removeProduct>
+      <button
+        (click)="removeFromCart()"
+        *ngIf="product.status === 'disponible'"
+        class="btn btn-light btn-block"
+      >
+        Retirer du panier
+      </button>
     </ng-template>
   </div>
 </div>

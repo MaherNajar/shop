@@ -8,8 +8,10 @@ import { User } from 'src/app/models/user';
   templateUrl: './navbar.component.html',
   styles: [
     `
-      .grayFilter {
-        filter: grayscale(1);
+      .avatar {
+        width: 1.75em;
+        border-radius: 50%;
+        margin: 0 10px 5px;
       }
     `,
   ],

@@ -5,6 +5,7 @@ export class Product {
   category: string;
   imageUrl: string;
   uid: string;
+  status: 'disponible' | 'réservé' | 'vendu' = 'disponible';
 
   constructor(init?: Partial<Product>) {
     Object.assign(this, init);

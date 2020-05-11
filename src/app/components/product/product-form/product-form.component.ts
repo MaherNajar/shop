@@ -1,10 +1,11 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as firebase from 'firebase/app';
 import 'firebase/storage';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/models/product';
 import { CategoryService } from 'src/app/services/categories.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-product',
@@ -19,22 +20,27 @@ import { CategoryService } from 'src/app/services/categories.service';
     `,
   ],
 })
-export class ProductFormComponent {
+export class ProductFormComponent implements OnInit, OnDestroy {
   percentage: number = 0;
   product: Product = null;
+  subscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private productService: ProductService,
     public catService: CategoryService
-  ) {
+  ) {}
+
+  ngOnInit() {
     let id = this.route.snapshot.paramMap.get('id');
     if (id === 'new') this.product = new Product();
     else {
-      productService.get(id).subscribe((p: Product) => {
-        this.product = new Product({ ...p, id });
-      });
+      this.subscription = this.productService
+        .get(id)
+        .subscribe((p: Product) => {
+          this.product = new Product({ ...p, id });
+        });
     }
   }
 
@@ -70,5 +76,9 @@ export class ProductFormComponent {
   delete() {
     this.productService.delete(this.product.id);
     this.router.navigate(['/admin/products']);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

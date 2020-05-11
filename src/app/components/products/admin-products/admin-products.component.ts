@@ -35,6 +35,10 @@ export class AdminProductsComponent {
       : this.products;
   }
 
+  updateProduct(p) {
+    this.productService.update(p);
+  }
+
   private noralized(title: string) {
     return title
       .normalize('NFD')

@@ -33,7 +33,7 @@ export class ContactFormComponent implements OnInit {
     const order = new Order(
       orderMail,
       this.message,
-      'confirmed',
+      'confirmée',
       this.cartService.cart
     );
     const result = await this.orderService.placeOrder(order);

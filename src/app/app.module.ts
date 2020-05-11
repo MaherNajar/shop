@@ -32,7 +32,6 @@ import { OrderDetailsComponent } from './components/orders/order-details/order-d
 import { ShoppingCartSummaryComponent } from './components/shopping-cart/shopping-cart-summary/shopping-cart-summary.component';
 import { ContactFormComponent } from './components/check-out/contact-form/contact-form.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { MyProductsComponent } from './components/products/my-products/my-products.component';
 
 import { AdminGuard } from './services/admin-guard.service';
 import { AuthGuard } from './services/auth-guard.service';
@@ -57,7 +56,6 @@ registerLocaleData(localeFr, 'fr');
     ShoppingCartSummaryComponent,
     ContactFormComponent,
     ProfileComponent,
-    MyProductsComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,7 +71,7 @@ registerLocaleData(localeFr, 'fr');
       enabled: environment.production,
     }),
   ],
-  providers: [AuthGuard, AdminGuard, { provide: LOCALE_ID, useValue: 'fr' }],
+  providers: [{ provide: LOCALE_ID, useValue: 'fr' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

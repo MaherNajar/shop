@@ -1,14 +1,16 @@
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { OrderService } from 'src/app/services/order.service';
 import { Order } from 'src/app/models/order';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'order-details',
   templateUrl: './order-details.component.html',
 })
-export class OrderDetailsComponent implements OnInit {
+export class OrderDetailsComponent implements OnInit, OnDestroy {
   order: Order;
+  subscription: Subscription;
   constructor(
     private router: ActivatedRoute,
     private orderService: OrderService
@@ -16,25 +18,20 @@ export class OrderDetailsComponent implements OnInit {
 
   ngOnInit() {
     const id = this.router.snapshot.paramMap.get('id');
-    this.orderService.getOrder(id).subscribe((order) => {
+    this.subscription = this.orderService.getOrder(id).subscribe((order) => {
       order.id = id;
       this.order = order;
     });
   }
 
-  updateStatus() {
-    switch (this.order.status) {
-      case 'sold':
-        break;
-      case 'confirmed':
-        this.order.status = 'canceled';
-        break;
-      case 'canceled':
-        this.order.status = 'confirmed';
-        break;
-      default:
-        break;
+  cancelOrder() {
+    if (this.order.status === 'confirmée') {
+      this.order.status = 'annulée';
+      this.orderService.updateOrder(this.order);
     }
-    this.orderService.updateOrder(this.order);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

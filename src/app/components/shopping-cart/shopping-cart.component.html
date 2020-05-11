@@ -5,15 +5,19 @@
     <button (click)="cartService.clearCart()" class="btn btn-light">
       Vider le panier
     </button>
+    <button
+      [disabled]="cart.totalItemsCount === 0"
+      routerLink="/check-out"
+      class="btn btn-warning float-right"
+    >
+      Valider le panier
+    </button>
   </p>
-  <table aria-describedby="panier" class="table table-bordered">
+  <table aria-describedby="panier" class="table table-bordered text-center">
     <thead>
       <tr>
         <th id="product">Products</th>
-        <th id="quantity" class="text-center" style="width: 230px;">
-          Quantity
-        </th>
-        <th id="price" class="text-right" style="widows: 200px;">Price</th>
+        <th id="price">Price</th>
       </tr>
     </thead>
     <tbody>
@@ -26,25 +30,14 @@
           />
           {{ item.title }}
         </td>
-        <td>
-          <product-quantity [product]="item"></product-quantity>
-        </td>
-        <td class="text-right">{{ item.totalPrice | currency: "EUR" }}</td>
+        <td>{{ item.totalPrice | currency: "EUR" }}</td>
       </tr>
     </tbody>
     <tfoot>
       <th id="blank1"></th>
-      <th id="blank2"></th>
-      <th id="totalPrice" class="text-right">
-        {{ cart.totalPrice | currency: "EUR" }}
+      <th id="totalPrice">
+        <strong> {{ cart.totalPrice | currency: "EUR" }} </strong>
       </th>
     </tfoot>
   </table>
-  <button
-    [disabled]="cart.totalItemsCount === 0"
-    routerLink="/check-out"
-    class="btn btn-primary"
-  >
-    Valider le panier
-  </button>
 </ng-container>

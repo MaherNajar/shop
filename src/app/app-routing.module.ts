@@ -9,8 +9,8 @@ import { OrderSuccessComponent } from './components/orders/order-success/order-s
 import { ProductsComponent } from './components/products/products.component';
 import { OrderDetailsComponent } from './components/orders/order-details/order-details.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { MyProductsComponent } from './components/products/my-products/my-products.component';
 import { OrdersComponent } from './components/orders/orders.component';
+import { AdminGuard } from './services/admin-guard.service';
 
 const routes: Routes = [
   {
@@ -18,33 +18,8 @@ const routes: Routes = [
     component: ProductsComponent,
   },
   {
-    path: 'profile/:id',
-    component: ProfileComponent,
-    canActivate: [AuthGuard],
-  },
-  {
     path: 'products',
     component: ProductsComponent,
-  },
-  {
-    path: 'my/products',
-    component: MyProductsComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'admin/products',
-    component: AdminProductsComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'my/products/:id',
-    component: ProductFormComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'admin/products/:id',
-    component: ProductFormComponent,
-    canActivate: [AuthGuard],
   },
   {
     path: 'shopping-cart',
@@ -56,12 +31,12 @@ const routes: Routes = [
   },
 
   {
-    path: 'my/orders',
-    component: OrdersComponent,
+    path: 'profile/:id',
+    component: ProfileComponent,
     canActivate: [AuthGuard],
   },
   {
-    path: 'admin/orders',
+    path: 'my/orders',
     component: OrdersComponent,
     canActivate: [AuthGuard],
   },
@@ -74,6 +49,21 @@ const routes: Routes = [
     path: 'order-details/:id',
     component: OrderDetailsComponent,
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'admin/orders',
+    component: OrdersComponent,
+    canActivate: [AuthGuard, AdminGuard],
+  },
+  {
+    path: 'admin/products',
+    component: AdminProductsComponent,
+    canActivate: [AuthGuard, AdminGuard],
+  },
+  {
+    path: 'admin/products/:id',
+    component: ProductFormComponent,
+    canActivate: [AuthGuard, AdminGuard],
   },
 ];
 
