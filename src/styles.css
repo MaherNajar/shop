@@ -9,10 +9,3 @@ body {
 .nav-link {
   cursor: pointer;
 }
-
-.thumbnail {
-  border-radius: 50px;
-  width: 100px;
-  height: 100px;
-  background-size: cover;
-}

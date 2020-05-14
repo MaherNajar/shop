@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { of } from 'rxjs';
 
 export interface Category {
   key: string;
@@ -18,6 +19,6 @@ export class CategoryService {
   ];
 
   getCategories() {
-    return this.Categories;
+    return of(this.Categories);
   }
 }

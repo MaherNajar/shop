@@ -25,6 +25,7 @@
     "@angular/service-worker": "~9.1.0",
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
     "bootstrap": "^4.4.1",
+    "file-drop-element": "^0.2.0",
     "firebase": "^7.14.3",
     "rxjs": "~6.5.4",
     "tslib": "^1.11.2",

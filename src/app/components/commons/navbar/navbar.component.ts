@@ -11,12 +11,13 @@ import { User } from 'src/app/models/user';
       .avatar {
         width: 1.75em;
         border-radius: 50%;
-        margin: 0 10px 5px;
+        margin: 0 10px 0;
       }
     `,
   ],
 })
 export class NavbarComponent implements OnInit {
+  collapsed = true;
   user: User = null;
   constructor(
     private authService: AuthService,

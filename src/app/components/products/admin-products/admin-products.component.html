@@ -1,6 +1,6 @@
 <p>
-  <button routerLink="/admin/products/new" class="btn btn-secondary">
-    Nouveau Produit
+  <button routerLink="/admin/produits/nouveau" class="btn btn-success">
+    Ajouter
   </button>
 </p>
 <p>
@@ -13,56 +13,60 @@
   />
 </p>
 <br />
-<table
-  aria-describedby="admin products"
-  class="table table-bordered text-center"
->
-  <thead>
-    <tr>
-      <th id="auteur">Auteur</th>
-      <th id="titre">Produit</th>
-      <th id="image">Image</th>
-      <th id="category">Categorie</th>
-      <th id="availability">Disponibilité</th>
-      <th id="prix">prix</th>
-      <th id="modifier"></th>
-      <th id="supprimer"></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let p of items">
-      <td><a routerLink="/profile/{{ p.uid }}">🕴️</a></td>
-      <td>{{ p.title }}</td>
-      <td>
-        <img
-          alt="{{ p.title }}"
-          class="thumbnail"
-          src="../../assets/images/{{ p.imageUrl }}"
-        />
-      </td>
-      <td>{{ p.category }}</td>
-      <td>
-        <div
-          class="btn-group btn-group-toggle"
-          ngbRadioGroup
-          name="availability"
-          [(ngModel)]="p.status"
-          (change)="updateProduct(p)"
-        >
-          <label ngbButtonLabel class="btn-success">
-            <input ngbButton type="radio" value="disponible" /> Disponible
-          </label>
-          <label ngbButtonLabel class="btn-primary">
-            <input ngbButton type="radio" value="réservé" /> Réservé
-          </label>
-          <label ngbButtonLabel class="btn-danger">
-            <input ngbButton type="radio" value="vendu" /> Vendu
-          </label>
-        </div>
-      </td>
-      <td>{{ p.price }}</td>
-      <td><a routerLink="/admin/products/{{ p.id }}">👁️</a></td>
-      <td><a [routerLink]="" (click)="productService.delete(p.id)">🚮</a></td>
-    </tr>
-  </tbody>
-</table>
+<div class="table-responsive">
+  <table
+    aria-describedby="admin products"
+    class="table table-bordered text-center"
+  >
+    <thead>
+      <tr>
+        <th id="auteur">Auteur</th>
+        <th id="article">Article</th>
+        <th id="présentation">Présentation</th>
+        <th id="catégorie">Catégorie</th>
+        <th id="statut">Disponibilité</th>
+        <th id="prix">prix</th>
+        <th id="modifier"></th>
+        <th id="supprimer"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of items">
+        <td><a routerLink="/profil/{{ p.uid }}">🕴️</a></td>
+        <td>{{ p.title }}</td>
+        <td>
+          <img
+            *ngIf="p.images"
+            width="auto"
+            height="100px"
+            alt="{{ p.title }}"
+            src="{{ p.images[0] | size: '200' }}"
+          />
+        </td>
+        <td>{{ p.category }}</td>
+        <td>
+          <div
+            class="btn-group btn-group-toggle"
+            ngbRadioGroup
+            name="availability"
+            [(ngModel)]="p.status"
+            (change)="productService.update(p)"
+          >
+            <label ngbButtonLabel class="btn-success">
+              <input ngbButton type="radio" value="disponible" /> Disponible
+            </label>
+            <label ngbButtonLabel class="btn-primary">
+              <input ngbButton type="radio" value="réservé" /> Réservé
+            </label>
+            <label ngbButtonLabel class="btn-danger">
+              <input ngbButton type="radio" value="vendu" /> Vendu
+            </label>
+          </div>
+        </td>
+        <td>{{ p.price }}</td>
+        <td><a routerLink="/admin/produits/{{ p.id }}">👁️</a></td>
+        <td><a [routerLink]="" (click)="productService.delete(p)">🚮</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

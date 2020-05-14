@@ -3,23 +3,30 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Product } from 'src/app/models/product';
 import { AuthService } from './auth.service';
 import { switchMap, take } from 'rxjs/operators';
+import { AngularFireStorage } from '@angular/fire/storage';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
-  constructor(private db: AngularFirestore, private authService: AuthService) {}
+  constructor(
+    private db: AngularFirestore,
+    private authService: AuthService,
+    private storage: AngularFireStorage
+  ) {}
 
-  create(product: Product) {
-    return this.db.collection('products').add({ ...product });
+  async create(product: Product) {
+    const uid = (await this.authService.user$.toPromise()).uid;
+    return this.db.collection('products').add({ ...product, uid });
   }
 
   update(product: Product) {
     return this.db.doc('products/' + product.id).update({ ...product });
   }
 
-  delete(id: string) {
-    return this.db.doc('products/' + id).delete();
+  async delete(product: Product) {
+    await this.deleteImages(product);
+    return this.db.doc('products/' + product.id).delete();
   }
 
   getAllProducts() {
@@ -43,5 +50,23 @@ export class ProductService {
 
   get(id: string) {
     return this.db.doc('products/' + id).valueChanges();
+  }
+
+  async deleteImages(product: Product) {
+    for (let i = 0; i < product.images.length; i++) {
+      const file = product.images[i];
+      const fileRef1 = this.storage.ref(
+        `produits/${product.imageRefDate}-${i}_200x200`
+      );
+      const fileRef2 = this.storage.ref(
+        `produits/${product.imageRefDate}-${i}_400x400`
+      );
+      const fileRef3 = this.storage.ref(
+        `produits/${product.imageRefDate}-${i}_680x680`
+      );
+      fileRef1.delete();
+      fileRef2.delete();
+      fileRef3.delete();
+    }
   }
 }

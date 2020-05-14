@@ -27,16 +27,12 @@ export class AdminProductsComponent {
     });
   }
 
-  filter(query) {
+  filter(query: string) {
     this.items = query
       ? this.products.filter((p) =>
           this.noralized(p.title).includes(this.noralized(query))
         )
       : this.products;
-  }
-
-  updateProduct(p) {
-    this.productService.update(p);
   }
 
   private noralized(title: string) {

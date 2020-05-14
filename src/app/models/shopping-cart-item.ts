@@ -2,8 +2,7 @@ export class ShoppingCartItem {
   id: string;
   title: string;
   price: number;
-  category: string;
-  imageUrl: string;
+  image: string;
   quantity: number;
 
   constructor(init?: Partial<ShoppingCartItem>) {

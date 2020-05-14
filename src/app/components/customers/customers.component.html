@@ -1,0 +1,26 @@
+<h3>Mes clients</h3>
+<br />
+
+<div *ngIf="customers$ | async as customers" class="table-responsive">
+  <table
+    class="table table-responsive table-bordered text-center"
+    aria-describedby="mes clients"
+  >
+    <thead>
+      <tr>
+        <th id="email">Email</th>
+        <th id="dépenses">Total dépenses</th>
+        <th id="nombre_de_commandes">Nombre de commandes</th>
+        <th id="commandes"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let customer of customers">
+        <td>{{ customer.email }}</td>
+        <td>{{ customer.expenses }}</td>
+        <td>{{ customer.ordersCount }}</td>
+        <td>👁️</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

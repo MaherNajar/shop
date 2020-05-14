@@ -1,11 +1,13 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import * as firebase from 'firebase/app';
-import 'firebase/storage';
+import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/models/product';
-import { CategoryService } from 'src/app/services/categories.service';
-import { Subscription } from 'rxjs';
+import { CategoryService, Category } from 'src/app/services/categories.service';
+import { Subscription, Observable } from 'rxjs';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize } from 'rxjs/operators';
+import { ToastService } from 'src/app/services/toast.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-product',
@@ -20,65 +22,78 @@ import { Subscription } from 'rxjs';
     `,
   ],
 })
-export class ProductFormComponent implements OnInit, OnDestroy {
-  percentage: number = 0;
+export class ProductFormComponent implements OnInit {
+  uploadPercent: Observable<number>;
   product: Product = null;
+  categories$: Observable<Category[]>;
   subscription: Subscription;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private productService: ProductService,
-    public catService: CategoryService
+    public catService: CategoryService,
+    private storage: AngularFireStorage,
+    private toastService: ToastService,
+    public authService: AuthService
   ) {}
 
   ngOnInit() {
     let id = this.route.snapshot.paramMap.get('id');
-    if (id === 'new') this.product = new Product();
+    if (id === 'nouveau') this.product = new Product();
     else {
-      this.subscription = this.productService
+      this.productService
         .get(id)
-        .subscribe((p: Product) => {
-          this.product = new Product({ ...p, id });
-        });
+        .subscribe(
+          (product: Product) => (this.product = new Product({ ...product, id }))
+        );
     }
+    this.categories$ = this.catService.getCategories();
   }
 
   save() {
     if (this.product.id) this.productService.update(this.product);
     else this.productService.create(this.product);
 
-    this.router.navigate(['/admin/products']);
+    this.router.navigate(['/admin/produits']);
   }
 
-  imageUpload(e) {
-    const file = e.target.files[0];
-    const storage = firebase.storage();
-    const storageRef = storage.ref('images/' + file.name);
-
-    let task = storageRef.put(file);
-
-    task.on(
-      'state_changed',
-      (snapshot) => {
-        this.percentage =
-          (snapshot['bytesTransferred'] / snapshot['totalBytes']) * 100;
-      },
-      (err) => {},
-      () => {
-        storageRef
-          .getDownloadURL()
-          .then((url) => (this.product.imageUrl = url));
-      }
-    );
+  async imageUpload(e) {
+    try {
+      const { date: imageRefDate, urls } = await this.getUrls(e.target.files);
+      this.product = { ...this.product, imageRefDate, images: urls };
+    } catch (error) {
+      this.toastService.show('Images upload', error.message);
+    }
   }
 
-  delete() {
-    this.productService.delete(this.product.id);
-    this.router.navigate(['/admin/products']);
+  async getUrls(files) {
+    const date = Date.now().toString();
+    let urls = [];
+
+    for (let i = 0; i < files.length; i++) {
+      const fileRef = this.storage.ref(`produits/${date}-${i}`);
+
+      const task = fileRef.put(files[i]);
+
+      this.uploadPercent = task.percentageChanges();
+
+      task
+        .snapshotChanges()
+        .pipe(
+          finalize(async () => {
+            urls.push(await fileRef.getDownloadURL().toPromise());
+          })
+        )
+        .subscribe();
+    }
+
+    return { urls, date };
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
+  async onReturn() {
+    if (!this.product.id && this.product.images.length > 0)
+      this.productService.deleteImages(this.product);
+    this.router.navigate(['/admin/produits']);
   }
 }

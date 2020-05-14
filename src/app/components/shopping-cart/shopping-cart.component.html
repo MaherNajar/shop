@@ -1,4 +1,4 @@
-<h1>Panier</h1>
+<h3>Mon panier</h3>
 <ng-container *ngIf="cartService.cart as cart">
   <p>
     Vous avez {{ cart.totalItemsCount }} produits dans le panier.
@@ -7,37 +7,41 @@
     </button>
     <button
       [disabled]="cart.totalItemsCount === 0"
-      routerLink="/check-out"
-      class="btn btn-warning float-right"
+      routerLink="/caisse"
+      class="btn btn-primary float-right"
     >
       Valider le panier
     </button>
   </p>
-  <table aria-describedby="panier" class="table table-bordered text-center">
-    <thead>
-      <tr>
-        <th id="product">Products</th>
-        <th id="price">Price</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let item of cart.items">
-        <td>
-          <img
-            alt="{{ item.title }}"
-            class="thumbnail"
-            src="../../assets/images/{{ item.imageUrl }}"
-          />
-          {{ item.title }}
-        </td>
-        <td>{{ item.totalPrice | currency: "EUR" }}</td>
-      </tr>
-    </tbody>
-    <tfoot>
-      <th id="blank1"></th>
-      <th id="totalPrice">
-        <strong> {{ cart.totalPrice | currency: "EUR" }} </strong>
-      </th>
-    </tfoot>
-  </table>
+  <div class="table-responsive">
+    <table aria-describedby="panier" class="table table-bordered text-center">
+      <thead>
+        <tr>
+          <th id="article">Article</th>
+          <th id="image">Présentation</th>
+          <th id="prix">Prix</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of cart.items">
+          <td>
+            {{ item.title }}
+          </td>
+          <td>
+            <img height="100px" alt="{{ item.title }}" src="{{
+              item[0] | size: "200"
+            }}" />
+          </td>
+          <td>{{ item.totalPrice | currency: "EUR" }}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <th id="blanc1"></th>
+        <th id="blanc2"></th>
+        <th id="prixTotal">
+          <strong> {{ cart.totalPrice | currency: "EUR" }} </strong>
+        </th>
+      </tfoot>
+    </table>
+  </div>
 </ng-container>

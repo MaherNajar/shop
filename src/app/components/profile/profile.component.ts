@@ -8,7 +8,7 @@ import { User } from 'src/app/models/user';
   selector: 'profile',
   template: `
     <div *ngIf="user$ | async as user" class="text-center">
-      <img [src]="user.photoURL" />
+      <img class="img-fluid" [src]="user.photoURL" />
       <h5 class="mt-0">{{ user.displayName }}</h5>
       <p>Email : {{ user.email }}</p>
     </div>

@@ -1,19 +1,19 @@
-<div class="card mb-4">
-  <img
-    *ngIf="product.imageUrl"
-    class="card-img-top"
-    src="../../assets/images/{{ product.imageUrl }}"
-    alt="{{ product.title }}"
-  />
+<div class="card h-100">
+  <a *ngIf="product.images.length > 0" href="#"
+    ><img
+      class="img-fluid"
+      src="{{ product.images[0] | size: '200' }}"
+      alt="{{ product.title }}"
+  /></a>
   <div class="card-body">
-    <p class="card-title">
-      <strong>
-        {{ product.title }}
-      </strong>
-    </p>
+    <h4 class="card-title">
+      {{ product.title }}
+    </h4>
+    <h5>
+      {{ product.price | currency: "EUR" }}
+    </h5>
     <p class="card-text">
-      {{ product.price | currency: "EUR"
-      }}<span
+      <span
         class="float-right badge"
         [ngClass]="{
           'badge-primary': product.status === 'réservé',
@@ -35,7 +35,7 @@
       "
       class="btn btn-secondary btn-block"
     >
-      Ajouter au panier
+      Ajouter 👜
     </button>
     <ng-template #removeProduct>
       <button
@@ -43,7 +43,7 @@
         *ngIf="product.status === 'disponible'"
         class="btn btn-light btn-block"
       >
-        Retirer du panier
+        Retirer 👜
       </button>
     </ng-template>
   </div>
