@@ -28,9 +28,11 @@
             {{ item.title }}
           </td>
           <td>
-            <img height="100px" alt="{{ item.title }}" src="{{
-              item[0] | size: "200"
-            }}" />
+            <img
+              height="100px"
+              alt="{{ item.title }}"
+              src="{{ item.mainPicture | size: '200' }}"
+            />
           </td>
           <td>{{ item.totalPrice | currency: "EUR" }}</td>
         </tr>

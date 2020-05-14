@@ -60,19 +60,28 @@ export class ProductFormComponent implements OnInit {
 
   async imageUpload(e) {
     try {
-      const { date: imageRefDate, urls } = await this.getUrls(e.target.files);
-      this.product = { ...this.product, imageRefDate, images: urls };
+      const { gallery, uploadRefDate } = await this.getGallery(e.target.files);
+
+      this.product.gallery.push(...gallery);
+
+      if (!this.product.uploadRefDate)
+        this.product.uploadRefDate = uploadRefDate;
     } catch (error) {
       this.toastService.show('Images upload', error.message);
     }
   }
 
-  async getUrls(files) {
-    const date = Date.now().toString();
-    let urls = [];
+  async getGallery(files) {
+    const uploadRefDate = Date.now().toString();
+    let gallery: string[] = [];
+    const iStart = this.product.gallery.length;
+    const imageCount = 5 - iStart - files.length;
 
-    for (let i = 0; i < files.length; i++) {
-      const fileRef = this.storage.ref(`produits/${date}-${i}`);
+    if (imageCount < 0)
+      throw new Error('Vous ne pouvez mettre plus de 5 photos !');
+
+    for (let i = iStart; i < iStart + files.length; i++) {
+      const fileRef = this.storage.ref(`produits/${uploadRefDate}-${i}`);
 
       const task = fileRef.put(files[i]);
 
@@ -82,17 +91,16 @@ export class ProductFormComponent implements OnInit {
         .snapshotChanges()
         .pipe(
           finalize(async () => {
-            urls.push(await fileRef.getDownloadURL().toPromise());
+            gallery.push(await fileRef.getDownloadURL().toPromise());
           })
         )
         .subscribe();
     }
-
-    return { urls, date };
+    return { gallery, uploadRefDate };
   }
 
   async onReturn() {
-    if (!this.product.id && this.product.images.length > 0)
+    if (!this.product.id && this.product.gallery.length > 0)
       this.productService.deleteImages(this.product);
     this.router.navigate(['/admin/produits']);
   }

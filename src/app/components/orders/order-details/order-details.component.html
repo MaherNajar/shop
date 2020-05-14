@@ -31,13 +31,13 @@
       <p class="card-text"><strong>Message : </strong> {{ order.message }}</p>
       <li class="list-group-item" *ngFor="let item of order.items">
         <img
-          src="../../assets/images/{{ item.product.imageUrl }}"
+          src="{{ item.mainPicture | size: '200' }}"
           class="mr-5 thumbnail"
-          alt="{{ item.product.title }}"
+          alt="{{ item.title }}"
         />
         <span class="float-right">
-          {{ item.product.title }} : {{ item.quantity }} x
-          {{ item.product.price }} = {{ item.totalPrice }}
+          {{ item.title }} : {{ item.quantity }} x {{ item.price }} =
+          {{ item.totalPrice }}
         </span>
       </li>
       <li class="font-weight-bold list-group-item">

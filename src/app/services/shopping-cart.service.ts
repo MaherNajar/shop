@@ -72,7 +72,16 @@ export class ShoppingCartService {
         take(1),
         map((item: ShoppingCartItem) => {
           if (item) docRef.update({ quantity: item.quantity + change });
-          else docRef.set({ ...product, quantity: 1 });
+          else {
+            const { id, price, title, gallery } = product;
+            docRef.set({
+              id,
+              price,
+              title,
+              mainPicture: gallery[0],
+              quantity: 1,
+            });
+          }
         })
       )
       .subscribe();

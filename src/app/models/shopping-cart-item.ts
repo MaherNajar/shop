@@ -2,8 +2,8 @@ export class ShoppingCartItem {
   id: string;
   title: string;
   price: number;
-  image: string;
   quantity: number;
+  mainPicture: string;
 
   constructor(init?: Partial<ShoppingCartItem>) {
     Object.assign(this, init);

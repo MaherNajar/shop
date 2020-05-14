@@ -3,8 +3,8 @@ export class Product {
   title: string;
   price: number;
   category: string;
-  imageRefDate: string;
-  images: string[] = [];
+  gallery: string[] = [];
+  uploadRefDate: string;
   uid: string;
   status: 'disponible' | 'réservé' | 'vendu' = 'disponible';
 

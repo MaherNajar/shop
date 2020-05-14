@@ -1,7 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { Product } from 'src/app/models/product';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'product-card',

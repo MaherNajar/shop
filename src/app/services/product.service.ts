@@ -4,6 +4,7 @@ import { Product } from 'src/app/models/product';
 import { AuthService } from './auth.service';
 import { switchMap, take } from 'rxjs/operators';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -15,13 +16,30 @@ export class ProductService {
     private storage: AngularFireStorage
   ) {}
 
-  async create(product: Product) {
-    const uid = (await this.authService.user$.toPromise()).uid;
-    return this.db.collection('products').add({ ...product, uid });
+  create(product: Product) {
+    return this.authService.user$
+      .pipe(
+        take(1),
+        switchMap((user: User) => {
+          const uid = user.uid;
+          return this.db.collection('products').add({ ...product, uid });
+        })
+      )
+      .subscribe();
   }
 
   update(product: Product) {
-    return this.db.doc('products/' + product.id).update({ ...product });
+    return this.authService.user$
+      .pipe(
+        take(1),
+        switchMap((user: User) => {
+          const uid = user.uid;
+          return this.db
+            .doc(`products/${product.id}`)
+            .update({ ...product, uid });
+        })
+      )
+      .subscribe();
   }
 
   async delete(product: Product) {
@@ -53,16 +71,15 @@ export class ProductService {
   }
 
   async deleteImages(product: Product) {
-    for (let i = 0; i < product.images.length; i++) {
-      const file = product.images[i];
+    for (let i = 0; i < product.gallery.length; i++) {
       const fileRef1 = this.storage.ref(
-        `produits/${product.imageRefDate}-${i}_200x200`
+        `produits/${product.uploadRefDate}-${i}_200x200`
       );
       const fileRef2 = this.storage.ref(
-        `produits/${product.imageRefDate}-${i}_400x400`
+        `produits/${product.uploadRefDate}-${i}_400x400`
       );
       const fileRef3 = this.storage.ref(
-        `produits/${product.imageRefDate}-${i}_680x680`
+        `produits/${product.uploadRefDate}-${i}_680x680`
       );
       fileRef1.delete();
       fileRef2.delete();
