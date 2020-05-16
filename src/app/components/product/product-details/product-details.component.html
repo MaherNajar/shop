@@ -1,0 +1,77 @@
+<div *ngIf="productService.product as product" class="h-100">
+  <div class="row">
+    <div class="col-6">
+      <span *ngIf="product.gallery.length > 0" (click)="openModal()"
+        ><img
+          class="img-fluid img-thumbnail"
+          src="{{ mainPicture | size: '400' }}"
+          alt="{{ product.title }}"
+          id="mainpic"
+      /></span>
+    </div>
+    <div class="col">
+      <div class="card-body">
+        <p class="card-text">
+          <span
+            class="float-right badge"
+            [ngClass]="{
+              'badge-primary': product.status === 'réservé',
+              'badge-danger': product.status === 'vendu',
+              'badge-success': product.status === 'disponible'
+            }"
+            >{{ product.status }}</span
+          >
+        </p>
+        <h5 class="card-title">
+          {{ product.title }}
+        </h5>
+        <h5>
+          {{ product.price | currency: "EUR" }}
+        </h5>
+        <div *ngIf="cartService.cart as cart">
+          <button
+            (click)="addToCart()"
+            *ngIf="
+              product.status === 'disponible' &&
+                cartService.cart.getItemQuantity(product.id) === 0;
+              else removeProduct
+            "
+            class="btn btn-warning btn-block"
+          >
+            ➕ 👜
+          </button>
+          <ng-template #removeProduct>
+            <button
+              (click)="removeFromCart()"
+              *ngIf="product.status === 'disponible'"
+              class="btn btn-light btn-block"
+            >
+              ➖ 👜
+            </button>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ul *ngIf="product.gallery.length > 0" class="list-inline mt-2">
+    <li
+      class="list-inline-item"
+      *ngFor="let picture of product.gallery; let i = index"
+    >
+      <a (click)="selectedPicture = i" [routerLink]=""
+        ><img
+          [ngClass]="{
+            selected: selectedPicture === i,
+            notSelected: selectedPicture !== i
+          }"
+          class="img-fluid img-thumbnail"
+          src="{{ picture | size: '100' }}"
+          alt="{{ product.title }}"
+      /></a>
+    </li>
+  </ul>
+  <ng-template #modal>
+    <!-- Modal Content (The Image) -->
+    <img class="img-fluid img-thumbnail" src="{{ mainPicture }}" />
+  </ng-template>
+</div>

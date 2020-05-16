@@ -2,7 +2,7 @@ export class Product {
   id: string;
   title: string;
   price: number;
-  category: string;
+  tags: string[] = [];
   gallery: string[] = [];
   uploadRefDate: string;
   uid: string;
@@ -10,5 +10,9 @@ export class Product {
 
   constructor(init?: Partial<Product>) {
     Object.assign(this, init);
+  }
+
+  hasTagKey(key) {
+    return this.tags.some((y) => y === key);
   }
 }

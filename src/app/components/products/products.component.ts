@@ -20,7 +20,7 @@ import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
   ],
 })
 export class ProductsComponent implements OnInit {
-  category: string;
+  tag: string;
   products: Product[] = [];
   filteredProducts: Product[] = [];
   cart$: Observable<ShoppingCart>;
@@ -41,24 +41,18 @@ export class ProductsComponent implements OnInit {
       .pipe(
         switchMap((products: Product[]) => {
           this.products = products;
-          // const list = this.products.map(p => p.imageUrl.replace("-min", ""));
-          // const storage = firebase.storage();
-          // list.forEach(e => {
-          //   const storageRef = storage.refFromURL(e);
-          //   storageRef.delete();
-          // });
           return this.route.queryParamMap;
         })
       )
       .subscribe((params) => {
-        this.category = params.get('category');
+        this.tag = params.get('tag');
         this.applyFilter();
       });
   }
 
   private applyFilter() {
-    this.filteredProducts = this.category
-      ? this.products.filter((p) => p.category === this.category)
+    this.filteredProducts = this.tag
+      ? this.products.filter((p) => p.hasTagKey(this.tag))
       : this.products;
   }
 }

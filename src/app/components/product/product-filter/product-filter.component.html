@@ -2,16 +2,16 @@
   <div class="list-group mb-5">
     <a
       class="list-group-item list-group-item-action"
-      [class.active]="!category"
+      [class.active]="!tag"
       routerLink="/"
-      >Toutes les categories
+      >Tous les tags
     </a>
     <a
       class="list-group-item list-group-item-action"
-      [class.active]="category === c.key"
+      [class.active]="tag === c.key"
       routerLink="/"
-      [queryParams]="{ category: c.key }"
-      *ngFor="let c of catService.getCategories()"
+      [queryParams]="{ tag: c.key }"
+      *ngFor="let c of tagService.getTags()"
       >{{ c.name }}</a
     >
   </div>

@@ -22,19 +22,19 @@ import { NavbarComponent } from './components/commons/navbar/navbar.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { CheckOutComponent } from './components/check-out/check-out.component';
 import { OrdersComponent } from './components/orders/orders.component';
-import { AdminProductsComponent } from './components/products/admin-products/admin-products.component';
-import { ProductFormComponent } from './components/product/product-form/product-form.component';
 import { ProductsComponent } from './components/products/products.component';
+import { ProductComponent } from './components/product/product.component';
+import { ProductFormComponent } from './components/product/product-form/product-form.component';
+import { ProductDetailsComponent } from './components/product/product-details/product-details.component';
 import { ProductFilterComponent } from './components/product/product-filter/product-filter.component';
-import { ProductCardComponent } from './components/product/product-card/product-card.component';
 import { ProductQuantityComponent } from './components/product/product-quantity/product-quantity.component';
+import { AdminProductsComponent } from './components/products/admin-products/admin-products.component';
+import { StoneStoriesComponent } from './components/stones/stone-stories/stone-stories.component';
 import { OrderDetailsComponent } from './components/orders/order-details/order-details.component';
 import { ShoppingCartSummaryComponent } from './components/shopping-cart/shopping-cart-summary/shopping-cart-summary.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { CustomersComponent } from './components/customers/customers.component';
 
-import { AdminGuard } from './services/admin-guard.service';
-import { AuthGuard } from './services/auth-guard.service';
 import { ToastsComponent } from './components/commons/toasts/toasts.component';
 import { SizePipe } from './components/commons/size.pipe';
 
@@ -48,9 +48,10 @@ registerLocaleData(localeFr, 'fr');
     CheckOutComponent,
     AdminProductsComponent,
     ProductFormComponent,
+    ProductComponent,
     ProductsComponent,
+    ProductDetailsComponent,
     ProductFilterComponent,
-    ProductCardComponent,
     ProductQuantityComponent,
     OrdersComponent,
     OrderDetailsComponent,
@@ -59,6 +60,7 @@ registerLocaleData(localeFr, 'fr');
     CustomersComponent,
     ToastsComponent,
     SizePipe,
+    StoneStoriesComponent,
   ],
   imports: [
     BrowserModule,

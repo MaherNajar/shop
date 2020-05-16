@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { CategoryService } from 'src/app/services/categories.service';
+import { TagService } from 'src/app/services/tag.service';
 
 @Component({
   selector: 'product-filter',
@@ -14,6 +14,6 @@ import { CategoryService } from 'src/app/services/categories.service';
 })
 export class ProductFilterComponent {
   @Input()
-  category: string;
-  constructor(public catService: CategoryService) {}
+  tag: string;
+  constructor(public tagService: TagService) {}
 }

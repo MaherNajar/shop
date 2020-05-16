@@ -4,9 +4,10 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'size',
 })
 export class SizePipe implements PipeTransform {
-  transform(url: string, size: '200' | '400' | '680'): string {
+  transform(url: string, size: '100' | '400'): string {
+    if (!url) return url;
     const tab = url.split('?');
-    const frag = `_${size}x${size}?`;
+    const frag = size === '100' ? '_100x100?' : '_400x300?';
     tab.splice(1, 0, frag);
     return tab.join('');
   }

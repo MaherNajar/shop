@@ -1,5 +1,9 @@
+<h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">
+  Mes bijoux 💎🦪📿
+</h1>
+<hr class="mt-2 mb-5" />
 <p>
-  <button routerLink="/admin/produits/nouveau" class="btn btn-success">
+  <button routerLink="/produits/nouveau" class="btn btn-success">
     Ajouter
   </button>
 </p>
@@ -37,13 +41,11 @@
         <td>
           <img
             *ngIf="p.gallery.length > 0"
-            width="auto"
-            height="100px"
             alt="{{ p.title }}"
-            src="{{ p.gallery[0] | size: '200' }}"
+            src="{{ p.gallery[0] | size: '100' }}"
           />
         </td>
-        <td>{{ p.category }}</td>
+        <td>{{ p.tags.join("") }}</td>
         <td>
           <div
             class="btn-group btn-group-toggle"
@@ -64,7 +66,7 @@
           </div>
         </td>
         <td>{{ p.price }}</td>
-        <td><a routerLink="/admin/produits/{{ p.id }}">👁️</a></td>
+        <td><a routerLink="/produits/{{ p.id }}">👁️</a></td>
         <td><a [routerLink]="" (click)="productService.delete(p)">🚮</a></td>
       </tr>
     </tbody>

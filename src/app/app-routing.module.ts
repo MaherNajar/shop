@@ -1,4 +1,3 @@
-import { ProductFormComponent } from './components/product/product-form/product-form.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { AdminProductsComponent } from './components/products/admin-products/admin-products.component';
 import { CheckOutComponent } from './components/check-out/check-out.component';
@@ -11,6 +10,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { AdminGuard } from './services/admin-guard.service';
 import { CustomersComponent } from './components/customers/customers.component';
+import { ProductComponent } from './components/product/product.component';
 
 const routes: Routes = [
   {
@@ -20,6 +20,10 @@ const routes: Routes = [
   {
     path: 'produits',
     component: ProductsComponent,
+  },
+  {
+    path: 'produits/:id',
+    component: ProductComponent,
   },
   {
     path: 'panier',
@@ -53,11 +57,6 @@ const routes: Routes = [
   {
     path: 'admin/produits',
     component: AdminProductsComponent,
-    canActivate: [AuthGuard, AdminGuard],
-  },
-  {
-    path: 'admin/produits/:id',
-    component: ProductFormComponent,
     canActivate: [AuthGuard, AdminGuard],
   },
   {
