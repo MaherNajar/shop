@@ -1,22 +1,31 @@
-<div class="container">
-  <h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">
-    Arc en perles 🌈💎🦪📿
-  </h1>
+<h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">
+  Arc en perles 🌈💎🦪📿
+</h1>
+<hr class="mt-2 mb-4" />
 
-  <hr class="mt-2 mb-5" />
+<product-filter
+  [filteredLength]="filteredProducts.length"
+  [pierre]="pierreParam"
+  [couleur]="couleurParam"
+></product-filter>
 
+<ng-container *ngIf="filteredProducts; else loading">
   <div class="row text-center text-lg-left">
     <div
       *ngFor="let product of filteredProducts"
       class="col-lg-3 col-md-4 col-6"
     >
-      <a routerLink="/produits/{{ product.id }}" class="d-block mb-4 h-100">
+      <a routerLink="/colliers/{{ product.id }}" class="d-block mb-4 h-100">
         <img
-          class="img-fluid img-thumbnail"
+          class="img-fluid"
           src="{{ product.gallery[0] | size: '400' }}"
-          alt=""
+          alt="{{ product.title }}"
         />
       </a>
     </div>
   </div>
-</div>
+</ng-container>
+
+<ng-template #loading
+  ><img src="assets/loading-spinner.png" alt="loading"
+/></ng-template>

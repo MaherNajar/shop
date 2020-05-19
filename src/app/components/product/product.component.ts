@@ -1,9 +1,9 @@
-import { of } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-product',
@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styles: [],
 })
 export class ProductComponent implements OnInit {
-  user;
+  user: User;
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,

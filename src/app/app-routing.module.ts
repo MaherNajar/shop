@@ -18,11 +18,11 @@ const routes: Routes = [
     component: ProductsComponent,
   },
   {
-    path: 'produits',
+    path: 'colliers',
     component: ProductsComponent,
   },
   {
-    path: 'produits/:id',
+    path: 'colliers/:id',
     component: ProductComponent,
   },
   {
@@ -55,7 +55,7 @@ const routes: Routes = [
     canActivate: [AuthGuard, AdminGuard],
   },
   {
-    path: 'admin/produits',
+    path: 'admin/colliers',
     component: AdminProductsComponent,
     canActivate: [AuthGuard, AdminGuard],
   },

@@ -2,6 +2,8 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductService } from 'src/app/services/product.service';
+import { ColorService } from 'src/app/services/colors.service';
+import { StoneService } from 'src/app/services/stones.service';
 
 @Component({
   selector: 'product-details',
@@ -9,7 +11,7 @@ import { ProductService } from 'src/app/services/product.service';
   styles: [
     `
       #mainpic {
-        cursor: zoom-in;
+        cursor: pointer;
       }
       .selected {
         border: 1px groove lightgrey;
@@ -33,7 +35,9 @@ export class ProductDetailsComponent {
   constructor(
     public cartService: ShoppingCartService,
     private ngbModal: NgbModal,
-    public productService: ProductService
+    public productService: ProductService,
+    public stoneService: StoneService,
+    public colorService: ColorService
   ) {}
 
   get mainPicture() {

@@ -1,19 +1,29 @@
 import { Component, Input } from '@angular/core';
-import { TagService } from 'src/app/services/tag.service';
+import { ColorService } from 'src/app/services/colors.service';
+import { StoneService } from 'src/app/services/stones.service';
 
 @Component({
   selector: 'product-filter',
   templateUrl: './product-filter.component.html',
   styles: [
     `
-      .sticky-top {
-        top: 80px;
+      ul {
+        list-style: none;
+        padding-inline-start: 2px;
+        margin-top: 1rem;
+      }
+      .Color {
+        display: inline;
       }
     `,
   ],
 })
 export class ProductFilterComponent {
-  @Input()
-  tag: string;
-  constructor(public tagService: TagService) {}
+  @Input('pierre') pierre;
+  @Input('couleur') couleur;
+  @Input('filteredLength') count: number;
+  constructor(
+    public colorService: ColorService,
+    public stoneService: StoneService
+  ) {}
 }

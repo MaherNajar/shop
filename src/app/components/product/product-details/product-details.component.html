@@ -3,7 +3,7 @@
     <div class="col-6">
       <span *ngIf="product.gallery.length > 0" (click)="openModal()"
         ><img
-          class="img-fluid img-thumbnail"
+          class="img-fluid"
           src="{{ mainPicture | size: '400' }}"
           alt="{{ product.title }}"
           id="mainpic"
@@ -19,6 +19,7 @@
               'badge-danger': product.status === 'vendu',
               'badge-success': product.status === 'disponible'
             }"
+            style="font-size: large;"
             >{{ product.status }}</span
           >
         </p>
@@ -51,6 +52,36 @@
           </ng-template>
         </div>
       </div>
+      <div class="row">
+        <ul style="list-style: none;" class="list-inline">
+          <li *ngFor="let s of product.stones" class="list-inline-item">
+            <ng-container *ngIf="stoneService.getStoneObject(s) as stone">
+              <a
+                routerLink="/"
+                [queryParams]="{ pierre: stone.name }"
+                class="StoneFilter"
+                [ngStyle]="{ color: stone.cssColor }"
+                >{{ stone.name }}</a
+              >
+            </ng-container>
+          </li>
+        </ul>
+      </div>
+      <div class="row">
+        <ul style="list-style: none;" class="list-inline">
+          <li *ngFor="let c of product.colors" class="list-inline-item">
+            <ng-container *ngIf="colorService.getColorObject(c) as color"
+              ><span>
+                <img
+                  class="Color"
+                  src="assets/colors/{{ color.key }}.gif"
+                  [alt]="color.name"
+                />
+              </span>
+            </ng-container>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
   <ul *ngIf="product.gallery.length > 0" class="list-inline mt-2">
@@ -64,7 +95,7 @@
             selected: selectedPicture === i,
             notSelected: selectedPicture !== i
           }"
-          class="img-fluid img-thumbnail"
+          class="img-fluid"
           src="{{ picture | size: '100' }}"
           alt="{{ product.title }}"
       /></a>
@@ -72,6 +103,6 @@
   </ul>
   <ng-template #modal>
     <!-- Modal Content (The Image) -->
-    <img class="img-fluid img-thumbnail" src="{{ mainPicture }}" />
+    <img alt="{{ product.title }}" class="img-fluid" src="{{ mainPicture }}" />
   </ng-template>
 </div>

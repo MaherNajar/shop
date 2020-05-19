@@ -1,12 +1,13 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import { ProductService } from 'src/app/services/product.service';
+import { Component } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { finalize, debounceTime, map } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
-import { Tag, TagService } from 'src/app/services/tag.service';
 import { ToastService } from 'src/app/services/toast.service';
+import { ProductService } from 'src/app/services/product.service';
+import { ColorService } from 'src/app/services/colors.service';
+import { StoneService, Stone } from 'src/app/services/stones.service';
 
 @Component({
   selector: 'product-form',
@@ -21,46 +22,44 @@ import { ToastService } from 'src/app/services/toast.service';
     `,
   ],
 })
-export class ProductFormComponent implements OnInit {
+export class ProductFormComponent {
   uploadPercent: Observable<number>;
   subscription: Subscription;
-  tags: Tag[];
-  filteredTags: Tag[] = [];
-  tag: Tag;
-  formatter = (x: { name: string }) => x.name;
+  enteredStone: Stone;
+  enteredColor: string;
 
   constructor(
     private router: Router,
     public ps: ProductService,
-    public tagService: TagService,
     private storage: AngularFireStorage,
     private toastService: ToastService,
-    public authService: AuthService
+    public authService: AuthService,
+    public colorService: ColorService,
+    public stoneService: StoneService
   ) {}
 
-  ngOnInit() {
-    this.tags = this.tagService.getTags();
-    this.filteredTags = this.tags.filter((x) =>
-      this.ps.product.hasTagKey(x.key)
-    );
+  addStone() {
+    this.ps.product.stones.push(this.enteredStone.name);
+    this.enteredStone = null;
   }
 
-  addTag() {
-    if (this.ps.product.hasTagKey(this.tag.key)) {
-      this.tag = null;
-      return;
-    }
-    this.ps.product.tags.push(this.tag.key);
-    this.filteredTags = this.tags.filter((x) =>
-      this.ps.product.hasTagKey(x.key)
-    );
-    this.tag = null;
+  removeStone(s: string) {
+    this.ps.product.stones = this.ps.product.stones.filter((x) => x !== s);
   }
+
+  addColor(k: string) {
+    this.ps.product.colors.push(k);
+  }
+
+  removeColor(k: string) {
+    this.ps.product.colors = this.ps.product.colors.filter((x) => x !== k);
+  }
+
   save() {
     if (this.ps.product.id) this.ps.update(this.ps.product);
     else this.ps.create(this.ps.product);
 
-    this.router.navigate(['/produits']);
+    this.router.navigate(['/admin/colliers']);
   }
 
   async imageUpload(e) {
@@ -102,13 +101,14 @@ export class ProductFormComponent implements OnInit {
     }
   }
 
-  search = (text$: Observable<string>) =>
+  formatter = (x: { name: string }) => x.name;
+
+  searchStone = (text$: Observable<string>) =>
     text$.pipe(
-      debounceTime(200),
       map((term) =>
         term === ''
           ? []
-          : this.tags
+          : this.stoneService.filteredStones
               .filter(
                 (v) => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1
               )
@@ -119,6 +119,6 @@ export class ProductFormComponent implements OnInit {
   async onReturn() {
     if (!this.ps.product.id && this.ps.product.gallery.length > 0)
       this.ps.deleteImages(this.ps.product);
-    this.router.navigate(['/admin/produits']);
+    this.router.navigate(['/admin/colliers']);
   }
 }

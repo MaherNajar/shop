@@ -6,15 +6,7 @@ import { User } from 'src/app/models/user';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styles: [
-    `
-      .avatar {
-        width: 1.75em;
-        border-radius: 50%;
-        margin: 0 10px 0;
-      }
-    `,
-  ],
+  styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
   collapsed = true;

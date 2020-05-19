@@ -1,18 +1,66 @@
-<div class="sticky-top">
-  <div class="list-group mb-5">
-    <a
-      class="list-group-item list-group-item-action"
-      [class.active]="!tag"
-      routerLink="/"
-      >Tous les tags
-    </a>
-    <a
-      class="list-group-item list-group-item-action"
-      [class.active]="tag === c.key"
-      routerLink="/"
-      [queryParams]="{ tag: c.key }"
-      *ngFor="let c of tagService.getTags()"
-      >{{ c.name }}</a
-    >
-  </div>
+<div class="ContentLeft">
+  <dl class="DivRefineby">
+    <div class="Attributes">
+      <dt class="MarginDt">
+        Pierres Gemmes
+      </dt>
+      <dd>
+        <ul>
+          <li *ngFor="let stone of stoneService.allStones">
+            <a
+              class="StoneFilter"
+              [ngStyle]="{ color: stone.cssColor }"
+              routerLink="/"
+              [queryParams]="{ pierre: stone.name }"
+              >{{ stone.name
+              }}<span
+                [ngStyle]="{ color: stone.cssColor }"
+                *ngIf="stone.name === pierre"
+              >
+                ({{ count }})</span
+              ></a
+            >
+          </li>
+        </ul>
+      </dd>
+    </div>
+
+    <div>
+      <dt class="MarginDt">
+        Couleur
+      </dt>
+      <dd>
+        <ul class="list-inline">
+          <li
+            class="list-inline-item text-center"
+            *ngFor="let color of colorService.allColors"
+          >
+            <a
+              routerLink="/"
+              [queryParams]="{ couleur: color.name }"
+              title="{{ color.name }}"
+            >
+              <img
+                class="Color"
+                src="assets/colors/{{ color.key }}.gif"
+                height="18"
+                width="38"
+                alt="{{ color.name }}"
+              />
+
+              <br />
+              <span
+                *ngIf="color.name === couleur; else space"
+                style="color: #999;"
+                >{{ count }}</span
+              >
+              <ng-template #space>
+                <span>&nbsp;</span>
+              </ng-template>
+            </a>
+          </li>
+        </ul>
+      </dd>
+    </div>
+  </dl>
 </div>
