@@ -3,6 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { OrderService } from 'src/app/services/order.service';
 import { Order } from 'src/app/models/order';
 import { Subscription } from 'rxjs';
+import { LocationService } from 'src/app/services/location.service';
 
 @Component({
   selector: 'order-details',
@@ -13,10 +14,11 @@ export class OrderDetailsComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   constructor(
     private router: ActivatedRoute,
-    private orderService: OrderService
+    private orderService: OrderService,
+    public locService: LocationService
   ) {}
 
-  ngOnInit() {
+  async ngOnInit() {
     const id = this.router.snapshot.paramMap.get('id');
     this.subscription = this.orderService.getOrder(id).subscribe((order) => {
       order.id = id;

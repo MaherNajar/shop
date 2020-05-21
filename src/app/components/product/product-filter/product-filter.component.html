@@ -1,8 +1,11 @@
 <div class="ContentLeft">
-  <dl class="DivRefineby">
-    <div class="Attributes">
-      <dt class="MarginDt">
-        Pierres Gemmes
+  <dl>
+    <div>
+      <dt>
+        <a routerLink="/" style="color: black;">
+          Collection complète
+          <span *ngIf="!couleur && !pierre"> ({{ count }})</span></a
+        >
       </dt>
       <dd>
         <ul>
@@ -26,9 +29,7 @@
     </div>
 
     <div>
-      <dt class="MarginDt">
-        Couleur
-      </dt>
+      <dt></dt>
       <dd>
         <ul class="list-inline">
           <li

@@ -4,12 +4,16 @@ import { take, map } from 'rxjs/operators';
 import { ShoppingCart } from '../models/shopping-cart';
 import { Product } from '../models/product';
 import { ShoppingCartItem } from '../models/shopping-cart-item';
+import { LocationService } from './location.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ShoppingCartService {
-  constructor(private db: AngularFirestore) {}
+  constructor(
+    private db: AngularFirestore,
+    private locService: LocationService
+  ) {}
 
   cart: ShoppingCart;
 
@@ -44,9 +48,11 @@ export class ShoppingCartService {
       .subscribe();
   }
 
-  private create() {
+  private async create() {
+    let location = await this.locService.location$.toPromise();
     return this.db.collection('shopping-carts/').add({
       dateCreation: Date.now(),
+      ...location,
     });
   }
 
@@ -73,7 +79,7 @@ export class ShoppingCartService {
         map((item: ShoppingCartItem) => {
           if (item) docRef.update({ quantity: item.quantity + change });
           else {
-            const { id, price, title, gallery } = product;
+            const { id, Price: price, title, gallery } = product;
             docRef.set({
               id,
               price,

@@ -1,4 +1,5 @@
 import { ShoppingCart } from './shopping-cart';
+import { Visitor } from './customer';
 export class Order {
   id: string;
   datePlaced: number;
@@ -6,11 +7,7 @@ export class Order {
   totalPrice: number;
   status: string = 'confirmée';
 
-  constructor(
-    public email: string,
-    public message: string,
-    shoppingCart: ShoppingCart
-  ) {
+  constructor(public customer: Visitor, shoppingCart: ShoppingCart) {
     this.datePlaced = Date.now();
     this.totalPrice = shoppingCart.totalPrice;
     this.items = shoppingCart.items.map((x) => {

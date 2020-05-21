@@ -10,8 +10,8 @@
       /></span>
     </div>
     <div class="col">
-      <div class="card-body">
-        <p class="card-text">
+      <div>
+        <p>
           <span
             class="float-right badge"
             [ngClass]="{
@@ -23,13 +23,21 @@
             >{{ product.status }}</span
           >
         </p>
-        <h5 class="card-title">
+        <h5 class="text-nowrap">
           {{ product.title }}
         </h5>
-        <h5>
-          {{ product.price | currency: "EUR" }}
-        </h5>
-        <div *ngIf="cartService.cart as cart">
+        <ng-container *ngIf="locService.location$ | async as location">
+          <h5>
+            <span>
+              {{ product.Price | number: "1.0-0" }}
+            </span>
+            <img
+              src="assets/{{ location.isInTN ? 'dinar' : 'euro' }}.png"
+              alt="image devise"
+            />
+          </h5>
+        </ng-container>
+        <div class="mb-3" *ngIf="cartService.cart as cart">
           <button
             (click)="addToCart()"
             *ngIf="
@@ -52,7 +60,7 @@
           </ng-template>
         </div>
       </div>
-      <div class="row">
+      <div>
         <ul style="list-style: none;" class="list-inline">
           <li *ngFor="let s of product.stones" class="list-inline-item">
             <ng-container *ngIf="stoneService.getStoneObject(s) as stone">
@@ -67,17 +75,17 @@
           </li>
         </ul>
       </div>
-      <div class="row">
+      <div>
         <ul style="list-style: none;" class="list-inline">
           <li *ngFor="let c of product.colors" class="list-inline-item">
             <ng-container *ngIf="colorService.getColorObject(c) as color"
-              ><span>
+              ><a routerLink="/" [queryParams]="{ couleur: color.name }">
                 <img
                   class="Color"
                   src="assets/colors/{{ color.key }}.gif"
                   [alt]="color.name"
                 />
-              </span>
+              </a>
             </ng-container>
           </li>
         </ul>

@@ -11,6 +11,7 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { AdminGuard } from './services/admin-guard.service';
 import { CustomersComponent } from './components/customers/customers.component';
 import { ProductComponent } from './components/product/product.component';
+import { CustomerDetailsComponent } from './components/customers/customer-details/customer-details.component';
 
 const routes: Routes = [
   {
@@ -62,6 +63,11 @@ const routes: Routes = [
   {
     path: 'admin/clients',
     component: CustomersComponent,
+    canActivate: [AuthGuard, AdminGuard],
+  },
+  {
+    path: 'admin/clients/:email',
+    component: CustomerDetailsComponent,
     canActivate: [AuthGuard, AdminGuard],
   },
 ];

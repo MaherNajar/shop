@@ -37,6 +37,7 @@ import { CustomersComponent } from './components/customers/customers.component';
 
 import { ToastsComponent } from './components/commons/toasts/toasts.component';
 import { SizePipe } from './components/commons/size.pipe';
+import { CustomerDetailsComponent } from './components/customers/customer-details/customer-details.component';
 
 registerLocaleData(localeFr, 'fr');
 
@@ -61,6 +62,7 @@ registerLocaleData(localeFr, 'fr');
     ToastsComponent,
     SizePipe,
     StoneStoriesComponent,
+    CustomerDetailsComponent,
   ],
   imports: [
     BrowserModule,

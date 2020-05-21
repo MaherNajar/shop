@@ -5,6 +5,7 @@ import { AuthService } from './auth.service';
 import { switchMap, take, map } from 'rxjs/operators';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { User } from '../models/user';
+import { LocationService } from './location.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +15,8 @@ export class ProductService {
   constructor(
     private db: AngularFirestore,
     private authService: AuthService,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private locService: LocationService
   ) {}
 
   get(id: string) {
@@ -23,9 +25,11 @@ export class ProductService {
       .valueChanges()
       .pipe(
         take(1),
-        map(
-          (product: Product) => (this.product = new Product({ ...product, id }))
-        )
+        map(async (product: Product) => {
+          const location = await this.locService.location$.toPromise();
+
+          this.product = new Product({ ...product, id }, location.isInTN);
+        })
       )
       .subscribe();
   }

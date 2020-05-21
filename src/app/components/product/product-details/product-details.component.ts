@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductService } from 'src/app/services/product.service';
 import { ColorService } from 'src/app/services/colors.service';
 import { StoneService } from 'src/app/services/stones.service';
+import { LocationService } from 'src/app/services/location.service';
 
 @Component({
   selector: 'product-details',
@@ -37,7 +38,8 @@ export class ProductDetailsComponent {
     private ngbModal: NgbModal,
     public productService: ProductService,
     public stoneService: StoneService,
-    public colorService: ColorService
+    public colorService: ColorService,
+    public locService: LocationService
   ) {}
 
   get mainPicture() {

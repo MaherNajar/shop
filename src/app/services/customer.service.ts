@@ -11,4 +11,8 @@ export class CustomerService {
   getCustomers() {
     return this.db.collection<Customer>('customers').valueChanges();
   }
+
+  getCustomer(email: string) {
+    return this.db.doc<Customer>(`customers/${email}`).valueChanges();
+  }
 }

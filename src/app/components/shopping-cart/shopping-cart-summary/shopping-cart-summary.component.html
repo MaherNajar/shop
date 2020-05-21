@@ -4,15 +4,23 @@
     <p class="card-text">
       Vous avez {{ cart.totalItemsCount }} produits dans le panier.
     </p>
-    <ul class="list-group list-group-flush">
-      <li *ngFor="let item of cart.items" class="list-group-item">
-        {{ item.quantity }} x {{ item.title }}
-        <div class="float-right">{{ item.totalPrice | currency: "EUR" }}</div>
-      </li>
-      <li class="list-group-item font-weight-bold">
-        Total
-        <div class="float-right">{{ cart.totalPrice | currency: "EUR" }}</div>
-      </li>
-    </ul>
+    <ng-container *ngIf="locService.location$ | async as location">
+      <ul class="list-group list-group-flush">
+        <li *ngFor="let item of cart.items" class="list-group-item">
+          {{ item.quantity }} x {{ item.title }}
+          <div class="float-right">
+            {{ item.totalPrice | number: "1.0-2" }}
+            {{ location.displayCurrency }}
+          </div>
+        </li>
+        <li class="list-group-item font-weight-bold">
+          Total
+          <div class="float-right">
+            {{ cart.totalPrice | number: "1.0-2" }}
+            {{ location.displayCurrency }}
+          </div>
+        </li>
+      </ul>
+    </ng-container>
   </div>
 </div>

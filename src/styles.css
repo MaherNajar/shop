@@ -30,3 +30,11 @@ body {
   font-size: small;
   font-weight: bold;
 }
+
+.table-responsive {
+  text-align: center;
+}
+
+table {
+  background-color: white;
+}

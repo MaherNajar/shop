@@ -9,7 +9,7 @@
   [couleur]="couleurParam"
 ></product-filter>
 
-<ng-container *ngIf="filteredProducts; else loading">
+<ng-container *ngIf="filteredProducts">
   <div class="row text-center text-lg-left">
     <div
       *ngFor="let product of filteredProducts"
@@ -25,7 +25,3 @@
     </div>
   </div>
 </ng-container>
-
-<ng-template #loading
-  ><img src="assets/loading-spinner.png" alt="loading"
-/></ng-template>

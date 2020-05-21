@@ -9,7 +9,11 @@ export class Product {
   uid: string;
   status: 'disponible' | 'réservé' | 'vendu' = 'disponible';
 
-  constructor(init?: Partial<Product>) {
+  constructor(init?: Partial<Product>, private isInTN?: boolean) {
     Object.assign(this, init);
+  }
+
+  get Price() {
+    return this.isInTN ? this.price : +(this.price / 3.17).toFixed(2);
   }
 }

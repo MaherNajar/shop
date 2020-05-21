@@ -1,14 +1,44 @@
-<p>
-  Aenean et mauris at dolor laoreet facilisis. Integer in mollis turpis.
-  Phasellus eget leo fringilla, tincidunt enim vitae, volutpat sapien. Aliquam
-  ultrices tortor leo, id iaculis sapien rhoncus quis. Proin sed fermentum
-  sapien. Donec dapibus nulla sed felis faucibus, vel iaculis sapien facilisis.
-  Curabitur id imperdiet magna. Nam vitae leo consequat, porta erat sed,
-  venenatis orci. Donec tincidunt et lectus at pulvinar. Aenean augue diam,
-  bibendum at aliquam quis, aliquam ac erat. Nullam lorem sem, eleifend a porta
-  et, congue ut ipsum. Praesent id tempor velit. Orci varius natoque penatibus
-  et magnis dis parturient montes, nascetur ridiculus mus. Ut vitae tincidunt
-  ex. Nullam volutpat, risus quis feugiat mollis, lectus tortor gravida justo,
-  quis facilisis turpis nunc vel eros. Duis semper purus urna, blandit ultrices
-  urna semper vel.
-</p>
+<ng-container *ngIf="productService.product">
+  <ng-container *ngIf="hasStone('Agate')">
+    <h5>Agate</h5>
+    <p>
+      L'agate posséde de merveilleuses propriétés sur notre espace de vie et
+      notre environnement. L'agate est la pierre idéale pour
+      <strong>harmoniser l’énergie</strong> et d’<strong>apaiser</strong> nos
+      lieux de vie ou lieux professionnels. Placer une agate dans votre lieu de
+      vie (salon) ou dans votre lieu de travail, elle vous apportera
+      <strong>chance</strong> et <strong>calme</strong>. Placer une agate dans
+      la chambre d’une personne malade, elle <strong></strong> redonne courage,
+      et permet au <strong>moral</strong> d’aller mieux afin de combattre la
+      maladie
+    </p>
+    <img
+      src="https://firebasestorage.googleapis.com/v0/b/omyshop.appspot.com/o/stories%2Fagate_400x300.jpg?alt=media&token=87c0394a-079f-439e-a424-8407e196ae3c"
+      alt="agate"
+    />
+  </ng-container>
+  <hr />
+  <ng-container *ngIf="hasStone('Cristal')">
+    <h5>Cristal</h5>
+    <p>
+      <span
+        >Puissant <strong>amplificateur</strong>. Amplifie l'aura. Il
+        <strong>renforce</strong> notre organisme et revitalise&nbsp;l'ensemble
+        du corps. Apporte <strong>clarté</strong> et
+        <strong>compréhension</strong> sur notre vie. Aide à
+        <strong>résoudre&nbsp;&nbsp;les problèmes&nbsp;</strong>
+        simplement&nbsp;en développant nos facultés intellectuelles. Active et
+        renforce également&nbsp;l'énergie des autres pierres . Outil
+        indispensable pour les thérapeutes car les grecs et bien d'autres
+        cultures s'en servaient pour chasser les démons et les maladies. De
+        plus, ils l'utilisaient pour lire l'avenir, pour être
+        <strong>clairvoyant</strong> sur les décisions à
+        prendre.&nbsp;&nbsp;</span
+      >
+    </p>
+    <img
+      src="https://firebasestorage.googleapis.com/v0/b/omyshop.appspot.com/o/stories%2Fcristal_400x300.jpg?alt=media&token=590af7f9-98fb-419b-b8c6-bfb17e4112e8"
+      alt="cristal"
+    />
+  </ng-container>
+</ng-container>

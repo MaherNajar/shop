@@ -3,6 +3,7 @@ import { OrderService } from 'src/app/services/order.service';
 import { ActivatedRoute } from '@angular/router';
 import { Order } from 'src/app/models/order';
 import { Observable } from 'rxjs';
+import { LocationService } from 'src/app/services/location.service';
 
 @Component({
   selector: 'orders',
@@ -14,7 +15,8 @@ export class OrdersComponent implements OnInit {
   showCustomer: boolean;
   constructor(
     private orderService: OrderService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public locService: LocationService
   ) {}
   ngOnInit() {
     let path = this.route.snapshot.url[0].path;

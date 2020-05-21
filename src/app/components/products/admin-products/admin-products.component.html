@@ -25,11 +25,12 @@
     <thead>
       <tr>
         <th id="auteur">Auteur</th>
-        <th id="article">Article</th>
+        <th id="title">Intitulé</th>
         <th id="présentation">Présentation</th>
-        <th id="catégorie">Catégorie</th>
+        <th id="pierres">Pierres</th>
         <th id="statut">Disponibilité</th>
-        <th id="prix">prix</th>
+        <th id="prixDT">Prix TND</th>
+        <th id="prixEu">Prix €</th>
         <th id="modifier"></th>
         <th id="supprimer"></th>
       </tr>
@@ -45,7 +46,7 @@
             src="{{ p.gallery[0] | size: '100' }}"
           />
         </td>
-        <td>{{ p.tags.join("") }}</td>
+        <td>{{ p.stones?.join() }}</td>
         <td>
           <div
             class="btn-group btn-group-toggle"
@@ -66,7 +67,8 @@
           </div>
         </td>
         <td>{{ p.price }}</td>
-        <td><a routerLink="/produits/{{ p.id }}">👁️</a></td>
+        <td>{{ p.price / 3.17 | number: "1.0-0" }}</td>
+        <td><a routerLink="/colliers/{{ p.id }}">👁️</a></td>
         <td><a [routerLink]="" (click)="productService.delete(p)">🚮</a></td>
       </tr>
     </tbody>

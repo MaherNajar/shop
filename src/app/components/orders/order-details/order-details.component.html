@@ -1,6 +1,9 @@
 <div class="card" *ngIf="order">
   <div class="card-body">
-    <ul class="list-group-flush">
+    <ul
+      class="list-group-flush"
+      *ngIf="locService.location$ | async as location"
+    >
       <p class="card-text">
         <strong>Référence : {{ order.id }}</strong>
         <button
@@ -27,8 +30,12 @@
         <strong>Commande du : </strong>
         {{ order.datePlaced | date: "long" }}
       </p>
-      <p class="card-text"><strong>Email : </strong> {{ order.email }}</p>
-      <p class="card-text"><strong>Message : </strong> {{ order.message }}</p>
+      <p class="card-text">
+        <strong>Email : </strong> {{ order.customer.email }}
+      </p>
+      <p class="card-text">
+        <strong>Message : </strong> {{ order.customer.message }}
+      </p>
       <li class="list-group-item" *ngFor="let item of order.items">
         <img
           src="{{ item.mainPicture | size: '100' }}"
@@ -36,15 +43,18 @@
           alt="{{ item.title }}"
         />
         <span class="float-right">
-          {{ item.title }} : {{ item.quantity }} x {{ item.price }} =
-          {{ item.totalPrice }}
+          {{ item.title }} : {{ item.quantity }} x
+          {{ item.price | number: "1.0-2" }} =
+          {{ item.quantity * item.price | number: "1.0-2" }}
+          {{ location.displayCurrency }}
         </span>
       </li>
       <li class="font-weight-bold list-group-item">
         Total
-        <span class="float-right">{{
-          order.totalPrice | currency: "EUR"
-        }}</span>
+        <span class="float-right"
+          >{{ order.totalPrice | number: "1.0-2" }}
+          {{ location.displayCurrency }}</span
+        >
       </li>
     </ul>
   </div>
