@@ -33,7 +33,6 @@ import { StoneStoriesComponent } from './components/stones/stone-stories/stone-s
 import { OrderDetailsComponent } from './components/orders/order-details/order-details.component';
 import { ShoppingCartSummaryComponent } from './components/shopping-cart/shopping-cart-summary/shopping-cart-summary.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { CustomersComponent } from './components/customers/customers.component';
 
 import { ToastsComponent } from './components/commons/toasts/toasts.component';
 import { SizePipe } from './components/commons/size.pipe';
@@ -58,7 +57,6 @@ registerLocaleData(localeFr, 'fr');
     OrderDetailsComponent,
     ShoppingCartSummaryComponent,
     ProfileComponent,
-    CustomersComponent,
     ToastsComponent,
     SizePipe,
     StoneStoriesComponent,

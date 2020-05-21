@@ -16,6 +16,10 @@ export class OrderService {
     private afAuth: AngularFireAuth
   ) {}
 
+  getOrder(orderId: string): Observable<Order> {
+    return this.db.doc<Order>('orders/' + orderId).valueChanges();
+  }
+
   placeOrder(order) {
     let result = this.db.collection('orders').add({ ...order });
     this.cartService.clearCart();
@@ -43,9 +47,5 @@ export class OrderService {
           .valueChanges({ idField: 'id' });
       })
     );
-  }
-
-  getOrder(orderId: string): Observable<Order> {
-    return this.db.doc<Order>('orders/' + orderId).valueChanges();
   }
 }

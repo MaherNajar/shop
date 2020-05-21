@@ -4,7 +4,7 @@
       height="30px"
       width="30px"
       src="assets/prisme.png"
-      alt="coeur-des-fruits-et-légumes"
+      alt="logo prisme"
       [ngStyle]="{ filter: user ? 'initial' : 'grayScale(1)' }"
     />
   </a>
@@ -31,11 +31,8 @@
         <div class="dropdown-divider"></div>
 
         <ng-container *ngIf="user.isAdmin; else myOrders">
-          <a class="dropdown-item" routerLink="/admin/colliers">Mes bijoux</a>
-          <a class="dropdown-item" routerLink="/admin/clients">Mes clients</a>
-          <a class="dropdown-item" routerLink="/admin/commandes"
-            >Les commandes</a
-          >
+          <a class="dropdown-item" routerLink="/admin/colliers">Colliers</a>
+          <a class="dropdown-item" routerLink="/admin/commandes">Commandes</a>
         </ng-container>
 
         <ng-template #myOrders>

@@ -12,7 +12,6 @@ import { StoneService } from 'src/app/services/stones.service';
 @Component({
   selector: 'products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css'],
 })
 export class ProductsComponent implements OnInit {
   products: Product[] = [];

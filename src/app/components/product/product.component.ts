@@ -8,14 +8,7 @@ import { User } from 'src/app/models/user';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styles: [
-    `
-      .sticky {
-        position: sticky;
-        top: 15px;
-      }
-    `,
-  ],
+  styles: [],
 })
 export class ProductComponent implements OnInit {
   user: User;

@@ -1,9 +1,5 @@
-<h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">
-  Mes bijoux 💎🦪📿
-</h1>
-<hr class="mt-2 mb-5" />
 <p>
-  <button routerLink="/produits/nouveau" class="btn btn-success">
+  <button routerLink="/colliers/nouveau" class="btn btn-success">
     Ajouter
   </button>
 </p>
@@ -31,7 +27,6 @@
         <th id="statut">Disponibilité</th>
         <th id="prixDT">Prix TND</th>
         <th id="prixEu">Prix €</th>
-        <th id="modifier"></th>
         <th id="supprimer"></th>
       </tr>
     </thead>
@@ -40,11 +35,13 @@
         <td><a routerLink="/profil/{{ p.uid }}">🕴️</a></td>
         <td>{{ p.title }}</td>
         <td>
-          <img
-            *ngIf="p.gallery.length > 0"
-            alt="{{ p.title }}"
-            src="{{ p.gallery[0] | size: '100' }}"
-          />
+          <a routerLink="/colliers/{{ p.id }}">
+            <img
+              *ngIf="p.gallery.length > 0"
+              alt="{{ p.title }}"
+              src="{{ p.gallery[0] | size: '100' }}"
+            />
+          </a>
         </td>
         <td>{{ p.stones?.join() }}</td>
         <td>
@@ -68,7 +65,6 @@
         </td>
         <td>{{ p.price }}</td>
         <td>{{ p.price / 3.17 | number: "1.0-0" }}</td>
-        <td><a routerLink="/colliers/{{ p.id }}">👁️</a></td>
         <td><a [routerLink]="" (click)="productService.delete(p)">🚮</a></td>
       </tr>
     </tbody>

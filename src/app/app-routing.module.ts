@@ -9,7 +9,6 @@ import { OrderDetailsComponent } from './components/orders/order-details/order-d
 import { ProfileComponent } from './components/profile/profile.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { AdminGuard } from './services/admin-guard.service';
-import { CustomersComponent } from './components/customers/customers.component';
 import { ProductComponent } from './components/product/product.component';
 import { CustomerDetailsComponent } from './components/customers/customer-details/customer-details.component';
 
@@ -61,14 +60,13 @@ const routes: Routes = [
     canActivate: [AuthGuard, AdminGuard],
   },
   {
-    path: 'admin/clients',
-    component: CustomersComponent,
+    path: 'admin/client/:email',
+    component: CustomerDetailsComponent,
     canActivate: [AuthGuard, AdminGuard],
   },
   {
-    path: 'admin/clients/:email',
-    component: CustomerDetailsComponent,
-    canActivate: [AuthGuard, AdminGuard],
+    path: '**',
+    component: ProductsComponent,
   },
 ];
 
