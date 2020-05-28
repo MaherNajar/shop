@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ProductService } from './product.service';
+import { Product } from '../models/product';
 
 export interface Stone {
   cssColor: string;
@@ -28,9 +29,9 @@ export class StoneService {
   get allStones() {
     return Stones;
   }
-  get filteredStones() {
+  getFilteredStones(product: Product) {
     const stones = Stones.filter((s) =>
-      this.ps.product.stones.every((x) => x !== s.name)
+      product.stones.every((x) => x !== s.name)
     );
     return stones;
   }

@@ -1,7 +1,7 @@
 <h3>Mon panier</h3>
 <ng-container *ngIf="cartService.cart as cart">
   <p>
-    Vous avez {{ cart.totalItemsCount }} produits dans le panier.
+    Vous avez {{ cart.totalItemsCount }} colliers dans le panier.
     <button (click)="cartService.clearCart()" class="btn btn-light">
       Vider le panier
     </button>

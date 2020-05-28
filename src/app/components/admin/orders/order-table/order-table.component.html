@@ -1,0 +1,34 @@
+<ng-container *ngIf="orders$ | async as orders">
+  <div class="table-responsive">
+    <h3>Commandes reçues</h3>
+    <ng-container *ngIf="locService.location$ | async as location">
+      <table aria-describedby="admin orders table" class="table table-bordered">
+        <thead>
+          <tr>
+            <th id="date">Date</th>
+            <th id="prixTotal">Total</th>
+            <th id="statut">Statut</th>
+            <th id="client">Client</th>
+            <th id="details"></th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let order of orders">
+          <tr>
+            <td>{{ order.datePlaced | date: "short" }}</td>
+            <td>
+              {{ order.totalPrice | number: "1.0-2" }}
+              {{ location.displayCurrency }}
+            </td>
+            <td>{{ order.status }}</td>
+            <td>
+              <a routerLink="/admin/client/{{ order.customer.email }}">{{
+                order.customer.email
+              }}</a>
+            </td>
+            <td><a routerLink="/commandes/{{ order.id }}">👁️</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </ng-container>
+  </div>
+</ng-container>

@@ -1,0 +1,29 @@
+<h1 class="font-weight-light text-center text-lg-left mt-4 mb-0">
+  Arc en perles 🌈💎🦪📿
+</h1>
+<hr class="mt-2 mb-4" />
+
+<product-filter
+  [filteredLength]="filteredProducts.length"
+  [pierre]="pierreParam"
+  [couleur]="couleurParam"
+></product-filter>
+
+<ng-container *ngIf="filteredProducts">
+  <div class="row text-center text-lg-left">
+    <div
+      *ngFor="let product of filteredProducts"
+      class="col-lg-3 col-md-4 col-6"
+    >
+      <a routerLink="/colliers/{{ product.id }}" class="d-block mb-4 h-100">
+        <div class="img-container">
+          <img
+            class="img-fluid"
+            src="{{ product.gallery[0] | size: '400' }}"
+            alt="{{ product.title }}"
+          />
+        </div>
+      </a>
+    </div>
+  </div>
+</ng-container>

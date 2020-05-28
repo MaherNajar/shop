@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ProductService } from './product.service';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root',
@@ -9,10 +10,9 @@ export class ColorService {
   get allColors() {
     return Colors;
   }
-  get filteredColors() {
-    return Colors.filter((x) =>
-      this.ps.product.colors.every((c) => c !== x.key)
-    );
+
+  getFilteredColors(product: Product) {
+    return Colors.filter((x) => product.colors.every((c) => c !== x.key));
   }
 
   getColorObject(c) {

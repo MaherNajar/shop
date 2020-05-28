@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
     private locService: LocationService,
     private cartService: ShoppingCartService
   ) {}
-  async ngOnInit() {
+  ngOnInit() {
     this.locService.getLocation();
     this.cartService.getCart();
   }

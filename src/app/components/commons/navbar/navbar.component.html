@@ -31,8 +31,10 @@
         <div class="dropdown-divider"></div>
 
         <ng-container *ngIf="user.isAdmin; else myOrders">
-          <a class="dropdown-item" routerLink="/admin/colliers">Colliers</a>
-          <a class="dropdown-item" routerLink="/admin/commandes">Commandes</a>
+          <a class="dropdown-item" routerLink="/admin/colliers">Mes colliers</a>
+          <a class="dropdown-item" routerLink="/admin/commandes"
+            >Commandes reçues</a
+          >
         </ng-container>
 
         <ng-template #myOrders>

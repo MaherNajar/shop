@@ -1,77 +1,54 @@
-import { AuthGuard } from './services/auth-guard.service';
-import { AdminProductsComponent } from './components/products/admin-products/admin-products.component';
-import { CheckOutComponent } from './components/check-out/check-out.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
-import { ProductsComponent } from './components/products/products.component';
-import { OrderDetailsComponent } from './components/orders/order-details/order-details.component';
-import { ProfileComponent } from './components/profile/profile.component';
-import { OrdersComponent } from './components/orders/orders.component';
-import { AdminGuard } from './services/admin-guard.service';
-import { ProductComponent } from './components/product/product.component';
-import { CustomerDetailsComponent } from './components/customers/customer-details/customer-details.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: ProductsComponent,
-  },
+  { path: '', redirectTo: '/colliers', pathMatch: 'full' },
   {
     path: 'colliers',
-    component: ProductsComponent,
-  },
-  {
-    path: 'colliers/:id',
-    component: ProductComponent,
+    loadChildren: () =>
+      import('./components/products/products.module').then(
+        (m) => m.ProductsModule
+      ),
   },
   {
     path: 'panier',
-    component: ShoppingCartComponent,
+    loadChildren: () =>
+      import('./components/shopping-cart/shopping-cart.module').then(
+        (m) => m.ShoppingCartModule
+      ),
   },
   {
     path: 'caisse',
-    component: CheckOutComponent,
-  },
-
-  {
-    path: 'profil/:id',
-    component: ProfileComponent,
-    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./components/check-out/check-out.module').then(
+        (m) => m.CheckOutModule
+      ),
   },
   {
     path: 'commandes',
-    component: OrdersComponent,
-    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./components/orders/orders.module').then((m) => m.OrdersModule),
   },
   {
-    path: 'commandes/:id',
-    component: OrderDetailsComponent,
-    canActivate: [AuthGuard],
+    path: 'profil',
+    loadChildren: () =>
+      import('./components/profile/profile.module').then(
+        (m) => m.ProfileModule
+      ),
   },
   {
-    path: 'admin/commandes',
-    component: OrdersComponent,
-    canActivate: [AuthGuard, AdminGuard],
-  },
-  {
-    path: 'admin/colliers',
-    component: AdminProductsComponent,
-    canActivate: [AuthGuard, AdminGuard],
-  },
-  {
-    path: 'admin/client/:email',
-    component: CustomerDetailsComponent,
-    canActivate: [AuthGuard, AdminGuard],
-  },
-  {
-    path: '**',
-    component: ProductsComponent,
+    path: 'admin',
+    loadChildren: () =>
+      import('./components/admin/admin.module').then((m) => m.AdminModule),
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      initialNavigation: 'enabled',
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
