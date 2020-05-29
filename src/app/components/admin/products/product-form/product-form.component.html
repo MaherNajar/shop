@@ -2,22 +2,43 @@
   <div class="row">
     <div class="col-md-6">
       <form #f="ngForm">
-        <div class="form-group text-center">
-          <div
-            class="btn-group btn-group-toggle"
-            ngbRadioGroup
-            name="status"
-            [(ngModel)]="product.status"
-          >
-            <label ngbButtonLabel class="btn-success btn-sm">
-              <input ngbButton type="radio" value="disponible" /> Disponible
-            </label>
-            <label ngbButtonLabel class="btn-primary btn-sm">
-              <input ngbButton type="radio" value="réservé" /> Réservé
-            </label>
-            <label ngbButtonLabel class="btn-danger btn-sm">
-              <input ngbButton type="radio" value="vendu" /> Vendu
-            </label>
+        <div class="row">
+          <div class="offset-md-3 col-md-4">
+            <div class="form-group text-center">
+              <div
+                class="btn-group btn-group-toggle"
+                ngbRadioGroup
+                name="status"
+                [(ngModel)]="product.status"
+              >
+                <label ngbButtonLabel class="btn-success btn-sm">
+                  <input ngbButton type="radio" value="disponible" /> Disponible
+                </label>
+                <label ngbButtonLabel class="btn-primary btn-sm">
+                  <input ngbButton type="radio" value="réservé" /> Réservé
+                </label>
+                <label ngbButtonLabel class="btn-danger btn-sm">
+                  <input ngbButton type="radio" value="vendu" /> Vendu
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <button
+              type="button"
+              (click)="onReturn()"
+              class="btn-light btn-lg float-right"
+            >
+              🔙
+            </button>
+            <button
+              type="submit"
+              (click)="save()"
+              [disabled]="f.invalid"
+              class="btn-light btn-lg float-right"
+            >
+              💾
+            </button>
           </div>
         </div>
 
@@ -142,21 +163,6 @@
             value="upload"
           />
         </div>
-        <button
-          type="submit"
-          (click)="save()"
-          [disabled]="f.invalid"
-          class="btn-light btn-lg"
-        >
-          💾
-        </button>
-        <button
-          type="button"
-          (click)="onReturn()"
-          class="btn-light btn-lg float-right"
-        >
-          🔙
-        </button>
       </form>
     </div>
     <div class="col">

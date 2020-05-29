@@ -1,7 +1,18 @@
-<ng-container *ngIf="orders$ | async as orders">
+<ng-container *ngIf="filteredOrders">
   <div class="table-responsive">
     <h3>Commandes reçues</h3>
     <ng-container *ngIf="locService.location$ | async as location">
+      <div class="row">
+        <div class="offset-md-8 col-md-4 mb-3">
+          <input
+            (keyup)="filter(query.value)"
+            #query
+            type="text"
+            class="form-control text-center"
+            placeholder="filter par email..."
+          />
+        </div>
+      </div>
       <table aria-describedby="admin orders table" class="table table-bordered">
         <thead>
           <tr>
@@ -12,7 +23,7 @@
             <th id="details"></th>
           </tr>
         </thead>
-        <tbody *ngFor="let order of orders">
+        <tbody *ngFor="let order of filteredOrders">
           <tr>
             <td>{{ order.datePlaced | date: "short" }}</td>
             <td>

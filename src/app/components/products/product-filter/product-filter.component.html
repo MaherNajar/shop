@@ -13,7 +13,7 @@
             <a
               class="StoneFilter"
               [ngStyle]="{ color: stone.cssColor }"
-              routerLink="/"
+              routerLink="/colliers"
               [queryParams]="{ pierre: stone.name }"
               >{{ stone.name
               }}<span
@@ -37,7 +37,7 @@
             *ngFor="let color of colorService.allColors"
           >
             <a
-              routerLink="/"
+              routerLink="/colliers"
               [queryParams]="{ couleur: color.name }"
               title="{{ color.name }}"
             >

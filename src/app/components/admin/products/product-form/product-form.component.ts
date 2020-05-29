@@ -2,7 +2,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { finalize, map, tap } from 'rxjs/operators';
+import { finalize, map, tap, switchMap } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -41,10 +41,15 @@ export class ProductFormComponent implements OnInit {
   ) {}
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.productService
-      .get(id)
-      .pipe(tap((product) => (this.product = product)))
-      .subscribe();
+
+    if (id === 'nouveau') {
+      this.product = new Product();
+      return;
+    } else {
+      this.productService
+        .get(id)
+        .subscribe((product) => (this.product = product));
+    }
   }
 
   addStone() {

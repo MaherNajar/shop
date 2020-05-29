@@ -28,16 +28,9 @@ export class ProductTableComponent {
 
   filter(query: string) {
     this.items = query
-      ? this.products.filter((p) =>
-          this.noralized(p.title).includes(this.noralized(query))
+      ? this.products.filter((product) =>
+          product.title.toLowerCase().includes(query.toLowerCase())
         )
       : this.products;
-  }
-
-  private noralized(title: string) {
-    return title
-      .normalize('NFD')
-      .replace(/[\u0300-\u036f]/g, '')
-      .toLowerCase();
   }
 }

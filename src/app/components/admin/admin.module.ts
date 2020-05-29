@@ -10,15 +10,14 @@ import {
   NgbButtonsModule,
 } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from '../commons/shared.module';
-import { ProductPreviewComponent } from './products/product-preview/product-preview.component';
 import { OrderTableComponent } from './orders/order-table/order-table.component';
 import { CustomerDetailsComponent } from './customers/customer-details/customer-details.component';
+import { ProductPreviewModule } from '../products/product-preview/product-preview.module';
 
 @NgModule({
   declarations: [
     ProductTableComponent,
     ProductFormComponent,
-    ProductPreviewComponent,
     OrderTableComponent,
     CustomerDetailsComponent,
   ],
@@ -29,6 +28,7 @@ import { CustomerDetailsComponent } from './customers/customer-details/customer-
     NgbTypeaheadModule,
     NgbButtonsModule,
     SharedModule,
+    ProductPreviewModule,
   ],
 })
 export class AdminModule {}

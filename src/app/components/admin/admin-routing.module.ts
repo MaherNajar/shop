@@ -4,17 +4,29 @@ import { ProductTableComponent } from './products/product-table/product-table.co
 import { ProductFormComponent } from './products/product-form/product-form.component';
 import { OrderTableComponent } from './orders/order-table/order-table.component';
 import { CustomerDetailsComponent } from './customers/customer-details/customer-details.component';
+import { AuthGuard } from 'src/app/services/auth.guard';
+import { AdminGuard } from 'src/app/services/admin.guard';
 
 const routes: Routes = [
-  { path: 'colliers', component: ProductTableComponent },
-  { path: 'colliers/:id', component: ProductFormComponent },
+  {
+    path: 'colliers',
+    component: ProductTableComponent,
+    canActivate: [AuthGuard, AdminGuard],
+  },
+  {
+    path: 'colliers/:id',
+    component: ProductFormComponent,
+    canActivate: [AuthGuard, AdminGuard],
+  },
   {
     path: 'commandes',
     component: OrderTableComponent,
+    canActivate: [AuthGuard, AdminGuard],
   },
   {
     path: 'client/:email',
     component: CustomerDetailsComponent,
+    canActivate: [AuthGuard, AdminGuard],
   },
 ];
 

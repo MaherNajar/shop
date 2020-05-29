@@ -9,7 +9,7 @@ export class Product {
   uid: string = '';
   status: 'disponible' | 'réservé' | 'vendu' = 'disponible';
 
-  constructor(init?: Partial<Product>, private isInTN?: boolean) {
+  constructor(init?: Partial<Product>, private isInTN: boolean = false) {
     Object.assign(this, init);
   }
 

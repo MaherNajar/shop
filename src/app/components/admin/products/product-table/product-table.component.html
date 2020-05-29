@@ -1,19 +1,23 @@
-<p>
-  <button routerLink="/colliers/nouveau" class="btn btn-success">
-    Ajouter
-  </button>
-</p>
-<p>
-  <input
-    (keyup)="filter(query.value)"
-    #query
-    type="text"
-    class="form-control"
-    placeholder="Rechercher..."
-  />
-</p>
-<br />
 <div class="table-responsive">
+  <h3>Mes colliers</h3>
+  <div class="row">
+    <div class="offset-md-8 col-md-4 mb-3">
+      <div class="input-group">
+        <input
+          (keyup)="filter(query.value)"
+          class="form-control text-center"
+          #query
+          type="text"
+          placeholder="filter par l'intitulé..."
+        />
+        <div class="input-group-append">
+          <button routerLink="/admin/colliers/nouveau" class="btn btn-info">
+            Créer
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
   <table
     aria-describedby="admin products"
     class="table table-bordered text-center"
@@ -49,7 +53,9 @@
         </td>
         <td>{{ p.price }}</td>
         <td>{{ p.price / 3.17 | number: "1.0-0" }}</td>
-        <td><a [routerLink]="" (click)="productService.delete(p)">🚮</a></td>
+        <td>
+          <a [routerLink]="" (click)="productService.delete(p)">🗑️</a>
+        </td>
       </tr>
     </tbody>
   </table>

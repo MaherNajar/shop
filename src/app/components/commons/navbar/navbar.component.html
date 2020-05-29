@@ -1,14 +1,16 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
-  <a class="navbar-brand float-right" routerLink="/">
-    <img
-      height="30px"
-      width="30px"
-      src="assets/prisme.png"
-      alt="logo prisme"
-      [ngStyle]="{ filter: user ? 'initial' : 'grayScale(1)' }"
-    />
-  </a>
   <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/">
+        <img
+          height="30px"
+          width="30px"
+          src="assets/prisme.png"
+          alt="logo prisme"
+          [ngStyle]="{ filter: user ? 'initial' : 'grayScale(1)' }"
+        />
+      </a>
+    </li>
     <ng-template #anonymousUser>
       <li class="nav-item">
         <a class="nav-link" (click)="googleSignin()">Connexion</a>
