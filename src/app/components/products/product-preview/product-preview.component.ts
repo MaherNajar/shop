@@ -6,6 +6,7 @@ import { ColorService } from 'src/app/services/colors.service';
 import { StoneService } from 'src/app/services/stones.service';
 import { LocationService } from 'src/app/services/location.service';
 import { Product } from 'src/app/models/product';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'product-preview',
@@ -40,7 +41,8 @@ export class ProductPreviewComponent {
     public productService: ProductService,
     public stoneService: StoneService,
     public colorService: ColorService,
-    public locService: LocationService
+    public locService: LocationService,
+    private router: Router
   ) {}
 
   get mainPicture() {
@@ -56,6 +58,7 @@ export class ProductPreviewComponent {
 
   addToCart() {
     this.cartService.addToCart(this.product);
+    this.router.navigate(['/panier']);
   }
 
   removeFromCart() {

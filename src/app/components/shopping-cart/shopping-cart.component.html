@@ -1,18 +1,21 @@
-<h3>Mon panier</h3>
+<h3>
+  Mon panier
+</h3>
+
 <ng-container *ngIf="cartService.cart as cart">
   <p>
     Vous avez {{ cart.totalItemsCount }} colliers dans le panier.
-    <button (click)="cartService.clearCart()" class="btn btn-light">
-      Vider le panier
+    <button routerLink="/colliers" type="button" class="btn-info btn-sm">
+      Continuer mes achats
     </button>
-    <a routerLink="/caisse">
-      <button
-        class="btn btn-primary float-right"
-        [disabled]="cart.totalItemsCount === 0"
-      >
-        Valider le panier
-      </button>
-    </a>
+    <button
+      routerLink="/caisse"
+      type="button"
+      class="btn-warning btn-sm ml-2"
+      [disabled]="cart.totalItemsCount === 0"
+    >
+      Valider mon panier
+    </button>
   </p>
   <div class="table-responsive">
     <ng-container *ngIf="locService.location$ | async as location">
@@ -27,18 +30,32 @@
         <tbody>
           <tr *ngFor="let item of cart.items">
             <td>
-              {{ item.title }}
+              <p>
+                {{ item.title }}
+              </p>
+              <a role="button" (click)="cartService.removeFromCart(item)">
+                <img
+                  width="25px"
+                  src="assets/remove-from-cart.svg"
+                  alt="retirer du panier"
+                  title="retirer du panier"
+                />
+              </a>
             </td>
             <td>
-              <img
-                height="100px"
-                alt="{{ item.title }}"
-                src="{{ item.mainPicture | size: '100' }}"
-              />
+              <a routerLink="/colliers/{{ item.id }}">
+                <img
+                  height="100px"
+                  alt="{{ item.title }}"
+                  src="{{ item.mainPicture | size: '100' }}"
+                />
+              </a>
             </td>
             <td>
-              {{ item.totalPrice | number: "1.0-2" }}
-              {{ location.displayCurrency }}
+              <p>
+                {{ item.totalPrice | number: "1.0-2" }}
+                {{ location.displayCurrency }}
+              </p>
             </td>
           </tr>
         </tbody>

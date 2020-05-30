@@ -1,6 +1,6 @@
 <h1>Confirmation</h1>
 <div class="row" *ngIf="cartService.cart as cart">
-  <div class="col">
+  <div class="col-md-6 mb-3">
     <form #f="ngForm">
       <div *ngIf="!user">
         <label for="email">Votre email</label>
@@ -28,9 +28,9 @@
         (click)="placeOrder()"
         [disabled]="f.invalid"
         type="submit"
-        class="btn btn-warning"
+        class="btn-warning btn-sm"
       >
-        Confirmer la commande
+        Valider ma commande
       </button>
     </form>
   </div>

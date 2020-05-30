@@ -2,13 +2,14 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Subscription, Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/storage';
-import { finalize, map, tap, switchMap } from 'rxjs/operators';
+import { finalize, map, tap, take } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { ProductService } from 'src/app/services/product.service';
 import { ColorService } from 'src/app/services/colors.service';
 import { StoneService, Stone } from 'src/app/services/stones.service';
 import { Product } from 'src/app/models/product';
+import { LocationService } from 'src/app/services/location.service';
 
 @Component({
   selector: 'product-form',
@@ -37,7 +38,8 @@ export class ProductFormComponent implements OnInit {
     public authService: AuthService,
     public colorService: ColorService,
     public stoneService: StoneService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private locService: LocationService
   ) {}
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
@@ -46,9 +48,27 @@ export class ProductFormComponent implements OnInit {
       this.product = new Product();
       return;
     } else {
-      this.productService
-        .get(id)
-        .subscribe((product) => (this.product = product));
+      this.locService.location$
+        .pipe(
+          tap((location) => {
+            this.productService
+              .get(id)
+              .pipe(
+                take(1),
+                map((product) => {
+                  if (!product) this.router.navigate(['/colliers']);
+                  else {
+                    this.product = new Product(
+                      { ...product, id },
+                      location.isInTN
+                    );
+                  }
+                })
+              )
+              .subscribe();
+          })
+        )
+        .subscribe();
     }
   }
 
@@ -131,7 +151,7 @@ export class ProductFormComponent implements OnInit {
       )
     );
 
-  async onReturn() {
+  onReturn() {
     if (!this.product.id && this.product.gallery.length > 0)
       this.productService.deleteImages(this.product);
     this.router.navigate(['/admin/colliers']);

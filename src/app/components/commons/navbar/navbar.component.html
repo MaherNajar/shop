@@ -1,67 +1,80 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top">
-  <ul class="navbar-nav ml-auto">
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/">
-        <img
-          height="30px"
-          width="30px"
-          src="assets/prisme.png"
-          alt="logo prisme"
-          [ngStyle]="{ filter: user ? 'initial' : 'grayScale(1)' }"
-        />
-      </a>
-    </li>
-    <ng-template #anonymousUser>
-      <li class="nav-item">
-        <a class="nav-link" (click)="googleSignin()">Connexion</a>
-      </li>
-    </ng-template>
-    <li ngbDropdown *ngIf="user; else anonymousUser" class="nav-item">
-      <a ngbDropdownToggle class="nav-link" id="dropdown01"
-        >{{ user.displayName }}
-        <img class="avatar" [src]="user.photoURL" alt="avatar" />
-      </a>
-      <div
-        ngbDropdownMenu
-        class="dropdown-menu dropdown-menu-right animate slideIn"
-        aria-labelledby="dropdown01"
-      >
-        <a class="dropdown-item" routerLink="/profil/{{ user.uid }}"
-          >Mon profil</a
+<nav class="navbar navbar-expand-md navbar-light bg-light shadow fixed-top">
+  <a class="navbar-brand" routerLink="/">
+    Acceuil
+    <img
+      style="margin-top: -4px;"
+      height="20px"
+      width="20px"
+      src="assets/prisme.png"
+      alt="logo prisme"
+      [ngStyle]="{ filter: user ? 'initial' : 'grayScale(1)' }"
+  /></a>
+
+  <button
+    class="navbar-toggler"
+    type="button"
+    aria-controls="navbarContent"
+    [attr.aria-expanded]="!collapsed"
+    aria-label="Toggle navigation"
+    (click)="collapsed = !collapsed"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
+    <ul class="navbar-nav mr-auto">
+      <ng-template #anonymousUser>
+        <li class="nav-item">
+          <a class="nav-link" (click)="googleSignin()">Connexion</a>
+        </li>
+      </ng-template>
+      <li ngbDropdown *ngIf="user; else anonymousUser" class="nav-item">
+        <a ngbDropdownToggle class="nav-link" id="user-menu"
+          >{{ user.displayName }}
+          <img class="avatar" [src]="user.photoURL" alt="avatar" />
+        </a>
+        <div
+          ngbDropdownMenu
+          class="dropdown-menu dropdown-menu-right animate slideIn"
+          aria-labelledby="user-menu"
         >
-
-        <div class="dropdown-divider"></div>
-
-        <ng-container *ngIf="user.isAdmin; else myOrders">
-          <a class="dropdown-item" routerLink="/admin/colliers">Mes colliers</a>
-          <a class="dropdown-item" routerLink="/admin/commandes"
-            >Commandes reçues</a
+          <a class="dropdown-item" routerLink="/profil/{{ user.uid }}"
+            >Mon profil</a
           >
-        </ng-container>
 
-        <ng-template #myOrders>
-          <a class="dropdown-item" routerLink="/commandes">Mes commandes</a>
-        </ng-template>
+          <div class="dropdown-divider"></div>
 
-        <div class="dropdown-divider"></div>
+          <ng-container *ngIf="user.isAdmin; else myOrders">
+            <a class="dropdown-item" routerLink="/admin/colliers"
+              >Mes colliers</a
+            >
+            <a class="dropdown-item" routerLink="/admin/commandes"
+              >Commandes reçues</a
+            >
+          </ng-container>
 
-        <a class="dropdown-item" [routerLink]="" (click)="signOut()"
-          >Déconnexion</a
-        >
-      </div>
-    </li>
-  </ul>
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/panier">
-        <span
-          style="margin-right: 2px;"
-          class="badge badge-warning"
-          *ngIf="cartService.cart as cart"
-          >{{ cart.totalItemsCount }}</span
-        >
-        <span>👜</span>
-      </a>
-    </li>
-  </ul>
+          <ng-template #myOrders>
+            <a class="dropdown-item" routerLink="/commandes">Mes commandes</a>
+          </ng-template>
+
+          <div class="dropdown-divider"></div>
+
+          <a class="dropdown-item" [routerLink]="" (click)="signOut()"
+            >Déconnexion</a
+          >
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/panier">
+          <span
+            style="margin-right: 2px;"
+            class="badge badge-warning"
+            *ngIf="cartService.cart as cart"
+            >{{ cart.totalItemsCount }}</span
+          >
+          <span>👜</span>
+        </a>
+      </li>
+    </ul>
+  </div>
 </nav>

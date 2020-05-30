@@ -12,7 +12,8 @@
     "dev:ssr": "ng run omyshop:serve-ssr",
     "serve:ssr": "node dist/omyshop/server/main.js",
     "build:ssr": "ng build --prod && ng run omyshop:server:production",
-    "prerender": "ng run omyshop:prerender"
+    "prerender": "ng run omyshop:prerender",
+    "analyser": "webpack-bundle-analyzer dist/omyshop/browser/stats-es2015.json"
   },
   "private": true,
   "dependencies": {
@@ -30,7 +31,6 @@
     "@angular/service-worker": "~9.1.0",
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
     "@nguniversal/express-engine": "^9.1.1",
-    "bootstrap": "^4.5.0",
     "express": "^4.15.2",
     "firebase": "^7.14.5",
     "rxjs": "~6.5.4",

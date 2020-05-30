@@ -4,7 +4,6 @@ import * as firebase from 'firebase/app';
 import 'firebase/auth';
 import { Observable, of } from 'rxjs';
 import { switchMap, map } from 'rxjs/operators';
-import { Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { AngularFirestore } from '@angular/fire/firestore';
 
@@ -14,11 +13,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class AuthService {
   user$: Observable<User> = null;
 
-  constructor(
-    private afAuth: AngularFireAuth,
-    private db: AngularFirestore,
-    private router: Router
-  ) {
+  constructor(private afAuth: AngularFireAuth, private db: AngularFirestore) {
     this.user$ = afAuth.authState.pipe(
       switchMap((user) => (user ? this.getUser(user.uid) : of(null)))
     );
@@ -37,6 +32,6 @@ export class AuthService {
   }
 
   signOut() {
-    this.router.navigate(['/']).finally(() => this.afAuth.signOut());
+    this.afAuth.signOut();
   }
 }

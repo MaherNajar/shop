@@ -17,6 +17,12 @@ body {
   width: 190px;
 }
 
+@media (max-width: 575.98px) {
+  .ContentLeft {
+    display: none;
+  }
+}
+
 .Color {
   width: 30px;
   height: 18px;

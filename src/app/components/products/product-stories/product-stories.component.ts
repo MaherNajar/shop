@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
-import { ProductService } from 'src/app/services/product.service';
+import { Component, Input, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
+import { StoneService } from 'src/app/services/stones.service';
 
 @Component({
   selector: 'product-stories',
@@ -16,17 +16,14 @@ import { Product } from 'src/app/models/product';
       p {
         font-size: 14px;
       }
-
-      img {
-        text-align: center;
-      }
     `,
   ],
 })
-export class ProductStoriesComponent {
-  constructor(public productService: ProductService) {}
+export class ProductStoriesComponent implements OnInit {
   @Input('product') product: Product;
-  hasStone(name: string) {
-    return this.product.stones.some((x) => x === name);
+  stories;
+  constructor(private stoneService: StoneService) {}
+  ngOnInit() {
+    this.stories = this.stoneService.getStories(this.product);
   }
 }
