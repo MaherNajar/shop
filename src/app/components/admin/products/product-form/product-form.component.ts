@@ -41,31 +41,23 @@ export class ProductFormComponent implements OnInit {
     private route: ActivatedRoute,
     private locService: LocationService
   ) {}
-  ngOnInit() {
+  async ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
+    const location = await this.locService.location$.toPromise();
 
     if (id === 'nouveau') {
-      this.product = new Product();
+      this.product = new Product(null, location.isInTN);
       return;
     } else {
-      this.locService.location$
+      this.productService
+        .get(id)
         .pipe(
-          tap((location) => {
-            this.productService
-              .get(id)
-              .pipe(
-                take(1),
-                map((product) => {
-                  if (!product) this.router.navigate(['/colliers']);
-                  else {
-                    this.product = new Product(
-                      { ...product, id },
-                      location.isInTN
-                    );
-                  }
-                })
-              )
-              .subscribe();
+          take(1),
+          map((product) => {
+            if (!product) this.router.navigate(['/colliers']);
+            else {
+              this.product = new Product({ ...product, id }, location.isInTN);
+            }
           })
         )
         .subscribe();

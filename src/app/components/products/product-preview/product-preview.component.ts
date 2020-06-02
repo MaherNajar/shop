@@ -1,12 +1,13 @@
 import { Component, ViewChild, ElementRef, Input } from '@angular/core';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductService } from 'src/app/services/product.service';
 import { ColorService } from 'src/app/services/colors.service';
 import { StoneService } from 'src/app/services/stones.service';
 import { LocationService } from 'src/app/services/location.service';
 import { Product } from 'src/app/models/product';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'product-preview',
@@ -34,6 +35,7 @@ export class ProductPreviewComponent {
   @ViewChild('modal') modal: ElementRef;
   @Input('product') product: Product;
   selectedPicture: number = 0;
+  imgNotAvailable = environment.imgNotAvailable;
 
   constructor(
     public cartService: ShoppingCartService,

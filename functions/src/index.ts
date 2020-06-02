@@ -3,4 +3,8 @@ import * as admin from 'firebase-admin';
 admin.initializeApp();
 
 export { createUserRecord } from './auth';
-export { createOrUpdateCustomerRecord } from './customer';
+export {
+  createOrUpdateCustomerRecord,
+  lockOrderedProduct,
+  unlockOrderedProduct,
+} from './customer';

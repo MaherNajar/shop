@@ -5,6 +5,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { ColorService } from 'src/app/services/colors.service';
 import { StoneService } from 'src/app/services/stones.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'product-list',
@@ -14,6 +15,7 @@ export class ProductListComponent implements OnInit {
   filteredProducts: Product[] = [];
   pierreParam: string;
   couleurParam: string;
+  imgNotAvailable = environment.imgNotAvailable;
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,

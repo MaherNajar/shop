@@ -6,13 +6,20 @@
     >
       <p class="card-text">
         <strong>Référence : {{ order.id }}</strong>
+
         <ng-container *ngIf="authService.user$ | async as user">
           <button
-            *ngIf="user.type === 'admin' && order.status !== 'terminée'"
-            class="btn btn-light float-right"
+            routerLink="{{ user.isAdmin ? '/admin/commandes' : '/commandes' }}"
+            class="btn-light float-right btn-sm ml-2"
+          >
+            🔙
+          </button>
+          <button
+            *ngIf="user.isAdmin && order.status !== 'terminée'"
+            class="btn-warning float-right btn-sm"
             (click)="cancelOrder()"
           >
-            annuler ma commande
+            Annulation
           </button>
         </ng-container>
       </p>

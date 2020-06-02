@@ -1,18 +1,28 @@
 <div class="h-100">
   <div class="row">
-    <div class="offset-md-1 col-6 mt-4">
-      <span *ngIf="product.gallery.length > 0" (click)="openModal()"
+    <div class="col-6 mt-4">
+      <span
+        *ngIf="product.gallery.length > 0; else prisme"
+        (click)="openModal()"
         ><img
           class="img-fluid"
           src="{{ mainPicture | size: '400' }}"
           alt="{{ product.title }}"
           id="mainpic"
       /></span>
+      <ng-template #prisme>
+        <img
+          class="img-fluid"
+          src="{{ imgNotAvailable | noImgSize: '400' }}"
+          alt="photo non disponible"
+          id="imgNonDisponible"
+        />
+      </ng-template>
     </div>
     <div class="col m-3">
-      <div>
+      <p class="text-right">
         <span
-          class="float-right badge badge-pill"
+          class="badge badge-pill"
           [ngClass]="{
             'badge-primary': product.status === 'réservé',
             'badge-danger': product.status === 'vendu',
@@ -21,43 +31,36 @@
           style="font-size: small;"
           >{{ product.status }}</span
         >
-        <h5>
-          {{ product.title }}
-        </h5>
-      </div>
-      <div>
-        <ul style="list-style: none;" class="list-inline">
-          <li *ngFor="let s of product.stones" class="list-inline-item">
-            <ng-container *ngIf="stoneService.getStoneObject(s) as stone">
-              <a
-                routerLink="/colliers"
-                [queryParams]="{ pierre: stone.name }"
-                class="StoneFilter"
-                [ngStyle]="{ color: stone.cssColor }"
-                >{{ stone.name }}</a
-              >
-            </ng-container>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <ul style="list-style: none;" class="list-inline">
-          <li *ngFor="let c of product.colors" class="list-inline-item">
-            <ng-container *ngIf="colorService.getColorObject(c) as color"
-              ><a
-                routerLink="/colliers"
-                [queryParams]="{ couleur: color.name }"
-              >
-                <img
-                  class="Color"
-                  src="assets/colors/{{ color.key }}.gif"
-                  [alt]="color.name"
-                />
-              </a>
-            </ng-container>
-          </li>
-        </ul>
-      </div>
+      </p>
+      <h5 class="text-center">
+        {{ product.title }}
+      </h5>
+      <ul style="list-style: none;" class="list-inline mt-3">
+        <li *ngFor="let s of product.stones" class="list-inline-item">
+          <ng-container *ngIf="stoneService.getStoneObject(s) as stone">
+            <a
+              routerLink="/colliers"
+              [queryParams]="{ pierre: stone.name }"
+              class="StoneFilter"
+              [ngStyle]="{ color: stone.cssColor }"
+              >{{ stone.name }}</a
+            >
+          </ng-container>
+        </li>
+      </ul>
+      <ul style="list-style: none;" class="list-inline">
+        <li *ngFor="let c of product.colors" class="list-inline-item">
+          <ng-container *ngIf="colorService.getColorObject(c) as color"
+            ><a routerLink="/colliers" [queryParams]="{ couleur: color.name }">
+              <img
+                class="Color"
+                src="assets/colors/{{ color.key }}.gif"
+                [alt]="color.name"
+              />
+            </a>
+          </ng-container>
+        </li>
+      </ul>
       <ng-container *ngIf="locService.location$ | async as location">
         <h5 class="text-center">
           <span style="font-weight: 700;">

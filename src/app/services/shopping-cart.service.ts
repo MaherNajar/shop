@@ -86,7 +86,7 @@ export class ShoppingCartService {
               id,
               price,
               title,
-              mainPicture: gallery[0],
+              mainPicture: gallery.length > 0 ? gallery[0] : '',
               quantity: 1,
             });
           }

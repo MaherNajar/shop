@@ -18,9 +18,17 @@
       <a routerLink="/colliers/{{ product.id }}" class="d-block mb-4 h-100">
         <img
           class="img-fluid"
+          *ngIf="product.gallery.length > 0; else prisme"
           src="{{ product.gallery[0] | size: '400' }}"
           alt="{{ product.title }}"
         />
+        <ng-template #prisme>
+          <img
+            [src]="imgNotAvailable | noImgSize: '400'"
+            alt="photo non disponible"
+            class="img-fluid"
+          />
+        </ng-template>
       </a>
     </div>
   </div>

@@ -28,7 +28,7 @@
         <th id="title">Intitulé</th>
         <th id="pierres">Pierres</th>
         <th id="présentation">Présentation</th>
-        <th id="statut">Disponibilité</th>
+        <th id="statut">Statut</th>
         <th id="prixDT">Prix TND</th>
         <th id="prixEu">Prix €</th>
         <th id="supprimer"></th>
@@ -42,10 +42,17 @@
         <td>
           <a routerLink="/admin/colliers/{{ p.id }}">
             <img
-              *ngIf="p.gallery.length > 0"
+              *ngIf="p.gallery.length > 0; else prisme"
               alt="{{ p.title }}"
               src="{{ p.gallery[0] | size: '100' }}"
             />
+            <ng-template #prisme>
+              <img
+                [src]="imgNotAvailable | noImgSize: '100'"
+                alt="photo non disponible"
+                class="img-fluid"
+              />
+            </ng-template>
           </a>
         </td>
         <td>
@@ -54,9 +61,32 @@
         <td>{{ p.price }}</td>
         <td>{{ p.price / 3.17 | number: "1.0-0" }}</td>
         <td>
-          <a [routerLink]="" (click)="productService.delete(p)">🗑️</a>
+          <a [routerLink]="" (click)="deleteProduct(p)">🗑️</a>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
+<ng-template #modal>
+  <div></div>
+
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">
+      Suppression interdite
+    </h4>
+  </div>
+  <div class="modal-body">
+    <p>
+      Vous ne pouvez pas supprimer ce collier car il est réservé, Pour pouvoir
+      le supprimer vous avez 2 possibilités :
+    </p>
+    <p>
+      1 : Annuler la commande déjà en cours, le collier sera alors de nouveau
+      "Disponible".
+    </p>
+    <p>
+      2 : Modifier directement le statut du collier en choisissant "Disponible"
+      ou bien "Vendu" depuis le formulaire collier.
+    </p>
+  </div>
+</ng-template>
