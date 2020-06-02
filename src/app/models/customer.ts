@@ -1,11 +1,8 @@
-export interface Visitor {
+export interface Customer {
   email: string;
   ip: string;
   loc: string;
-  message: string;
-}
-
-export interface Customer extends Visitor {
+  messages: [];
   expenses: number;
   ordersCount: number;
 }

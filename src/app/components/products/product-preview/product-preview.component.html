@@ -8,23 +8,6 @@
           alt="{{ product.title }}"
           id="mainpic"
       /></span>
-      <ul *ngIf="product.gallery.length > 0" class="list-inline mt-2">
-        <li
-          class="list-inline-item"
-          *ngFor="let picture of product.gallery; let i = index"
-        >
-          <a (click)="selectedPicture = i" [routerLink]=""
-            ><img
-              [ngClass]="{
-                selected: selectedPicture === i,
-                notSelected: selectedPicture !== i
-              }"
-              class="img-fluid"
-              src="{{ picture | size: '100' }}"
-              alt="{{ product.title }}"
-          /></a>
-        </li>
-      </ul>
     </div>
     <div class="col m-3">
       <div>
@@ -110,6 +93,24 @@
       </div>
     </div>
   </div>
+  <ul *ngIf="product.gallery.length > 0" class="list-inline mt-2">
+    <li
+      class="list-inline-item"
+      *ngFor="let picture of product.gallery; let i = index"
+    >
+      <a (click)="selectedPicture = i" [routerLink]=""
+        ><img
+          [ngClass]="{
+            selected: selectedPicture === i,
+            notSelected: selectedPicture !== i
+          }"
+          class="img-fluid"
+          src="{{ picture | size: '100' }}"
+          alt="{{ product.title }}"
+      /></a>
+    </li>
+  </ul>
+
   <ng-template #modal>
     <!-- Modal Content (The Image) -->
     <img alt="{{ product.title }}" class="img-fluid" src="{{ mainPicture }}" />

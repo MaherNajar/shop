@@ -24,7 +24,7 @@ export class OrderTableComponent implements OnInit, OnDestroy {
   filter(query: string) {
     this.filteredOrders = query
       ? this.orders.filter((order) =>
-          order.customer.email.toLowerCase().includes(query.toLowerCase())
+          order.email.toLowerCase().includes(query.toLowerCase())
         )
       : this.orders;
   }

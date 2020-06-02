@@ -36,7 +36,7 @@ export class Location {
   }
 
   get isInTN() {
-    return !this.loc.includes('TN');
+    return this.loc.includes('TN');
   }
 
   get displayCurrency() {

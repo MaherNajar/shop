@@ -32,19 +32,15 @@
         <strong>Commande du : </strong>
         {{ order.datePlaced | date: "long" }}
       </p>
-      <p class="card-text">
-        <strong>Email : </strong> {{ order.customer.email }}
-      </p>
-      <p class="card-text">
-        <strong>Message : </strong> {{ order.customer.message }}
-      </p>
+      <p class="card-text"><strong>Email : </strong> {{ order.email }}</p>
+      <p class="card-text"><strong>Message : </strong> {{ order.message }}</p>
       <li class="list-group-item" *ngFor="let item of order.items">
         <img
           src="{{ item.mainPicture | size: '100' }}"
           class="mr-5 thumbnail"
           alt="{{ item.title }}"
         />
-        <span class="float-right">
+        <span style="text-align: right;">
           {{ item.title }} : {{ item.quantity }} x
           {{ item.price | number: "1.0-2" }} =
           {{ item.quantity * item.price | number: "1.0-2" }}

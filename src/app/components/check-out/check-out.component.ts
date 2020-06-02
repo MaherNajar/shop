@@ -5,19 +5,14 @@ import { OrderService } from 'src/app/services/order.service';
 import { Order } from 'src/app/models/order';
 import { Router } from '@angular/router';
 import { LocationService } from 'src/app/services/location.service';
-import { Visitor } from 'src/app/models/customer';
 
 @Component({
   selector: 'app-check-out',
   templateUrl: './check-out.component.html',
 })
 export class CheckOutComponent {
-  visitor: Visitor = {
-    email: '',
-    message: '',
-    ip: '',
-    loc: '',
-  };
+  email = '';
+  message = '';
 
   user;
 
@@ -25,8 +20,8 @@ export class CheckOutComponent {
     public cartService: ShoppingCartService,
     private authService: AuthService,
     private orderService: OrderService,
-    private router: Router,
-    private locService: LocationService
+    private locService: LocationService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -36,10 +31,13 @@ export class CheckOutComponent {
   }
 
   async placeOrder() {
-    if (this.user) this.visitor.email = this.user.email;
-    const location = await this.locService.location$.toPromise();
+    if (this.user) this.email = this.user.email;
+    const { ip, loc } = await this.locService.location$.toPromise();
     const order = new Order(
-      { ...this.visitor, ...location },
+      this.email,
+      this.message,
+      ip,
+      loc,
       this.cartService.cart
     );
     const result = await this.orderService.placeOrder(order);

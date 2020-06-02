@@ -5,7 +5,7 @@
       <div *ngIf="!user">
         <label for="email">Votre email</label>
         <input
-          [(ngModel)]="visitor.email"
+          [(ngModel)]="email"
           name="email"
           id="email"
           type="email"
@@ -17,7 +17,7 @@
       <div class="form-group">
         <label for="message">Votre message</label>
         <textarea
-          [(ngModel)]="visitor.message"
+          [(ngModel)]="message"
           name="message"
           id="message"
           class="form-control"
