@@ -54,8 +54,9 @@
             ><a routerLink="/colliers" [queryParams]="{ couleur: color.name }">
               <img
                 class="Color"
-                src="assets/colors/{{ color.key }}.gif"
+                src="assets/colors/{{ color.key }}.png"
                 [alt]="color.name"
+                [title]="color.name"
               />
             </a>
           </ng-container>

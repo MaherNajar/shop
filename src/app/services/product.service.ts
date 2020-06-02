@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Product } from 'src/app/models/product';
 import { AuthService } from './auth.service';
-import { switchMap, take, map } from 'rxjs/operators';
+import { switchMap, take } from 'rxjs/operators';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { User } from '../models/user';
 
