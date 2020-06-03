@@ -71,11 +71,11 @@ export class ProductService {
   async deleteImages(product: Product) {
     const sizes = ['100x100', '400x300'];
     for (let i = 0; i < product.gallery.length; i++) {
-      this.storage.ref(`produits/${product.uploadRefDate}-${i}`).delete();
+      this.storage.ref(`colliers/${product.uploadRefDate}-${i}`).delete();
       for (let j = 0; j < sizes.length; j++) {
         let s = sizes[j];
         this.storage
-          .ref(`produits/${product.uploadRefDate}-${i}_${s}`)
+          .ref(`colliers/${product.uploadRefDate}-${i}_${s}`)
           .delete();
       }
     }

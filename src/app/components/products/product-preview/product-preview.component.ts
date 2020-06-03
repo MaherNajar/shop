@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { ProductService } from 'src/app/services/product.service';
 import { ColorService } from 'src/app/services/colors.service';
@@ -32,8 +32,8 @@ import { environment } from 'src/environments/environment';
   ],
 })
 export class ProductPreviewComponent {
-  @ViewChild('modal') modal: ElementRef;
   @Input('product') product: Product;
+  @Input('canSetPic') canSetPic = false;
   selectedPicture: number = 0;
   imgNotAvailable = environment.imgNotAvailable;
 
@@ -51,11 +51,21 @@ export class ProductPreviewComponent {
     return this.product.gallery[this.selectedPicture];
   }
 
-  openModal() {
-    this.ngbModal.open(this.modal, {
+  openModal(content) {
+    this.ngbModal.open(content, {
       centered: true,
       size: 'lg',
     });
+  }
+
+  setPic() {
+    if (!this.canSetPic) return;
+    let { gallery } = this.product;
+    const mainPic = gallery[this.selectedPicture];
+    gallery.splice(this.selectedPicture, 1);
+    gallery.unshift(mainPic);
+    this.product.gallery = gallery;
+    this.selectedPicture = 0;
   }
 
   addToCart() {

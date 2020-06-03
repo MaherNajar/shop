@@ -14,15 +14,6 @@ import { LocationService } from 'src/app/services/location.service';
 @Component({
   selector: 'product-form',
   templateUrl: './product-form.component.html',
-  styles: [
-    `
-      #uploader {
-        appearance: none;
-        width: 100%;
-        margin-bottom: 10px;
-      }
-    `,
-  ],
 })
 export class ProductFormComponent implements OnInit {
   product: Product;
@@ -107,7 +98,7 @@ export class ProductFormComponent implements OnInit {
 
     for (let i = iStart; i < iStart + files.length; i++) {
       const fileRef = this.storage.ref(
-        `produits/${this.product.uploadRefDate}-${i}`
+        `colliers/${this.product.uploadRefDate}-${i}`
       );
 
       const task = fileRef.put(files[i]);
@@ -116,15 +107,13 @@ export class ProductFormComponent implements OnInit {
 
       task
         .snapshotChanges()
-        .pipe(
-          finalize(async () => {
-            this.product.gallery.push(
-              await fileRef.getDownloadURL().toPromise()
-            );
-          })
-        )
+        .pipe(finalize(async () => await this.download(fileRef)))
         .subscribe();
     }
+  }
+
+  private async download(fileRef) {
+    this.product.gallery.push(await fileRef.getDownloadURL().toPromise());
   }
 
   formatter = (x: { name: string }) => x.name;

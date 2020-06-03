@@ -1,6 +1,13 @@
 <ng-container *ngIf="customer$ | async as customer">
+  <h3 class="text-center">Client</h3>
+
   <div class="card">
     <div class="card-body">
+      <p class="card-text text-right">
+        <button routerLink="/admin/commandes" class="btn-light btn-sm">
+          🔙
+        </button>
+      </p>
       <p class="card-text"><strong>Email : </strong>{{ customer.email }}</p>
       <p class="card-text">
         <strong>Localisation : </strong>{{ customer.loc }}

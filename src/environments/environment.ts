@@ -5,15 +5,17 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyDAmYJ8JyARB2oqm8mH2m0eKJ9VBNPlz2g',
-    authDomain: 'omyshop.firebaseapp.com',
-    databaseURL: 'https://omyshop.firebaseio.com',
-    projectId: 'omyshop',
-    storageBucket: 'omyshop.appspot.com',
-    messagingSenderId: '270806614805',
+    apiKey: 'AIzaSyD1fQYuh5YfF8VY2KPvBchensxyu5jKSCY',
+    authDomain: 'arcenperles-75.firebaseapp.com',
+    databaseURL: 'https://arcenperles-75.firebaseio.com',
+    projectId: 'arcenperles-75',
+    storageBucket: 'arcenperles-75.appspot.com',
+    messagingSenderId: '427953465043',
+    appId: '1:427953465043:web:421e3e6d0502eed8ad9626',
+    measurementId: 'G-T846ESSPS7',
   },
   imgNotAvailable:
-    'https://firebasestorage.googleapis.com/v0/b/omyshop.appspot.com/o/stories%2Fphoto%20indisponible.jpg?alt=media&token=54078909-c8b8-4b71-a4ae-d0b6a9c3f5fb',
+    'https://firebasestorage.googleapis.com/v0/b/arcenperles-75.appspot.com/o/pierres%2Fphoto%20indisponible.jpg?alt=media&token=c3460b0b-461e-43f5-853b-64e0a7de79c7',
 };
 
 /*

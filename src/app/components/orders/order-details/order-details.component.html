@@ -1,27 +1,25 @@
 <div class="card" *ngIf="order">
   <div class="card-body">
-    <ul
-      class="list-group-flush"
-      *ngIf="locService.location$ | async as location"
-    >
+    <ng-container *ngIf="authService.user$ | async as user">
+      <div class="text-right">
+        <button
+          *ngIf="user.isAdmin && order.status === 'confirmée'"
+          class="btn-warning btn-sm"
+          (click)="cancelOrder()"
+        >
+          Annulation
+        </button>
+        <button
+          routerLink="{{ user.isAdmin ? '/admin/commandes' : '/commandes' }}"
+          class="btn-light btn-sm ml-2"
+        >
+          🔙
+        </button>
+      </div>
+    </ng-container>
+    <div class="ml-5">
       <p class="card-text">
         <strong>Référence : {{ order.id }}</strong>
-
-        <ng-container *ngIf="authService.user$ | async as user">
-          <button
-            routerLink="{{ user.isAdmin ? '/admin/commandes' : '/commandes' }}"
-            class="btn-light float-right btn-sm ml-2"
-          >
-            🔙
-          </button>
-          <button
-            *ngIf="user.isAdmin && order.status !== 'terminée'"
-            class="btn-warning float-right btn-sm"
-            (click)="cancelOrder()"
-          >
-            Annulation
-          </button>
-        </ng-container>
       </p>
       <p class="card-text">
         <strong>Status : </strong
@@ -41,26 +39,28 @@
       </p>
       <p class="card-text"><strong>Email : </strong> {{ order.email }}</p>
       <p class="card-text"><strong>Message : </strong> {{ order.message }}</p>
-      <li class="list-group-item" *ngFor="let item of order.items">
-        <img
-          src="{{ item.mainPicture | size: '100' }}"
-          class="mr-5 thumbnail"
-          alt="{{ item.title }}"
-        />
-        <span style="text-align: right;">
-          {{ item.title }} : {{ item.quantity }} x
-          {{ item.price | number: "1.0-2" }} =
-          {{ item.quantity * item.price | number: "1.0-2" }}
-          {{ location.displayCurrency }}
-        </span>
-      </li>
-      <li class="font-weight-bold list-group-item">
-        Total
-        <span class="float-right"
-          >{{ order.totalPrice | number: "1.0-2" }}
-          {{ location.displayCurrency }}</span
-        >
-      </li>
-    </ul>
+    </div>
   </div>
+  <ul class="list-group-flush" *ngIf="locService.location$ | async as location">
+    <li class="list-group-item" *ngFor="let item of order.items">
+      <img
+        src="{{ item.mainPicture | size: '100' }}"
+        class="mr-5 thumbnail"
+        alt="{{ item.title }}"
+      />
+      <span class="text-right">
+        {{ item.title }} : {{ item.quantity }} x
+        {{ item.price | number: "1.0-2" }} =
+        {{ item.quantity * item.price | number: "1.0-2" }}
+        {{ location.displayCurrency }}
+      </span>
+    </li>
+    <li class="font-weight-bold list-group-item">
+      Total
+      <span class="float-right"
+        >{{ order.totalPrice | number: "1.0-2" }}
+        {{ location.displayCurrency }}</span
+      >
+    </li>
+  </ul>
 </div>

@@ -18,7 +18,7 @@ export class SeoService {
       // Open Graph
       {
         name: 'og:url',
-        content: `https://omyshop.web.app${this.router.url}`,
+        content: `https://arcenperles-75.web.app${this.router.url}`,
       },
       { name: 'og:title', content: title },
       { name: 'og:description', content: description },

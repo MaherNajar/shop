@@ -123,7 +123,7 @@
               <span
                 ><img
                   class="Color"
-                  src="assets/colors/{{ c.key }}.gif"
+                  src="assets/colors/{{ c.key }}.png"
                   [alt]="c.name"
                 />
                 {{ c.name }}</span
@@ -137,7 +137,7 @@
                   ><span (click)="removeColor(color.key)">
                     <img
                       class="Color"
-                      src="assets/colors/{{ color.key }}.gif"
+                      src="assets/colors/{{ color.key }}.png"
                       [alt]="color.name"
                     />
                   </span>
@@ -148,11 +148,13 @@
         </div>
 
         <div class="form-group">
-          <progress
-            id="uploader"
-            [value]="uploadPercent | async"
-            max="100"
-          ></progress>
+          <p>
+            <ngb-progressbar
+              [showValue]="true"
+              type="success"
+              [value]="uploadPercent | async"
+            ></ngb-progressbar>
+          </p>
           <input
             multiple
             (change)="imageUpload($event)"
@@ -163,7 +165,12 @@
       </form>
     </div>
     <div class="col">
-      <product-preview [product]="product"></product-preview>
+      <ng-container *ngIf="authService.user$ | async as user">
+        <product-preview
+          [canSetPic]="user && user.isAdmin"
+          [product]="product"
+        ></product-preview>
+      </ng-container>
     </div>
   </div>
 </ng-container>
