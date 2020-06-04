@@ -1,5 +1,5 @@
 {
-  "name": "arcenperles",
+  "name": "omyperles",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -9,11 +9,11 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "deploy": "firebase deploy --debug --token \"$FIREBASE_TOKEN\" --only hosting --project omyperles",
-    "dev:ssr": "ng run arcenperles:serve-ssr",
-    "serve:ssr": "node dist/arcenperles/server/main.js",
-    "build:ssr": "ng build --prod && ng run arcenperles:server:production",
-    "prerender": "ng run arcenperles:prerender",
-    "analyser": "webpack-bundle-analyzer dist/arcenperles/browser/stats-es2015.json"
+    "dev:ssr": "ng run omyperles:serve-ssr",
+    "serve:ssr": "node dist/omyperles/server/main.js",
+    "build:ssr": "ng build --prod && ng run omyperles:server:production",
+    "prerender": "ng run omyperles:prerender",
+    "analyser": "webpack-bundle-analyzer dist/omyperles/browser/stats-es2015.json"
   },
   "private": true,
   "dependencies": {
