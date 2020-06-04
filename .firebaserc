@@ -1,6 +1,7 @@
 {
   "projects": {
-    "omyperles": "omyperles"
+    "omyperles": "omyperles",
+    "default": "omyperles"
   },
   "targets": {
     "omyperles": {
