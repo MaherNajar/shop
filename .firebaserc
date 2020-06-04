@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "omyperles": "omyperles"
+  },
+  "targets": {
+    "omyperles": {
+      "hosting": {
+        "arcenperles": [
+          "arcenperles"
+        ]
+      }
+    }
+  }
+}
