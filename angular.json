@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "omyshop": {
+    "arcenperles": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -64,18 +64,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "omyshop:build"
+            "browserTarget": "arcenperles:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "omyshop:build:production"
+              "browserTarget": "arcenperles:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "omyshop:build"
+            "browserTarget": "arcenperles:build"
           }
         },
         "test": {
@@ -109,11 +109,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "omyshop:serve"
+            "devServerTarget": "arcenperles:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "omyshop:serve:production"
+              "devServerTarget": "arcenperles:serve:production"
             }
           }
         },
@@ -124,7 +124,7 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/omyshop/server",
+            "outputPath": "dist/arcenperles/server",
             "main": "server.ts",
             "tsConfig": "tsconfig.server.json",
             "externalDependencies": ["@firebase/firestore"]
@@ -146,21 +146,21 @@
         "serve-ssr": {
           "builder": "@nguniversal/builders:ssr-dev-server",
           "options": {
-            "browserTarget": "omyshop:build",
-            "serverTarget": "omyshop:server"
+            "browserTarget": "arcenperles:build",
+            "serverTarget": "arcenperles:server"
           },
           "configurations": {
             "production": {
-              "browserTarget": "omyshop:build:production",
-              "serverTarget": "omyshop:server:production"
+              "browserTarget": "arcenperles:build:production",
+              "serverTarget": "arcenperles:server:production"
             }
           }
         },
         "prerender": {
           "builder": "@nguniversal/builders:prerender",
           "options": {
-            "browserTarget": "omyshop:build:production",
-            "serverTarget": "omyshop:server:production",
+            "browserTarget": "arcenperles:build:production",
+            "serverTarget": "arcenperles:server:production",
             "routes": ["/"]
           },
           "configurations": {
@@ -170,5 +170,5 @@
       }
     }
   },
-  "defaultProject": "omyshop"
+  "defaultProject": "arcenperles"
 }
