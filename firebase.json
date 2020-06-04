@@ -9,6 +9,7 @@
         "destination": "/index.html"
       }
     ],
+
     "headers": [
       {
         "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
@@ -29,15 +30,6 @@
         ]
       },
       {
-        "regex": ".+/\\w+\\.(jpg|jpeg|gif|png)$",
-        "headers": [
-          {
-            "key": "Cache-Control",
-            "value": "max-age=7200"
-          }
-        ]
-      },
-      {
         "source": "404.html",
         "headers": [
           {
@@ -46,7 +38,13 @@
           }
         ]
       }
-    ]
+    ],
+
+    "cleanUrls": true,
+
+    "trailingSlash": false,
+
+    "appAssociation": "AUTO"
   },
   "storage": {
     "rules": "storage.rules"
