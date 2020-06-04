@@ -58,6 +58,11 @@ export class ProductPreviewComponent {
     });
   }
 
+  filterBy(param) {
+    if (this.canSetPic) return;
+    this.router.navigate(['/colliers', param]);
+  }
+
   setPic() {
     if (!this.canSetPic) return;
     let { gallery } = this.product;
