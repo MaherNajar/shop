@@ -5,17 +5,17 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyD1fQYuh5YfF8VY2KPvBchensxyu5jKSCY',
-    authDomain: 'arcenperles-75.firebaseapp.com',
-    databaseURL: 'https://arcenperles-75.firebaseio.com',
-    projectId: 'arcenperles-75',
-    storageBucket: 'arcenperles-75.appspot.com',
-    messagingSenderId: '427953465043',
-    appId: '1:427953465043:web:421e3e6d0502eed8ad9626',
-    measurementId: 'G-T846ESSPS7',
+    apiKey: 'AIzaSyCuYAd5eyVzqVPULsqOJDUXD8JG6UVnbsY',
+    authDomain: 'omyperles.firebaseapp.com',
+    databaseURL: 'https://omyperles.firebaseio.com',
+    projectId: 'omyperles',
+    storageBucket: 'omyperles.appspot.com',
+    messagingSenderId: '356149938324',
+    appId: '1:356149938324:web:c6fb13f64f5093fad10c81',
+    measurementId: 'G-JW9429M95E',
   },
   imgNotAvailable:
-    'https://firebasestorage.googleapis.com/v0/b/arcenperles-75.appspot.com/o/pierres%2Fphoto%20indisponible.jpg?alt=media&token=c3460b0b-461e-43f5-853b-64e0a7de79c7',
+    'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/colliers%2Fphoto%20indisponible.jpg?alt=media&token=76e7878a-6326-41f7-b1e1-83f94242358d',
 };
 
 /*

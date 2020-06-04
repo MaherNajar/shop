@@ -104,9 +104,9 @@
       </div>
     </div>
   </div>
-  <ul *ngIf="product.gallery.length > 0" class="list-inline mt-2">
+  <ul *ngIf="product.gallery.length > 0" class="list-inline mt-1">
     <li
-      class="list-inline-item"
+      class="list-inline-item my-1"
       *ngFor="let picture of product.gallery; let i = index"
     >
       <a (dblclick)="setPic()" (click)="selectedPicture = i" [routerLink]=""

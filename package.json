@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "firebase deploy --debug --token \"$FIREBASE_TOKEN\" --only hosting --project arcenperles-75",
+    "deploy": "firebase deploy --debug --token \"$FIREBASE_TOKEN\" --only hosting --project omyperles",
     "dev:ssr": "ng run arcenperles:serve-ssr",
     "serve:ssr": "node dist/arcenperles/server/main.js",
     "build:ssr": "ng build --prod && ng run arcenperles:server:production",

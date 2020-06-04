@@ -1,11 +1,8 @@
 {
   "hosting": {
+    "target": "arcenperles",
     "public": "dist/arcenperles/browser",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
       {
         "source": "**",
