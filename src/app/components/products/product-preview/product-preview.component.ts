@@ -74,11 +74,13 @@ export class ProductPreviewComponent {
   }
 
   addToCart() {
+    if (this.canSetPic) return;
     this.cartService.addToCart(this.product);
     this.router.navigate(['/panier']);
   }
 
   removeFromCart() {
+    if (this.canSetPic) return;
     this.cartService.removeFromCart(this.product);
   }
 }

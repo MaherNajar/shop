@@ -1,5 +1,5 @@
 <div class="table-responsive">
-  <h3>Mes colliers</h3>
+  <h3>{{ isArchivePage ? "Archives" : "Mes colliers" }}</h3>
   <div class="row">
     <div class="col-md-4 mb-3">
       <div class="input-group">
@@ -17,6 +17,18 @@
         </div>
       </div>
     </div>
+    <div class="col text-right">
+      <ng-container *ngIf="isArchivePage; else goToArchive">
+        <button class="btn-light btn-sm" routerLink="/admin/colliers">
+          Mes colliers
+        </button>
+      </ng-container>
+      <ng-template #goToArchive>
+        <button class="btn-light btn-sm" routerLink="/admin/colliers/archives">
+          Archives
+        </button>
+      </ng-template>
+    </div>
   </div>
   <table
     aria-describedby="admin products"
@@ -31,7 +43,10 @@
         <th id="statut">Statut</th>
         <th id="prixDT">Prix TND</th>
         <th id="prixEu">Prix €</th>
-        <th id="supprimer"></th>
+        <th *ngIf="!isArchivePage" id="supprimer">Supprimer</th>
+        <th id="archiverOuRestaurer">
+          {{ isArchivePage ? "Restaurer" : "Archiver" }}
+        </th>
       </tr>
     </thead>
     <tbody>
@@ -40,7 +55,7 @@
         <td>{{ p.title }}</td>
         <td>{{ p.stones?.join() }}</td>
         <td>
-          <a routerLink="/admin/colliers/{{ p.id }}">
+          <a [routerLink]="" (click)="goToPageProduct(p.id)">
             <img
               *ngIf="p.gallery.length > 0; else prisme"
               alt="{{ p.title }}"
@@ -60,8 +75,18 @@
         </td>
         <td>{{ p.price }}</td>
         <td>{{ p.price / 3.17 | number: "1.0-0" }}</td>
+        <td *ngIf="!isArchivePage">
+          <span title="supprimer" class="delete" (click)="deleteProduct(p)"
+            >🗑️</span
+          >
+        </td>
         <td>
-          <a [routerLink]="" (click)="deleteProduct(p)">🗑️</a>
+          <span
+            title="Archiver ou restaurer"
+            class="archiveOrRestore"
+            (click)="ArchiveOrRestore(p)"
+            >🗄️</span
+          >
         </td>
       </tr>
     </tbody>
@@ -77,8 +102,8 @@
   </div>
   <div class="modal-body">
     <p>
-      Vous ne pouvez pas supprimer ce collier car il est réservé, Pour pouvoir
-      le supprimer vous avez 2 possibilités :
+      Vous ne pouvez ni supprimer ni archiver ce collier car il est réservé,
+      Pour débloquer ce collier, vous avez 2 possibilités :
     </p>
     <p>
       1 : Annuler la commande déjà en cours, le collier sera alors de nouveau

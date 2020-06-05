@@ -63,9 +63,25 @@ export class ProductService {
     );
   }
 
+  getArchivedProducts() {
+    return this.db
+      .collection<Product>('archives')
+      .valueChanges({ idField: 'id' });
+  }
+
   async delete(product: Product) {
     await this.deleteImages(product);
-    return this.db.doc('products/' + product.id).delete();
+    await this.db.doc('products/' + product.id).delete();
+  }
+
+  async archive(product: Product) {
+    await this.db.doc('archives/' + product.id).set({ ...product });
+    await this.db.doc('products/' + product.id).delete();
+  }
+
+  async restore(product: Product) {
+    await this.db.doc('products/' + product.id).set({ ...product });
+    await this.db.doc('archives/' + product.id).delete();
   }
 
   async deleteImages(product: Product) {

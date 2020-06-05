@@ -14,6 +14,11 @@ const routes: Routes = [
     canActivate: [AuthGuard, AdminGuard],
   },
   {
+    path: 'colliers/archives',
+    component: ProductTableComponent,
+    canActivate: [AuthGuard, AdminGuard],
+  },
+  {
     path: 'colliers/:id',
     component: ProductFormComponent,
     canActivate: [AuthGuard, AdminGuard],
