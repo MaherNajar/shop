@@ -33,14 +33,12 @@
               <p>
                 {{ item.title }}
               </p>
-              <a role="button" (click)="cartService.removeFromCart(item)">
-                <img
-                  width="25px"
-                  src="assets/remove-from-cart.svg"
-                  alt="retirer du panier"
-                  title="retirer du panier"
-                />
-              </a>
+              <span
+                style="cursor: pointer;"
+                (click)="cartService.removeFromCart(item)"
+              >
+                ❌
+              </span>
             </td>
             <td>
               <a routerLink="/colliers/{{ item.id }}">
