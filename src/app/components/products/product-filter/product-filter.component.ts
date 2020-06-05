@@ -8,7 +8,6 @@ import { StoneService } from 'src/app/services/stones.service';
   styles: [
     `
       ul {
-        list-style: none;
         padding-inline-start: 2px;
         margin-top: 1rem;
       }

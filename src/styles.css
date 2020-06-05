@@ -8,13 +8,18 @@ body {
 
 .btn,
 .nav-link,
-.StoneFilter {
+.StoneFilter,
+.pointer {
   cursor: pointer;
 }
 
 .ContentLeft {
   float: left;
   width: 190px;
+}
+
+ul {
+  list-style: none;
 }
 
 @media (max-width: 575.98px) {
@@ -41,4 +46,5 @@ body {
 
 table {
   background-color: white;
+  width: 100%;
 }

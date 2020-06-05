@@ -14,9 +14,6 @@ import { environment } from 'src/environments/environment';
   templateUrl: './product-preview.component.html',
   styles: [
     `
-      #mainpic {
-        cursor: pointer;
-      }
       .selected {
         border: 1px groove lightgrey;
       }

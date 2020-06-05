@@ -5,7 +5,7 @@
         *ngIf="product.gallery.length > 0; else prisme"
         (click)="openModal(content)"
         ><img
-          class="img-fluid"
+          class="img-fluid pointer"
           src="{{ mainPicture | size: '400' }}"
           alt="{{ product.title }}"
           id="mainpic"
@@ -36,7 +36,7 @@
         {{ product.title }}
       </h5>
       <div>
-        <ul style="list-style: none;" class="list-inline mt-3">
+        <ul class="list-inline mt-3">
           <li *ngFor="let s of product.stones" class="list-inline-item">
             <ng-container *ngIf="stoneService.getStoneObject(s) as stone">
               <a
@@ -51,7 +51,7 @@
         </ul>
       </div>
       <div>
-        <ul style="list-style: none;" class="list-inline">
+        <ul class="list-inline">
           <li *ngFor="let c of product.colors" class="list-inline-item">
             <ng-container *ngIf="colorService.getColorObject(c) as color"
               ><a [routerLink]="" (click)="filterBy({ couleur: color.name })">

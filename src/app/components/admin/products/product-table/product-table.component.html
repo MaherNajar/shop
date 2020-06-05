@@ -30,10 +30,7 @@
       </ng-template>
     </div>
   </div>
-  <table
-    aria-describedby="admin products"
-    class="table table-bordered text-center"
-  >
+  <table aria-describedby="admin products" class="table table-bordered">
     <thead>
       <tr>
         <th id="auteur">Auteur</th>
@@ -76,14 +73,14 @@
         <td>{{ p.price }}</td>
         <td>{{ p.price / 3.17 | number: "1.0-0" }}</td>
         <td *ngIf="!isArchivePage">
-          <span title="supprimer" class="delete" (click)="deleteProduct(p)"
+          <span title="supprimer" class="pointer" (click)="deleteProduct(p)"
             >🗑️</span
           >
         </td>
         <td>
           <span
             title="Archiver ou restaurer"
-            class="archiveOrRestore"
+            class="pointer"
             (click)="ArchiveOrRestore(p)"
             >🗄️</span
           >

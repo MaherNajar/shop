@@ -32,14 +32,14 @@ const Stories = {
     description:
       "Puissant <strong>amplificateur</strong>. Amplifie l'aura. Il\r\n        <strong>renforce</strong> notre organisme et revitalise&nbsp;l'ensemble\r\n        du corps. Apporte <strong>clart\u00E9</strong> et\r\n        <strong>compr\u00E9hension</strong> sur notre vie. Aide \u00E0\r\n        <strong>r\u00E9soudre&nbsp;&nbsp;les probl\u00E8mes&nbsp;</strong>\r\n        simplement&nbsp;en d\u00E9veloppant nos facult\u00E9s intellectuelles. Active et\r\n        renforce \u00E9galement&nbsp;l'\u00E9nergie des autres pierres . Outil\r\n        indispensable pour les th\u00E9rapeutes car les grecs et bien d'autres\r\n        cultures s'en servaient pour chasser les d\u00E9mons et les maladies. De\r\n        plus, ils l'utilisaient pour lire l'avenir, pour \u00EAtre\r\n        <strong>clairvoyant</strong> sur les d\u00E9cisions \u00E0\r\n        prendre.",
     image:
-      'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2Fcristal.jpg?alt=media&token=0c5ea5bc-bf63-4f0c-8c31-6cabe26e1faf',
+      'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2Fcristal_400x300.jpg?alt=media&token=0c5ea5bc-bf63-4f0c-8c31-6cabe26e1faf',
   },
   Améthyste: {
     title: 'Améthyste',
     description:
       "Pierre de la <strong>spiritualit\u00E9</strong>. Cette pierre est la pierre de <strong>pr\u00E9dilection</strong> pour aider \u00E0 <strong>surmonter un deuil</strong>.\r\n    <strong>Calme les angoisses</strong>. Apporte <strong>d\u00E9tente</strong> et <strong>s\u00E9r\u00E9nit\u00E9</strong>. Aide les personnes souffrant de probl\u00E8me de boisson ou autre d\u00E9pendance \u00E0 r\u00E9sister face \u00E0 la\r\n    tentation. <strong>Favorise l'\u00E9veil</strong> et la <strong>sagesse</strong>. Favorise un <strong>sommeil</strong> plus <strong>r\u00E9parateur</strong> et <strong>serein</strong>, att\u00E9nue les\r\n    cauchemars.",
     image:
-      'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2Famethyst.jpg?alt=media&token=fe033986-800f-4596-957b-a92b456db824',
+      'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2Famethyst_400x300.jpg?alt=media&token=fe033986-800f-4596-957b-a92b456db824',
   },
   Aventurine: {
     title: 'Aventurine',
@@ -87,7 +87,7 @@ const Stories = {
     description:
       "Hildegarde de Bingen la conseillait pour les <strong>femmes enceintes</strong> afin de favoriser un bon accouchement. Par contre, selon de nombreux t\u00E9moignages, il\r\n    semblerait indispensable de la retirer lorsque le travail commence, c'est-\u00E0-dire lors des premi\u00E8res contractions, au risque de \" bloquer le travail&nbsp;\"&nbsp;.&nbsp;<strong>Stimule\r\n    l'organisme</strong>. Id\u00E9ale pour les&nbsp;blocages d'ordre sexuels : baisse de libido.",
     image:
-      'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2Fcornaline.jpg?alt=media&token=7fe14f29-2a5a-466a-b047-2b6328b3f872',
+      'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2Fcornaline_400x300.jpg?alt=media&token=7fe14f29-2a5a-466a-b047-2b6328b3f872',
   },
 };
 

@@ -19,7 +19,7 @@
   </p>
   <div class="table-responsive">
     <ng-container *ngIf="locService.location$ | async as location">
-      <table aria-describedby="panier" class="table table-bordered text-center">
+      <table aria-describedby="panier" class="table table-bordered">
         <thead>
           <tr>
             <th id="article">Article</th>
@@ -33,17 +33,13 @@
               <p>
                 {{ item.title }}
               </p>
-              <span
-                style="cursor: pointer;"
-                (click)="cartService.removeFromCart(item)"
-              >
+              <span class="pointer" (click)="cartService.removeFromCart(item)">
                 ❌
               </span>
             </td>
             <td>
               <a routerLink="/colliers/{{ item.id }}">
                 <img
-                  height="100px"
                   alt="{{ item.title }}"
                   src="{{ item.mainPicture | size: '100' }}"
                 />

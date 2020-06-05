@@ -8,22 +8,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   templateUrl: './product-table.component.html',
-  styles: [
-    `
-      table {
-        width: 100%;
-      }
-
-      th.mat-sort-header-sorted {
-        color: black;
-      }
-
-      .delete,
-      .archiveOrRestore {
-        cursor: pointer;
-      }
-    `,
-  ],
 })
 export class ProductTableComponent {
   @ViewChild('modal') modal: ElementRef;
