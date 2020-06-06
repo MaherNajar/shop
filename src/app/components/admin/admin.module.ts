@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { ProductTableComponent } from './products/product-table/product-table.component';
-import { FormsModule } from '@angular/forms';
 import { ProductFormComponent } from './products/product-form/product-form.component';
 import {
   NgbTypeaheadModule,
@@ -26,6 +27,7 @@ import { ProductPreviewModule } from '../products/product-preview/product-previe
     CommonModule,
     AdminRoutingModule,
     FormsModule,
+    AngularFireStorageModule,
     NgbTypeaheadModule,
     NgbButtonsModule,
     NgbProgressbarModule,

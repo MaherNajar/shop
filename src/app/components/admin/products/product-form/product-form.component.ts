@@ -92,7 +92,7 @@ export class ProductFormComponent implements OnInit {
     const remaining = 5 - iStart;
 
     if (files.length > remaining)
-      throw new Error('Vous ne pouvez mettre plus de 5 photos par produit !');
+      throw new Error('La gallerie est limitée à 5 photos !');
 
     if (iStart === 0) this.product.uploadRefDate = Date.now().toString();
 
@@ -107,12 +107,12 @@ export class ProductFormComponent implements OnInit {
 
       task
         .snapshotChanges()
-        .pipe(finalize(async () => await this.download(fileRef)))
+        .pipe(finalize(async () => await this.pushDownloadUrl(fileRef)))
         .subscribe();
     }
   }
 
-  private async download(fileRef) {
+  private async pushDownloadUrl(fileRef) {
     this.product.gallery.push(await fileRef.getDownloadURL().toPromise());
   }
 

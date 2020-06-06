@@ -5,7 +5,6 @@ import { ShoppingCart } from '../models/shopping-cart';
 import { Product } from '../models/product';
 import { ShoppingCartItem } from '../models/shopping-cart-item';
 import { LocationService } from './location.service';
-import { BrowserStorageService } from './storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +12,7 @@ import { BrowserStorageService } from './storage.service';
 export class ShoppingCartService {
   constructor(
     private db: AngularFirestore,
-    private locService: LocationService,
-    private storage: BrowserStorageService
+    private locService: LocationService
   ) {}
 
   cart: ShoppingCart;
@@ -63,11 +61,11 @@ export class ShoppingCartService {
   }
 
   private async getOrCreateCartId() {
-    let cartId = this.storage.get('cartId');
+    let cartId = localStorage.getItem('cartId');
     if (cartId) return cartId;
 
     let result = await this.create();
-    this.storage.set('cartId', result.id);
+    localStorage.setItem('cartId', result.id);
     return result.id;
   }
 
