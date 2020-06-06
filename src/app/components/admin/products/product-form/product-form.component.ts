@@ -45,7 +45,7 @@ export class ProductFormComponent implements OnInit {
         .pipe(
           take(1),
           map((product) => {
-            if (!product) this.router.navigate(['/colliers']);
+            if (!product) this.router.navigate(['/bijoux']);
             else {
               this.product = new Product({ ...product, id }, location.isInTN);
             }
@@ -76,7 +76,7 @@ export class ProductFormComponent implements OnInit {
     if (this.product.id) this.productService.update(this.product);
     else this.productService.create(this.product);
 
-    this.router.navigate(['/admin/colliers']);
+    this.router.navigate(['/admin/bijoux']);
   }
 
   async imageUpload(e) {
@@ -135,6 +135,6 @@ export class ProductFormComponent implements OnInit {
   onReturn() {
     if (!this.product.id && this.product.gallery.length > 0)
       this.productService.deleteImages(this.product);
-    this.router.navigate(['/admin/colliers']);
+    this.router.navigate(['/admin/bijoux']);
   }
 }

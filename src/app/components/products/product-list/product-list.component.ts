@@ -15,6 +15,8 @@ export class ProductListComponent implements OnInit {
   filteredProducts: Product[] = [];
   pierreParam: string;
   couleurParam: string;
+  category: string;
+  productsCount: number;
   imgNotAvailable = environment.imgNotAvailable;
   constructor(
     private productService: ProductService,
@@ -29,7 +31,19 @@ export class ProductListComponent implements OnInit {
   }
 
   private getFilteredProducts() {
+    const { url } = this.route.snapshot;
     this.productService.getAllProducts().subscribe((products) => {
+      if (url.length === 0) {
+        this.category = 'bestOf';
+        products = products.slice(0, 5);
+      } else if (url[0].path === 'colliers') {
+        this.category = 'colliers';
+        products = products.filter((x) => x.category === 'colliers');
+      } else {
+        this.category = 'bracelets-bagues-bo';
+        products = products.filter((x) => x.category === 'bracelets_bagues_bo');
+      }
+      this.productsCount = products.length;
       this.route.queryParamMap.subscribe((params) => {
         this.pierreParam = params.get('pierre');
         this.couleurParam = params.get('couleur');

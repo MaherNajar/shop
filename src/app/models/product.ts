@@ -7,6 +7,7 @@ export class Product {
   gallery: string[] = [];
   uploadRefDate: string = '';
   uid: string = '';
+  category: 'colliers' | 'bracelets_bagues_bo' = 'colliers';
   status: 'disponible' | 'réservé' | 'vendu' = 'disponible';
 
   constructor(init?: Partial<Product>, private isInTN: boolean = false) {

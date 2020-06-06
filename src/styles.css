@@ -13,6 +13,12 @@ body {
   cursor: pointer;
 }
 
+.StoneFilter,
+.ContentLeft {
+  font-size: small;
+  font-weight: bold;
+}
+
 .ContentLeft {
   float: left;
   width: 190px;
@@ -22,9 +28,33 @@ ul {
   list-style: none;
 }
 
+#Menu {
+  color: black;
+}
+
+#Menu li {
+  font-weight: 700;
+}
+
 @media (max-width: 575.98px) {
-  .ContentLeft {
+  #FilterByStone,
+  #FilterByColor {
     display: none;
+  }
+  .ContentLeft {
+    float: none;
+    width: 100%;
+    text-align: center;
+  }
+
+  #MenuTitle {
+    display: none;
+  }
+
+  #Menu li {
+    display: inline;
+    margin-left: 5px;
+    margin-right: 5px;
   }
 }
 
@@ -33,11 +63,6 @@ ul {
   height: 18px;
   padding: 2px;
   border: 1px solid #dedddd;
-}
-
-.StoneFilter {
-  font-size: small;
-  font-weight: bold;
 }
 
 .table-responsive {

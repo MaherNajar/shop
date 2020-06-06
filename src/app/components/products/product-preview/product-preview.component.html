@@ -39,13 +39,9 @@
         <ul class="list-inline mt-3">
           <li *ngFor="let s of product.stones" class="list-inline-item">
             <ng-container *ngIf="stoneService.getStoneObject(s) as stone">
-              <a
-                [routerLink]=""
-                (click)="filterBy({ pierre: stone.name })"
-                class="StoneFilter"
-                [ngStyle]="{ color: stone.cssColor }"
-                >{{ stone.name }}</a
-              >
+              <span class="StoneFilter" [ngStyle]="{ color: stone.cssColor }">{{
+                stone.name
+              }}</span>
             </ng-container>
           </li>
         </ul>
@@ -54,14 +50,14 @@
         <ul class="list-inline">
           <li *ngFor="let c of product.colors" class="list-inline-item">
             <ng-container *ngIf="colorService.getColorObject(c) as color"
-              ><a [routerLink]="" (click)="filterBy({ couleur: color.name })">
+              ><span>
                 <img
                   class="Color"
                   src="assets/colors/{{ color.key }}.png"
                   [alt]="color.name"
                   [title]="color.name"
                 />
-              </a>
+              </span>
             </ng-container>
           </li>
         </ul>

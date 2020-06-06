@@ -14,13 +14,19 @@ import { StoneService } from 'src/app/services/stones.service';
       .Color {
         display: inline;
       }
+
+      .underline {
+        text-decoration: underline;
+      }
     `,
   ],
 })
 export class ProductFilterComponent {
   @Input('pierre') pierre;
   @Input('couleur') couleur;
-  @Input('filteredLength') count: number;
+  @Input('category') category;
+  @Input('productsCount') productsCount: number;
+  @Input('filteredCount') filteredCount: number;
   constructor(
     public colorService: ColorService,
     public stoneService: StoneService

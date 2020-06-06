@@ -59,7 +59,7 @@ export class ProductTableComponent {
 
   goToPageProduct(id) {
     if (this.isArchivePage) return;
-    this.router.navigate([`/admin/colliers/${id}`]);
+    this.router.navigate([`/admin/bijoux/${id}`]);
   }
 
   async deleteProduct(product: Product) {

@@ -75,6 +75,20 @@
             />
           </div>
         </div>
+
+        <div class="form-group">
+          <label for="catégorie">Catégorie</label>
+          <select
+            class="custom-select"
+            id="catégorie"
+            [(ngModel)]="product.category"
+            name="catégorie"
+          >
+            <option value="colliers">Colliers</option>
+            <option value="bracelets_bagues_bo">Bracelets, Bagues et BO</option>
+          </select>
+        </div>
+
         <div class="form-group">
           <label for="pierre">Pierres Gemmes</label>
           <input

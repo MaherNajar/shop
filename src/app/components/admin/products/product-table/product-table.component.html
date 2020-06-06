@@ -1,5 +1,5 @@
 <div class="table-responsive">
-  <h3>{{ isArchivePage ? "Archives" : "Mes colliers" }}</h3>
+  <h3>{{ isArchivePage ? "Archives" : "Mes bijoux" }}</h3>
   <div class="row">
     <div class="col-md-4 mb-3">
       <div class="input-group">
@@ -11,7 +11,7 @@
           placeholder="filter par l'intitulé..."
         />
         <div class="input-group-append">
-          <button routerLink="/admin/colliers/nouveau" class="btn btn-info">
+          <button routerLink="/admin/bijoux/nouveau" class="btn btn-info">
             Créer
           </button>
         </div>
@@ -19,12 +19,12 @@
     </div>
     <div class="col text-right">
       <ng-container *ngIf="isArchivePage; else goToArchive">
-        <button class="btn-light btn-sm" routerLink="/admin/colliers">
-          Mes colliers
+        <button class="btn-light btn-sm" routerLink="/admin/bijoux">
+          Mes bijoux
         </button>
       </ng-container>
       <ng-template #goToArchive>
-        <button class="btn-light btn-sm" routerLink="/admin/colliers/archives">
+        <button class="btn-light btn-sm" routerLink="/admin/bijoux/archives">
           Archives
         </button>
       </ng-template>

@@ -1,26 +1,41 @@
 <div class="ContentLeft">
   <dl>
     <div>
-      <dt>
-        <a routerLink="/" style="color: black;">
-          Collection complète
-          <span *ngIf="!couleur && !pierre"> ({{ count }})</span></a
-        >
-      </dt>
+      <dt id="MenuTitle">Menu</dt>
       <dd>
-        <ul>
-          <li *ngFor="let stone of stoneService.allStones">
+        <ul id="Menu">
+          <li>
             <a
-              class="StoneFilter"
-              [ngStyle]="{ color: stone.cssColor }"
-              routerLink="/colliers"
-              [queryParams]="{ pierre: stone.name }"
-              >{{ stone.name
-              }}<span
-                [ngStyle]="{ color: stone.cssColor }"
-                *ngIf="stone.name === pierre"
-              >
-                ({{ count }})</span
+              [ngClass]="{ underline: category === 'bestOf' }"
+              routerLink="/bijoux"
+            >
+              Top
+              <span *ngIf="category === 'bestOf'">
+                ({{ productsCount }})</span
+              ></a
+            >
+          </li>
+          <li>
+            <a
+              [ngClass]="{ underline: category === 'colliers' }"
+              routerLink="/bijoux/colliers"
+            >
+              Colliers
+              <span *ngIf="category === 'colliers'">
+                ({{ productsCount }})</span
+              ></a
+            >
+          </li>
+          <li class="mb-2">
+            <a
+              [ngClass]="{
+                underline: category === 'bracelets-bagues-bo'
+              }"
+              routerLink="/bijoux/bracelets-bagues-bo"
+            >
+              Bracelets, Bagues et BO
+              <span *ngIf="category === 'bracelets-bagues-bo'">
+                ({{ productsCount }})</span
               ></a
             >
           </li>
@@ -28,7 +43,31 @@
       </dd>
     </div>
 
-    <div>
+    <div id="FilterByStone">
+      <dt>Filtrer par :</dt>
+      <dd>
+        <ul>
+          <li *ngFor="let stone of stoneService.allStones">
+            <a
+              [ngStyle]="{
+                color: stone.cssColor
+              }"
+              [ngClass]="{ underline: stone.name === pierre }"
+              routerLink="/bijoux/{{
+                this.category === 'bestOf' ? '' : this.category
+              }}"
+              [queryParams]="{ pierre: stone.name }"
+              >{{ stone.name
+              }}<span *ngIf="stone.name === pierre">
+                ({{ filteredCount }})</span
+              ></a
+            >
+          </li>
+        </ul>
+      </dd>
+    </div>
+
+    <div id="FilterByColor">
       <dt></dt>
       <dd>
         <ul class="list-inline">
@@ -37,7 +76,9 @@
             *ngFor="let color of colorService.allColors"
           >
             <a
-              routerLink="/colliers"
+              routerLink="/bijoux/{{
+                this.category === 'bestOf' ? '' : this.category
+              }}"
               [queryParams]="{ couleur: color.name }"
               title="{{ color.name }}"
             >
@@ -51,7 +92,7 @@
               <span
                 *ngIf="color.name === couleur; else space"
                 style="color: #999;"
-                >{{ count }}</span
+                >{{ filteredCount }}</span
               >
               <ng-template #space>
                 <span>&nbsp;</span>

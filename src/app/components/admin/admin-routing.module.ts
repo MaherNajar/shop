@@ -9,17 +9,17 @@ import { AdminGuard } from 'src/app/services/admin.guard';
 
 const routes: Routes = [
   {
-    path: 'colliers',
+    path: 'bijoux',
     component: ProductTableComponent,
     canActivate: [AuthGuard, AdminGuard],
   },
   {
-    path: 'colliers/archives',
+    path: 'bijoux/archives',
     component: ProductTableComponent,
     canActivate: [AuthGuard, AdminGuard],
   },
   {
-    path: 'colliers/:id',
+    path: 'bijoux/:id',
     component: ProductFormComponent,
     canActivate: [AuthGuard, AdminGuard],
   },

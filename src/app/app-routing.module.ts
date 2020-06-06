@@ -3,9 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/colliers', pathMatch: 'full' },
+  { path: '', redirectTo: '/bijoux', pathMatch: 'full' },
   {
-    path: 'colliers',
+    path: 'bijoux',
     loadChildren: () =>
       import('./components/products/products.module').then(
         (m) => m.ProductsModule
