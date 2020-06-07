@@ -33,16 +33,17 @@ export class ProductListComponent implements OnInit {
     const { url } = this.route.snapshot;
     this.productService.getAllProducts().subscribe((products) => {
       if (url.length === 0) {
-        this.category = '';
         this.route.queryParamMap.subscribe((params) => {
           this.pierreParam = params.get('pierre');
           this.couleurParam = params.get('couleur');
 
           if (this.pierreParam) {
+            this.category = '';
             this.filteredProducts = products.filter((x) =>
               x.stones?.some((s) => s === this.pierreParam)
             );
           } else if (this.couleurParam) {
+            this.category = '';
             this.filteredProducts = products.filter((x) =>
               x.colors?.some(
                 (c) =>
