@@ -9,6 +9,7 @@ export class Product {
   uid: string = '';
   category: 'colliers' | 'bracelets_bagues_bo' = 'colliers';
   status: 'disponible' | 'réservé' | 'vendu' = 'disponible';
+  favorite: boolean = false;
 
   constructor(init?: Partial<Product>, private isInTN: boolean = false) {
     Object.assign(this, init);

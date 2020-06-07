@@ -25,7 +25,6 @@ export class ProductFilterComponent {
   @Input('pierre') pierre;
   @Input('couleur') couleur;
   @Input('category') category;
-  @Input('productsCount') productsCount: number;
   @Input('filteredCount') filteredCount: number;
   constructor(
     public colorService: ColorService,

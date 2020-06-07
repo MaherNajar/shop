@@ -9,9 +9,9 @@
               [ngClass]="{ underline: category === 'bestOf' }"
               routerLink="/bijoux"
             >
-              Top
+              Promos
               <span *ngIf="category === 'bestOf'">
-                ({{ productsCount }})</span
+                ({{ filteredCount }})</span
               ></a
             >
           </li>
@@ -22,7 +22,7 @@
             >
               Colliers
               <span *ngIf="category === 'colliers'">
-                ({{ productsCount }})</span
+                ({{ filteredCount }})</span
               ></a
             >
           </li>
@@ -35,7 +35,7 @@
             >
               Bracelets, Bagues et BO
               <span *ngIf="category === 'bracelets-bagues-bo'">
-                ({{ productsCount }})</span
+                ({{ filteredCount }})</span
               ></a
             >
           </li>
@@ -53,9 +53,7 @@
                 color: stone.cssColor
               }"
               [ngClass]="{ underline: stone.name === pierre }"
-              routerLink="/bijoux/{{
-                this.category === 'bestOf' ? '' : this.category
-              }}"
+              routerLink="/bijoux"
               [queryParams]="{ pierre: stone.name }"
               >{{ stone.name
               }}<span *ngIf="stone.name === pierre">
@@ -76,9 +74,7 @@
             *ngFor="let color of colorService.allColors"
           >
             <a
-              routerLink="/bijoux/{{
-                this.category === 'bestOf' ? '' : this.category
-              }}"
+              routerLink="/bijoux"
               [queryParams]="{ couleur: color.name }"
               title="{{ color.name }}"
             >

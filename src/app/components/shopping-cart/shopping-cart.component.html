@@ -5,7 +5,7 @@
 <ng-container *ngIf="cartService.cart as cart">
   <p>
     Vous avez {{ cart.totalItemsCount }} colliers dans le panier.
-    <button routerLink="/colliers" type="button" class="btn-info btn-sm">
+    <button routerLink="/bijoux" type="button" class="btn-info btn-sm">
       Continuer mes achats
     </button>
     <button
@@ -38,7 +38,7 @@
               </span>
             </td>
             <td>
-              <a routerLink="/colliers/{{ item.id }}">
+              <a routerLink="/bijoux/{{ item.id }}">
                 <img
                   alt="{{ item.title }}"
                   src="{{ item.mainPicture | size: '100' }}"

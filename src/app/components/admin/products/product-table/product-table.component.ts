@@ -62,6 +62,11 @@ export class ProductTableComponent {
     this.router.navigate([`/admin/bijoux/${id}`]);
   }
 
+  makeFavorite(product: Product) {
+    product.favorite = !product.favorite;
+    this.productService.update(product);
+  }
+
   async deleteProduct(product: Product) {
     if (product.status === 'réservé') {
       return this.openModal();

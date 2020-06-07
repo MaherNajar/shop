@@ -16,7 +16,6 @@ export class ProductListComponent implements OnInit {
   pierreParam: string;
   couleurParam: string;
   category: string;
-  productsCount: number;
   imgNotAvailable = environment.imgNotAvailable;
   constructor(
     private productService: ProductService,
@@ -34,33 +33,38 @@ export class ProductListComponent implements OnInit {
     const { url } = this.route.snapshot;
     this.productService.getAllProducts().subscribe((products) => {
       if (url.length === 0) {
-        this.category = 'bestOf';
-        products = products.slice(0, 5);
+        this.category = '';
+        this.route.queryParamMap.subscribe((params) => {
+          this.pierreParam = params.get('pierre');
+          this.couleurParam = params.get('couleur');
+
+          if (this.pierreParam) {
+            this.filteredProducts = products.filter((x) =>
+              x.stones?.some((s) => s === this.pierreParam)
+            );
+          } else if (this.couleurParam) {
+            this.filteredProducts = products.filter((x) =>
+              x.colors?.some(
+                (c) =>
+                  this.colorService.getColorObject(c).name === this.couleurParam
+              )
+            );
+          } else {
+            this.category = 'bestOf';
+            this.filteredProducts = products.filter((x) => x.favorite);
+          }
+        });
       } else if (url[0].path === 'colliers') {
         this.category = 'colliers';
-        products = products.filter((x) => x.category === 'colliers');
+        this.filteredProducts = products.filter(
+          (x) => x.category === 'colliers'
+        );
       } else {
         this.category = 'bracelets-bagues-bo';
-        products = products.filter((x) => x.category === 'bracelets_bagues_bo');
+        this.filteredProducts = products.filter(
+          (x) => x.category === 'bracelets_bagues_bo'
+        );
       }
-      this.productsCount = products.length;
-      this.route.queryParamMap.subscribe((params) => {
-        this.pierreParam = params.get('pierre');
-        this.couleurParam = params.get('couleur');
-
-        if (this.pierreParam) {
-          this.filteredProducts = products.filter((x) =>
-            x.stones?.some((s) => s === this.pierreParam)
-          );
-        } else if (this.couleurParam) {
-          this.filteredProducts = products.filter((x) =>
-            x.colors?.some(
-              (c) =>
-                this.colorService.getColorObject(c).name === this.couleurParam
-            )
-          );
-        } else this.filteredProducts = products;
-      });
     });
   }
 }

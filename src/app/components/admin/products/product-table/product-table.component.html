@@ -49,7 +49,9 @@
     <tbody>
       <tr *ngFor="let p of items">
         <td><a routerLink="/profil/{{ p.uid }}">🕴️</a></td>
-        <td>{{ p.title }}</td>
+        <td>
+          {{ p.title }}
+        </td>
         <td>{{ p.stones?.join() }}</td>
         <td>
           <a [routerLink]="" (click)="goToPageProduct(p.id)">
@@ -68,7 +70,17 @@
           </a>
         </td>
         <td>
-          {{ p.status }}
+          <p>
+            {{ p.status }}
+          </p>
+          <p>
+            <span
+              class="pointer"
+              style="font-size: 15px;"
+              (click)="makeFavorite(p)"
+              >{{ p.favorite ? "⭐" : "★" }}
+            </span>
+          </p>
         </td>
         <td>{{ p.price }}</td>
         <td>{{ p.price / 3.17 | number: "1.0-0" }}</td>

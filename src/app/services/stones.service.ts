@@ -11,12 +11,16 @@ const Stones: Stone[] = [
   { name: 'Améthyste', cssColor: '#884da7' },
   { name: 'Aigue-marine', cssColor: '#7FFFD4' },
   { name: 'Aventurine', cssColor: '#989d79' },
-  { name: 'Quartz', cssColor: '#51484F' },
+  { name: 'Quartz', cssColor: '#f9c9d7' },
   { name: 'Chrysoprase', cssColor: '#a0d3b6' },
   { name: 'Ruby Zoisite', cssColor: '#e0115f' },
-  { name: 'Cristal', cssColor: 'wheat' },
+  { name: 'Cristal', cssColor: '#a7d8de' },
   { name: 'Jaspe rouge', cssColor: '#d73b3e' },
   { name: 'Cornaline', cssColor: '#b31b1b' },
+  { name: 'Labradorite', cssColor: '#657b83' },
+  { name: 'Perles de culture', cssColor: '#eae0c8' },
+  { name: 'Perles fantaisies', cssColor: '#c89524' },
+  { name: 'Perles en bois', cssColor: '#855E42' },
 ];
 
 const Stories = {
@@ -85,9 +89,35 @@ const Stories = {
   Cornaline: {
     title: 'Cornaline',
     description:
-      "Hildegarde de Bingen la conseillait pour les <strong>femmes enceintes</strong> afin de favoriser un bon accouchement. Par contre, selon de nombreux t\u00E9moignages, il\r\n    semblerait indispensable de la retirer lorsque le travail commence, c'est-\u00E0-dire lors des premi\u00E8res contractions, au risque de \" bloquer le travail&nbsp;\"&nbsp;.&nbsp;<strong>Stimule\r\n    l'organisme</strong>. Id\u00E9ale pour les&nbsp;blocages d'ordre sexuels : baisse de libido.",
+      "Hildegarde de Bingen la conseillait pour les <strong>femmes enceintes</strong> afin de favoriser un bon accouchement. Par contre, selon de nombreux t\u00E9moignages, il\r\n    semblerait indispensable de la retirer lorsque le travail commence, c'est-\u00E0-dire lors des premi\u00E8res contractions, au risque de bloquer le travail. <strong>Stimule\r\n l'organisme</strong>. Id\u00E9ale pour les&nbsp;blocages d'ordre sexuels : baisse de libido.",
     image:
       'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2Fcornaline_400x300.jpg?alt=media&token=7fe14f29-2a5a-466a-b047-2b6328b3f872',
+  },
+  Labradorite: {
+    title: 'Labradorite',
+    description:
+      '<strong>Bouclier de protection</strong> pour <strong><em>\u00ABles \u00E9ponges \u00E9motionnelles\u00BB : &nbsp;</em></strong>les personnes hypersensibles<strong><em>.</em></strong>\r\n    On l\'appelle \u00E9galement la "<strong><em>pierre des th\u00E9rapeutes</em></strong>" ou encore <strong><em>"pierre des gu\u00E9risseurs"</em></strong> car elle&nbsp;permet&nbsp;aux professionnels de la\r\n    sant\u00E9,&nbsp;&nbsp;aux professionnels du domaine social et toutes les personnes&nbsp;<strong>altruistes</strong>&nbsp;de rester dans l<strong>\'aide</strong>, dans&nbsp;l\'<strong>\u00E9coute</strong>\r\n    <strong>active</strong><em>&nbsp;</em>&nbsp;tout en se prot\u00E9geant. La labradorite nous enveloppe de son manteau de lumi\u00E8re et absorbe les <strong>\u00E9nergies n\u00E9gatives</strong>. Elle&nbsp; nous\r\n    prot\u00E8ge du monde ext\u00E9rieur. Travaille sur les <strong>blessures \u00E9motionnelles</strong>, m\u00EAme les plus anciennes. Redonne de l\u2019\u00E9nergie. Favorise <strong>l\'amiti\u00E9</strong> en augmentant\r\n    consid\u00E9rablement notre vibration.',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2Flabradorite_400x300.jpg?alt=media&token=c592f84f-dbcf-4dbd-aa9e-556b0658760c',
+  },
+
+  'Perles de culture': {
+    title: 'Perles de culture',
+    description:
+      '<ul>\r\n        <li>C\u2019est la pierre de la sinc\u00E9rit\u00E9.</li>\r\n        <li>Elle soulagerait les probl\u00E8mes d\u2019infection des yeux (vision, cataracte,\u2026)</li>\r\n        <li>Elle r\u00E9gulerait les palpitations du c\u0153ur et l\u2019hypertension.</li>\r\n        <li>On l\u2019utilise pour les probl\u00E8mes de digestion.</li>\r\n        <li>La perle de culture augmenterait la fertilit\u00E9.</li>\r\n        <li>Elle serait utile pour les traitements de la bipolarit\u00E9.</li>\r\n        <li>Elle am\u00E9liorerait le fonctionnement r\u00E9nal.</li>\r\n        <li>La perle de culture aiderait dans les probl\u00E8mes d\u2019arthrite, de rhumatisme et du syst\u00E8me lymphatique.</li>\r\n        <li>Elle soulagerait des probl\u00E8mes cutan\u00E9s</li>\r\n      </ul>',
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2Fperles-de-culture_400x300.jpg?alt=media&token=539b5461-e902-476a-ad02-0d311825a336',
+  },
+
+  'Perles fantaisies': {
+    title: 'Perles fantaisies',
+    description: '',
+    image: '',
+  },
+  'Perles en bois': {
+    title: 'Perles en bois',
+    description: '',
+    image: '',
   },
 };
 
