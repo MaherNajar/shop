@@ -4,6 +4,7 @@ body {
   background-color: #f8f8f8;
   font-family: Helvetica, sans-serif;
   font-size: 13px;
+  overflow-y: scroll;
 }
 
 .btn,

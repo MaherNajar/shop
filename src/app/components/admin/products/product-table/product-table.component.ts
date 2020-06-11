@@ -8,6 +8,18 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   templateUrl: './product-table.component.html',
+  styles: [
+    `
+      td {
+        vertical-align: middle;
+        padding: 0;
+      }
+
+      span {
+        cursor: pointer;
+      }
+    `,
+  ],
 })
 export class ProductTableComponent {
   @ViewChild('modal') modal: ElementRef;
@@ -64,6 +76,11 @@ export class ProductTableComponent {
 
   makeFavorite(product: Product) {
     product.favorite = !product.favorite;
+    this.productService.update(product);
+  }
+
+  makeExclusif(product: Product) {
+    product.exclusif = !product.exclusif;
     this.productService.update(product);
   }
 

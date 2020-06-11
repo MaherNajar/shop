@@ -5,7 +5,7 @@
         *ngIf="product.gallery.length > 0; else prisme"
         (click)="openModal(content)"
         ><img
-          class="img-fluid pointer"
+          class="img-fluid pointer shadow"
           src="{{ mainPicture | size: '400' }}"
           alt="{{ product.title }}"
           id="mainpic"
@@ -39,9 +39,12 @@
         <ul class="list-inline mt-3">
           <li *ngFor="let s of product.stones" class="list-inline-item">
             <ng-container *ngIf="stoneService.getStoneObject(s) as stone">
-              <span class="StoneFilter" [ngStyle]="{ color: stone.cssColor }">{{
-                stone.name
-              }}</span>
+              <span
+                (click)="queryByParam({ pierre: stone.name })"
+                class="StoneFilter pointer"
+                [ngStyle]="{ color: stone.cssColor }"
+                >{{ stone.name }}</span
+              >
             </ng-container>
           </li>
         </ul>
@@ -50,7 +53,10 @@
         <ul class="list-inline">
           <li *ngFor="let c of product.colors" class="list-inline-item">
             <ng-container *ngIf="colorService.getColorObject(c) as color"
-              ><span>
+              ><span
+                class="pointer"
+                (click)="queryByParam({ couleur: color.name })"
+              >
                 <img
                   class="Color"
                   src="assets/colors/{{ color.key }}.png"
@@ -108,7 +114,7 @@
             selected: selectedPicture === i,
             notSelected: selectedPicture !== i
           }"
-          class="img-fluid"
+          class="img-fluid shadow"
           src="{{ picture | size: '100' }}"
           alt="{{ product.title }}"
       /></a>
@@ -116,15 +122,11 @@
   </ul>
 
   <ng-template #content let-modal>
-    <!-- Modal Content (The Image) -->
-    <button
-      type="button"
-      class="close btn-light"
-      aria-label="Close"
+    <img
       (click)="modal.dismiss('Cross click')"
-    >
-      <span aria-hidden="true">&times;</span>
-    </button>
-    <img alt="{{ product.title }}" class="img-fluid" src="{{ mainPicture }}" />
+      alt="{{ product.title }}"
+      class="img-fluid"
+      src="{{ mainPicture }}"
+    />
   </ng-template>
 </div>

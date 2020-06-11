@@ -4,21 +4,24 @@
 <hr class="mb-4" />
 
 <product-filter
-  [filteredCount]="filteredProducts.length"
+  [count]="totalCount"
   [pierre]="pierreParam"
   [couleur]="couleurParam"
   [category]="category"
 ></product-filter>
 
-<ng-container *ngIf="filteredProducts">
+<div
+  class="search-results"
+  infiniteScroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="50"
+  (scrolled)="getItems()"
+>
   <div class="row">
-    <div
-      *ngFor="let product of filteredProducts"
-      class="col-lg-3 col-md-4 col-6"
-    >
+    <div *ngFor="let product of items" class="col-lg-3 col-md-4 col-6">
       <a routerLink="/bijoux/{{ product.id }}" class="d-block mb-4 h-100">
         <img
-          class="img-fluid"
+          class="img-fluid shadow"
           *ngIf="product.gallery.length > 0; else prisme"
           src="{{ product.gallery[0] | size: '400' }}"
           alt="{{ product.title }}"
@@ -33,4 +36,9 @@
       </a>
     </div>
   </div>
-</ng-container>
+  <div *ngIf="totalCount > 0 && canLoadMore" class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</div>

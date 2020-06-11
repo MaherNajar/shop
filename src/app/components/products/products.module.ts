@@ -7,6 +7,7 @@ import { ProductFilterComponent } from './product-filter/product-filter.componen
 import { ProductStoriesComponent } from './product-stories/product-stories.component';
 import { ProductPageComponent } from './product-page/product-page.component';
 import { ProductPreviewModule } from './product-preview/product-preview.module';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { SharedModule } from '../commons/shared.module';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { SharedModule } from '../commons/shared.module';
     CommonModule,
     ProductsRoutingModule,
     ProductPreviewModule,
+    InfiniteScrollModule,
     SharedModule,
   ],
 })

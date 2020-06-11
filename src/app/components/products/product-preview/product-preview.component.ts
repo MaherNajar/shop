@@ -55,6 +55,10 @@ export class ProductPreviewComponent {
     });
   }
 
+  queryByParam(param) {
+    this.router.navigate(['/bijoux', param]);
+  }
+
   setPic() {
     if (!this.canSetPic) return;
     let { gallery } = this.product;

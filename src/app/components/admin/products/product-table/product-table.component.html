@@ -30,7 +30,11 @@
       </ng-template>
     </div>
   </div>
-  <table aria-describedby="admin products" class="table table-bordered">
+  <table
+    aria-describedby="admin products"
+    class="table table-bordered"
+    style="height: 100px;"
+  >
     <thead>
       <tr>
         <th id="auteur">Auteur</th>
@@ -48,7 +52,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let p of items">
-        <td><a routerLink="/profil/{{ p.uid }}">🕴️</a></td>
+        <td><span title="auteur" routerLink="/profil/{{ p.uid }}">🕴️</span></td>
         <td>
           {{ p.title }}
         </td>
@@ -75,25 +79,20 @@
           </p>
           <p>
             <span
-              class="pointer"
+              title="exclusifs"
               style="font-size: 15px;"
-              (click)="makeFavorite(p)"
-              >{{ p.favorite ? "⭐" : "★" }}
+              (click)="makeExclusif(p)"
+              >{{ p.exclusif ? "🌟" : "✸" }}
             </span>
           </p>
         </td>
         <td>{{ p.price }}</td>
         <td>{{ p.price / 3.17 | number: "1.0-0" }}</td>
         <td *ngIf="!isArchivePage">
-          <span title="supprimer" class="pointer" (click)="deleteProduct(p)"
-            >🗑️</span
-          >
+          <span title="supprimer" (click)="deleteProduct(p)">🗑️</span>
         </td>
         <td>
-          <span
-            title="Archiver ou restaurer"
-            class="pointer"
-            (click)="ArchiveOrRestore(p)"
+          <span title="Archiver ou restaurer" (click)="ArchiveOrRestore(p)"
             >🗄️</span
           >
         </td>

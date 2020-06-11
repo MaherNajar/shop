@@ -10,12 +10,13 @@ export class Product {
   category: 'colliers' | 'bracelets_bagues_bo' = 'colliers';
   status: 'disponible' | 'réservé' | 'vendu' = 'disponible';
   favorite: boolean = false;
+  exclusif: boolean = false;
 
   constructor(init?: Partial<Product>, private isInTN: boolean = false) {
     Object.assign(this, init);
   }
 
   get Price() {
-    return this.isInTN ? this.price : +(this.price / 3.17).toFixed(2);
+    return this.isInTN ? this.price : +(this.price * 0.7).toFixed(2);
   }
 }

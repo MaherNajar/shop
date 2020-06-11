@@ -7,6 +7,9 @@ const routes: Routes = [
   { path: '', component: ProductListComponent },
   { path: 'colliers', component: ProductListComponent },
   { path: 'bracelets-bagues-bo', component: ProductListComponent },
+  { path: 'exclusifs', component: ProductListComponent },
+  { path: 'pierre/:pierre', component: ProductListComponent },
+  { path: 'couleur/:couleur', component: ProductListComponent },
   { path: ':id', component: ProductPageComponent },
 ];
 

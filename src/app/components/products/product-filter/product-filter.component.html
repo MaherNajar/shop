@@ -6,13 +6,11 @@
         <ul id="Menu">
           <li>
             <a
-              [ngClass]="{ underline: category === 'bestOf' }"
+              [ngClass]="{ underline: category === 'all' }"
               routerLink="/bijoux"
             >
-              Promos
-              <span *ngIf="category === 'bestOf'">
-                ({{ filteredCount }})</span
-              ></a
+              Collection complète
+              <span *ngIf="category === 'all'"> ({{ count }})</span></a
             >
           </li>
           <li>
@@ -21,9 +19,7 @@
               routerLink="/bijoux/colliers"
             >
               Colliers
-              <span *ngIf="category === 'colliers'">
-                ({{ filteredCount }})</span
-              ></a
+              <span *ngIf="category === 'colliers'"> ({{ count }})</span></a
             >
           </li>
           <li class="mb-2">
@@ -35,8 +31,19 @@
             >
               Bracelets, Bagues et BO
               <span *ngIf="category === 'bracelets-bagues-bo'">
-                ({{ filteredCount }})</span
+                ({{ count }})</span
               ></a
+            >
+          </li>
+          <li>
+            <a
+              id="exclusifs"
+              class="text-nowrap"
+              [ngClass]="{ underline: category === 'exclusifs' }"
+              routerLink="/bijoux/exclusifs"
+            >
+              EXCLUSIFS
+              <span *ngIf="category === 'exclusifs'"> ({{ count }})</span></a
             >
           </li>
         </ul>
@@ -53,12 +60,9 @@
                 color: stone.cssColor
               }"
               [ngClass]="{ underline: stone.name === pierre }"
-              routerLink="/bijoux"
-              [queryParams]="{ pierre: stone.name }"
+              routerLink="/bijoux/pierre/{{ stone.name }}"
               >{{ stone.name
-              }}<span *ngIf="stone.name === pierre">
-                ({{ filteredCount }})</span
-              ></a
+              }}<span *ngIf="stone.name === pierre"> ({{ count }})</span></a
             >
           </li>
         </ul>
@@ -74,8 +78,7 @@
             *ngFor="let color of colorService.allColors"
           >
             <a
-              routerLink="/bijoux"
-              [queryParams]="{ couleur: color.name }"
+              routerLink="/bijoux/couleur/{{ color.name }}"
               title="{{ color.name }}"
             >
               <img
@@ -88,7 +91,7 @@
               <span
                 *ngIf="color.name === couleur; else space"
                 style="color: #999;"
-                >{{ filteredCount }}</span
+                >{{ count }}</span
               >
               <ng-template #space>
                 <span>&nbsp;</span>
