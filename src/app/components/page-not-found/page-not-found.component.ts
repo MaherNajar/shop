@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   template: `
-    <h3 class="text-center">
+    <h3>
       Erreur 404 : Cette page n'existe pas !
     </h3>
   `,

@@ -56,7 +56,10 @@ export class ProductPreviewComponent {
   }
 
   queryByParam(param) {
-    this.router.navigate(['/bijoux', param]);
+    if (this.canSetPic) return;
+    const key = Object.keys(param)[0];
+    const value = param[key];
+    this.router.navigate([`/bijoux/${key}/${value}`]);
   }
 
   setPic() {
