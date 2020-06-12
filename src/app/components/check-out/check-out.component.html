@@ -1,6 +1,13 @@
 <h1>Confirmation</h1>
 <div class="row" *ngIf="cartService.cart as cart">
   <div class="col-md-6 mb-3">
+    <div class="alert alert-info" role="alert">
+      Tous nos bijoux sont des pièces uniques. Nous ne faisons pas de livraison
+      à domicile ni de paiement par internet. La confirmation de votre commande
+      vous permettra de réserver les bijoux disponibles en attendant de venir
+      les récupérer à notre adresse : 160 rue Hédi Chaker la Marsa Erriadh, 2076
+      Tunis.
+    </div>
     <form #f="ngForm">
       <div *ngIf="!user">
         <label for="email">Votre email</label>
