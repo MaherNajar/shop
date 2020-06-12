@@ -29,15 +29,13 @@ export class ProductFormComponent implements OnInit {
     public authService: AuthService,
     public colorService: ColorService,
     public stoneService: StoneService,
-    private route: ActivatedRoute,
-    private locService: LocationService
+    private route: ActivatedRoute
   ) {}
   async ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    const location = await this.locService.location$.toPromise();
 
     if (id === 'nouveau') {
-      this.product = new Product(null, location.isInTN);
+      this.product = new Product();
       return;
     } else {
       this.productService
@@ -47,7 +45,7 @@ export class ProductFormComponent implements OnInit {
           map((product) => {
             if (!product) this.router.navigate(['/bijoux']);
             else {
-              this.product = new Product({ ...product, id }, location.isInTN);
+              this.product = new Product({ ...product, id });
             }
           })
         )

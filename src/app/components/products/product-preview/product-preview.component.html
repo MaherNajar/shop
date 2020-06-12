@@ -71,7 +71,7 @@
       <ng-container *ngIf="locService.location$ | async as location">
         <h5 class="text-center">
           <span style="font-weight: 700;">
-            {{ product.Price | number: "1.0-0" }}
+            {{ location.isInTN ? product.price : product.priceEU }}
           </span>
           <img
             src="assets/{{ location.isInTN ? 'dinar' : 'euro' }}.png"

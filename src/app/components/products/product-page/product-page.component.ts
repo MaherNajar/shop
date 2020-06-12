@@ -3,7 +3,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { LocationService } from 'src/app/services/location.service';
-import { tap, take, map } from 'rxjs/operators';
+import { take, map } from 'rxjs/operators';
 
 @Component({
   templateUrl: './product-page.component.html',
@@ -20,24 +20,15 @@ export class ProductPageComponent implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.locService.location$
+    this.productService
+      .get(id)
       .pipe(
-        tap((location) => {
-          this.productService
-            .get(id)
-            .pipe(
-              take(1),
-              map((product) => {
-                if (!product) this.router.navigate(['/colliers']);
-                else {
-                  this.product = new Product(
-                    { ...product, id },
-                    location.isInTN
-                  );
-                }
-              })
-            )
-            .subscribe();
+        take(1),
+        map((product) => {
+          if (!product) this.router.navigate(['/bijoux']);
+          else {
+            this.product = new Product({ ...product, id });
+          }
         })
       )
       .subscribe();

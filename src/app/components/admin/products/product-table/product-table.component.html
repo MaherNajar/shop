@@ -87,7 +87,7 @@
           </p>
         </td>
         <td>{{ p.price }}</td>
-        <td>{{ p.price * 0.7 | number: "1.0-0" }}</td>
+        <td>{{ p.priceEU }}</td>
         <td *ngIf="!isArchivePage">
           <span title="supprimer" (click)="deleteProduct(p)">🗑️</span>
         </td>

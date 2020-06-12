@@ -111,6 +111,7 @@ export class ProductListComponent implements OnInit {
   }
 
   private reset() {
+    this.canLoadMore = true;
     this.filteredProducts = [];
     this.items = [];
     this.position = 0;

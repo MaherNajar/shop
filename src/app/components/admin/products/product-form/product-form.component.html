@@ -51,8 +51,9 @@
             class="form-control"
           />
         </div>
+
         <div class="form-group">
-          <label for="price">Prix</label>
+          <label for="price">Prix en dinars</label>
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text">
@@ -68,6 +69,31 @@
               name="price"
               [(ngModel)]="product.price"
               id="price"
+              type="number"
+              class="form-control"
+              min="0"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="price">Prix en €</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <div class="input-group-text">
+                <img
+                  width="24px"
+                  height="24px"
+                  src="assets/euro.png"
+                  alt="euro"
+                />
+              </div>
+            </div>
+            <input
+              name="priceEU"
+              [(ngModel)]="product.priceEU"
+              id="priceEU"
               type="number"
               class="form-control"
               min="0"

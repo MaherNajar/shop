@@ -42,6 +42,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./components/admin/admin.module').then((m) => m.AdminModule),
   },
+  {
+    path: 'remerciements',
+    loadChildren: () =>
+      import('./components/remerciements/remerciements.module').then(
+        (m) => m.RemerciementsModule
+      ),
+  },
   { path: '**', component: PageNotFoundComponent },
 ];
 

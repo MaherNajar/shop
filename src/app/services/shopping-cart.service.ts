@@ -70,6 +70,7 @@ export class ShoppingCartService {
   }
 
   private async updateItem(product: Product, change: number) {
+    let location = await this.locService.location$.toPromise();
     let cartId = await this.getOrCreateCartId();
     let docRef = this.getItem(cartId, product.id);
     docRef
@@ -79,7 +80,8 @@ export class ShoppingCartService {
         map((item: ShoppingCartItem) => {
           if (item) docRef.update({ quantity: item.quantity + change });
           else {
-            const { id, Price: price, title, gallery } = product;
+            const price = location.isInTN ? product.price : product.priceEU;
+            const { id, title, gallery } = product;
             docRef.set({
               id,
               price,
