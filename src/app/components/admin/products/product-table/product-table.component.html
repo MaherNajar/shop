@@ -19,12 +19,12 @@
     </div>
     <div class="col text-right">
       <ng-container *ngIf="isArchivePage; else goToArchive">
-        <button class="btn-light btn-sm" routerLink="/admin/bijoux">
-          Mes bijoux
+        <button class="btn btn-light btn-lg" routerLink="/admin/bijoux">
+          🔙
         </button>
       </ng-container>
       <ng-template #goToArchive>
-        <button class="btn-light btn-sm" routerLink="/admin/bijoux/archives">
+        <button class="btn btn-secondary" routerLink="/admin/bijoux/archives">
           Archives
         </button>
       </ng-template>

@@ -5,13 +5,13 @@
 <ng-container *ngIf="cartService.cart as cart">
   <p class="text-center">
     Vous avez {{ cart.totalItemsCount }} bijoux dans le panier.
-    <button routerLink="/bijoux" type="button" class="btn-info btn-sm">
+    <button routerLink="/bijoux" type="button" class="btn btn-info btn-sm">
       Continuer mes achats
     </button>
     <button
       routerLink="/caisse"
       type="button"
-      class="btn-warning btn-sm ml-2"
+      class="btn btn-warning btn-sm ml-2"
       [disabled]="cart.totalItemsCount === 0"
     >
       Valider mon panier

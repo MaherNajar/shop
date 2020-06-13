@@ -5,14 +5,14 @@
       <div class="text-right mb-3">
         <button
           *ngIf="user.isAdmin && order.status === 'confirmée'"
-          class="btn-warning btn-sm"
+          class="btn btn-danger"
           (click)="cancelOrder()"
         >
-          Annulation
+          Annuler
         </button>
         <button
           routerLink="{{ user.isAdmin ? '/admin/commandes' : '/commandes' }}"
-          class="btn-light btn-sm ml-2"
+          class="btn btn-light btn-lg ml-2"
         >
           🔙
         </button>
