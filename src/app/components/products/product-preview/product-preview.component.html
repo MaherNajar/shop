@@ -68,17 +68,12 @@
           </li>
         </ul>
       </div>
-      <ng-container *ngIf="locService.location$ | async as location">
-        <h5 class="text-center">
-          <span style="font-weight: 700;">
-            {{ location.isInTN ? product.price : product.priceEU }}
-          </span>
-          <img
-            src="assets/{{ location.isInTN ? 'dinar' : 'euro' }}.png"
-            alt="image devise"
-          />
-        </h5>
-      </ng-container>
+      <h5 class="text-center">
+        <span style="font-weight: 700;">
+          {{ product.price }}
+        </span>
+        <img src="assets/dinar.png" alt="image devise" />
+      </h5>
       <div class="mb-3 text-center" *ngIf="cartService.cart as cart">
         <button
           (click)="addToCart()"

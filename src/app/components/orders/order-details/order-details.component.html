@@ -42,7 +42,7 @@
       <p class="card-text"><strong>Message : </strong> {{ order.message }}</p>
     </div>
   </div>
-  <ul class="list-group-flush" *ngIf="locService.location$ | async as location">
+  <ul class="list-group-flush">
     <li class="list-group-item" *ngFor="let item of order.items">
       <img
         src="{{ item.mainPicture | size: '100' }}"
@@ -53,15 +53,11 @@
         {{ item.title }} : {{ item.quantity }} x
         {{ item.price | number: "1.0-2" }} =
         {{ item.quantity * item.price | number: "1.0-2" }}
-        {{ location.displayCurrency }}
       </span>
     </li>
     <li class="font-weight-bold list-group-item">
       Total
-      <span class="text-right"
-        >{{ order.totalPrice | number: "1.0-2" }}
-        {{ location.displayCurrency }}</span
-      >
+      <span class="text-right">{{ order.totalPrice | number: "1.0-2" }}</span>
     </li>
   </ul>
 </div>

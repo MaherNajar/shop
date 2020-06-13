@@ -1,45 +1,42 @@
 <ng-container *ngIf="filteredOrders">
   <div class="table-responsive">
     <h3>Commandes reçues</h3>
-    <ng-container *ngIf="locService.location$ | async as location">
-      <div class="row">
-        <div class="col-md-4 mb-3">
-          <input
-            (keyup)="filter(query.value)"
-            #query
-            type="text"
-            class="form-control text-center"
-            placeholder="filter par client..."
-          />
-        </div>
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <input
+          (keyup)="filter(query.value)"
+          #query
+          type="text"
+          class="form-control text-center"
+          placeholder="filter par client..."
+        />
       </div>
-      <table aria-describedby="admin orders table" class="table table-bordered">
-        <thead>
-          <tr>
-            <th id="date">Date</th>
-            <th id="prixTotal">Total</th>
-            <th id="statut">Statut</th>
-            <th id="client">Client</th>
-            <th id="details"></th>
-          </tr>
-        </thead>
-        <tbody *ngFor="let order of filteredOrders">
-          <tr>
-            <td>{{ order.datePlaced | date: "short" }}</td>
-            <td>
-              {{ order.totalPrice | number: "1.0-2" }}
-              {{ location.displayCurrency }}
-            </td>
-            <td>{{ order.status }}</td>
-            <td>
-              <a routerLink="/admin/client/{{ order.email }}">{{
-                order.email
-              }}</a>
-            </td>
-            <td><a routerLink="/commandes/{{ order.id }}">👁️</a></td>
-          </tr>
-        </tbody>
-      </table>
-    </ng-container>
+    </div>
+    <table aria-describedby="admin orders table" class="table table-bordered">
+      <thead>
+        <tr>
+          <th id="date">Date</th>
+          <th id="prixTotal">Total</th>
+          <th id="statut">Statut</th>
+          <th id="client">Client</th>
+          <th id="details"></th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let order of filteredOrders">
+        <tr>
+          <td>{{ order.datePlaced | date: "short" }}</td>
+          <td>
+            {{ order.totalPrice | number: "1.0-2" }}
+          </td>
+          <td>{{ order.status }}</td>
+          <td>
+            <a routerLink="/admin/client/{{ order.email }}">{{
+              order.email
+            }}</a>
+          </td>
+          <td><a routerLink="/commandes/{{ order.id }}">👁️</a></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </ng-container>
