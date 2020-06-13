@@ -21,7 +21,7 @@ export class ProductListComponent implements OnInit {
   imgNotAvailable: string = environment.imgNotAvailable;
 
   items: Product[] = [];
-  step: number = 8;
+  step: number = 12;
   position = 0;
   canLoadMore = true;
 
