@@ -118,14 +118,14 @@ export class ProductListComponent implements OnInit {
   }
 
   getItems() {
-    if (this.position === this.totalCount) return;
+    if (this.position === this.totalCount) {
+      this.canLoadMore = false;
+      return;
+    }
 
     let nextPosition = this.position + this.step;
 
-    if (nextPosition > this.totalCount) {
-      nextPosition = this.totalCount;
-      this.canLoadMore = false;
-    }
+    if (nextPosition > this.totalCount) nextPosition = this.totalCount;
 
     let tmp = [...this.filteredProducts];
     let nextPhotos = tmp.slice(this.position, nextPosition);

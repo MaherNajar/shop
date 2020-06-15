@@ -48,7 +48,9 @@ export class ProductService {
 
   getAllProducts() {
     return this.db
-      .collection<Product>('products')
+      .collection<Product>('products', (ref) =>
+        ref.orderBy('dateCreation', 'desc')
+      )
       .valueChanges({ idField: 'id' });
   }
 
@@ -57,7 +59,9 @@ export class ProductService {
       take(1),
       switchMap((user) =>
         this.db
-          .collection('products', (ref) => ref.where('uid', '==', user.uid))
+          .collection('products', (ref) =>
+            ref.where('uid', '==', user.uid).orderBy('dateCreation', 'desc')
+          )
           .valueChanges({ idField: 'id' })
       )
     );
@@ -65,7 +69,9 @@ export class ProductService {
 
   getArchivedProducts() {
     return this.db
-      .collection<Product>('archives')
+      .collection<Product>('archives', (ref) =>
+        ref.orderBy('dateCreation', 'desc')
+      )
       .valueChanges({ idField: 'id' });
   }
 

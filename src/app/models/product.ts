@@ -10,8 +10,8 @@ export class Product {
   uid: string = '';
   category: 'colliers' | 'bracelets_bagues_bo' = 'colliers';
   status: 'disponible' | 'réservé' | 'vendu' = 'disponible';
-  favorite: boolean = false;
   exclusif: boolean = false;
+  dateCreation: string = '';
 
   constructor(init?: Partial<Product>) {
     Object.assign(this, init);

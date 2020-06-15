@@ -74,11 +74,6 @@ export class ProductTableComponent {
     this.router.navigate([`/admin/bijoux/${id}`]);
   }
 
-  makeFavorite(product: Product) {
-    product.favorite = !product.favorite;
-    this.productService.update(product);
-  }
-
   makeExclusif(product: Product) {
     product.exclusif = !product.exclusif;
     this.productService.update(product);

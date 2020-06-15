@@ -35,7 +35,8 @@ export class ProductFormComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
 
     if (id === 'nouveau') {
-      this.product = new Product();
+      const dateCreation = new Date(Date.now()).toISOString().substr(0, 10);
+      this.product = new Product({ dateCreation });
       return;
     } else {
       this.productService
