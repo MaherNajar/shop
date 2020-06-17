@@ -11,6 +11,7 @@ const Stones: Stone[] = [
   { name: 'Améthyste', cssColor: '#884da7' },
   { name: 'Aigue-marine', cssColor: '#7FFFD4' },
   { name: 'Aventurine', cssColor: '#989d79' },
+  { name: 'Corail', cssColor: '#FF7F50' },
   { name: 'Quartz', cssColor: '#f9c9d7' },
   { name: 'Chrysoprase', cssColor: '#a0d3b6' },
   { name: 'Ruby Zoisite', cssColor: '#e0115f' },
@@ -103,8 +104,17 @@ const Stories = {
 
   'Perles de culture': {
     title: 'Perles de culture',
-    description:
-      '<ul>\r\n        <li>C\u2019est la pierre de la sinc\u00E9rit\u00E9.</li>\r\n        <li>Elle soulagerait les probl\u00E8mes d\u2019infection des yeux (vision, cataracte,\u2026)</li>\r\n        <li>Elle r\u00E9gulerait les palpitations du c\u0153ur et l\u2019hypertension.</li>\r\n        <li>On l\u2019utilise pour les probl\u00E8mes de digestion.</li>\r\n        <li>La perle de culture augmenterait la fertilit\u00E9.</li>\r\n        <li>Elle serait utile pour les traitements de la bipolarit\u00E9.</li>\r\n        <li>Elle am\u00E9liorerait le fonctionnement r\u00E9nal.</li>\r\n        <li>La perle de culture aiderait dans les probl\u00E8mes d\u2019arthrite, de rhumatisme et du syst\u00E8me lymphatique.</li>\r\n        <li>Elle soulagerait des probl\u00E8mes cutan\u00E9s</li>\r\n      </ul>',
+    description: `
+    C’est la pierre de la sincérité.
+Elle soulagerait les problèmes d’<strong>infection des yeux</strong> (vision, cataracte,…)
+Elle régulerait les palpitations du cœur et l’<strong>hypertension</strong>.
+On l’utilise pour les <strong>problèmes de digestion</strong>.
+La perle de culture augmenterait la <strong>fertilité</strong>.
+Elle serait utile pour les traitements de la <strong>bipolarité</strong>.
+Elle améliorerait le fonctionnement <strong>rénal</strong>.
+La perle de culture aiderait dans les problèmes d’<strong>arthrite</strong>, de </strong>rhumatisme<strong> et du </strong>système lymphatique</strong>.
+Elle soulagerait des problèmes <strong>cutanés</strong>.
+    `,
     image:
       'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2Fperles-de-culture_400x300.jpg?alt=media&token=539b5461-e902-476a-ad02-0d311825a336',
   },
@@ -118,6 +128,26 @@ const Stories = {
     title: 'Perles en bois',
     description: '',
     image: '',
+  },
+  Corail: {
+    title: 'Corail',
+    description: `
+    Le corail rouge est efficace pour les <strong>troubles de la circulation sanguine</strong>, telles que les varices, les hémorroïdes.
+Il compense les <strong>carences en globules rouges et blanches</strong>.
+Il est efficace pour le <strong>cholestérol</strong>, les problèmes de poids ou la <strong>fécondité</strong>.
+Il <strong>fortifie le coeur</strong> et résorbe les verrues.
+Il combat l’anémie.
+il facilite la digestion et supprime la constipation.
+Le corail blanc <strong>renforce la dentition</strong>.
+Il est fréquemment indiqué lors de décalcification.
+Il est souvent utilisé pour les greffes osseuses.
+Le corail noir combat les énergies négatives
+D’un précieux réconfort, il <strong>lutte contre la dépression</strong>.
+D’une façon générale, le corail apporte une stabilité, ouvre à l’amour et au dévouement.
+Il développe l’intuition, donne de l’énergie, du soutien et de la joie.
+    `,
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2Fcorail_400x300.jpg?alt=media&token=9c4b7e72-e484-4665-b4ae-b196842eab39',
   },
 };
 
