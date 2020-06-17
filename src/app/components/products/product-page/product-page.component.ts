@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
-import { LocationService } from 'src/app/services/location.service';
 import { take, map } from 'rxjs/operators';
 
 @Component({
@@ -14,7 +13,6 @@ export class ProductPageComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
-    private locService: LocationService,
     private router: Router
   ) {}
 

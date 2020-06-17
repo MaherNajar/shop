@@ -19,9 +19,12 @@
 >
   <div class="row">
     <div *ngFor="let product of items" class="col-lg-3 col-md-4 col-6">
-      <a routerLink="/bijoux/{{ product.id }}" class="d-block mb-4 h-100">
+      <a
+        routerLink="/bijoux/{{ product.id }}"
+        class="d-block mb-4 h-100 text-center"
+      >
         <img
-          class="img-fluid shadow"
+          class="img-fluid shadow mb-2"
           *ngIf="product.gallery.length > 0; else prisme"
           src="{{ product.gallery[0] | size: '400' }}"
           alt="{{ product.title }}"
@@ -30,9 +33,10 @@
           <img
             [src]="imgNotAvailable | noImgSize: '400'"
             alt="photo non disponible"
-            class="img-fluid"
+            class="img-fluid shadow mb-2"
           />
         </ng-template>
+        <span class="price">{{ product.price }} TND</span>
       </a>
     </div>
   </div>

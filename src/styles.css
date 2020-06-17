@@ -75,3 +75,9 @@ table {
   background-color: white;
   width: 100%;
 }
+
+.price {
+  color: #222;
+  font-weight: 800;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}

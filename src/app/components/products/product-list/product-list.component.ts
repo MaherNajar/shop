@@ -11,6 +11,13 @@ import { map } from 'rxjs/operators';
 @Component({
   selector: 'product-list',
   templateUrl: './product-list.component.html',
+  styles: [
+    `
+      a:hover {
+        text-decoration: none;
+      }
+    `,
+  ],
 })
 export class ProductListComponent implements OnInit {
   filteredProducts: Product[] = [];
