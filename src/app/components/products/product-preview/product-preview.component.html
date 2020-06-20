@@ -113,6 +113,54 @@
       /></a>
     </li>
   </ul>
+  <form #f="ngForm">
+    <ng-container *ngIf="!user">
+      <div class="form-group">
+        <label for="username">Votre nom</label>
+        <input
+          [(ngModel)]="username"
+          name="username"
+          id="username"
+          type="text"
+          class="form-control"
+          placeholder="..."
+          required
+        />
+      </div>
+      <div class="form-group">
+        <label for="email">Votre email</label>
+        <input
+          [(ngModel)]="email"
+          name="email"
+          id="email"
+          type="email"
+          pattern="^(\D)+(\w)*((\.(\w)+)?)+@(\D)+(\w)*((\.(\D)+(\w)*)+)?(\.)[a-z]{2,}$"
+          class="form-control"
+          placeholder="..."
+          required
+        />
+      </div>
+    </ng-container>
+    <div class="form-group">
+      <label for="message">Votre message</label>
+      <textarea
+        [(ngModel)]="message"
+        name="message"
+        id="message"
+        class="form-control"
+        placeholder="..."
+        required
+      ></textarea>
+    </div>
+    <button
+      (click)="sendMessage()"
+      [disabled]="f.invalid"
+      type="submit"
+      class="btn btn-secondary btn-sm"
+    >
+      Envoyer
+    </button>
+  </form>
 
   <ng-template #content let-modal>
     <img

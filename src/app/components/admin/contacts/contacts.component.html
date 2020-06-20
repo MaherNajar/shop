@@ -1,0 +1,63 @@
+<ng-container *ngIf="filteredContacts">
+  <div class="table-responsive">
+    <h3>Messagerie</h3>
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <input
+          (keyup)="filter(query.value)"
+          #query
+          type="text"
+          class="form-control text-center"
+          placeholder="filtrer par nom du contact ou son email..."
+        />
+      </div>
+    </div>
+    <table aria-describedby="admin contacts table" class="table table-bordered">
+      <thead>
+        <tr>
+          <th id="date">Date</th>
+          <th id="fullname">Nom</th>
+          <th id="email">Email</th>
+          <th id="messsage">Message</th>
+          <th id="productId">Référence bijoux</th>
+          <th id="shoppingCart">Référence panier</th>
+          <th id="ip">Adresse IP</th>
+          <th id="loc">Localisation</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let contact of filteredContacts">
+        <tr>
+          <td>{{ contact.date | date: "short" }}</td>
+          <td>
+            {{ contact.username }}
+          </td>
+          <td>
+            <a routerLink="/admin/client/{{ contact.email }}">
+              {{ contact.email }}
+            </a>
+          </td>
+          <td>{{ contact.message }}</td>
+          <td>
+            <a routerLink="/bijoux/{{ contact.productId }}">
+              💎
+            </a>
+          </td>
+          <td>
+            <a routerLink="/panier/{{ contact.cartId }}">
+              🛒
+            </a>
+          </td>
+          <td>
+            <a
+              target="_blank"
+              href="https://fr.infobyip.com/ip-{{ contact.ip }}.html"
+            >
+              {{ contact.ip }}
+            </a>
+          </td>
+          <td>{{ contact.loc }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ng-container>

@@ -15,6 +15,7 @@ import { SharedModule } from '../commons/shared.module';
 import { OrderTableComponent } from './orders/order-table/order-table.component';
 import { CustomerDetailsComponent } from './customers/customer-details/customer-details.component';
 import { ProductPreviewModule } from '../products/product-preview/product-preview.module';
+import { ContactsComponent } from './contacts/contacts.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ProductPreviewModule } from '../products/product-preview/product-previe
     ProductFormComponent,
     OrderTableComponent,
     CustomerDetailsComponent,
+    ContactsComponent,
   ],
   imports: [
     CommonModule,

@@ -13,13 +13,13 @@ export class OrderDetailsComponent implements OnInit, OnDestroy {
   order: Order;
   subscription: Subscription;
   constructor(
-    private router: ActivatedRoute,
+    private route: ActivatedRoute,
     private orderService: OrderService,
     public authService: AuthService
   ) {}
 
   async ngOnInit() {
-    const id = this.router.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.paramMap.get('id');
     this.subscription = this.orderService.getOrder(id).subscribe((order) => {
       order.id = id;
       this.order = order;

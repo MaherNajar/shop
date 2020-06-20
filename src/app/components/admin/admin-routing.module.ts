@@ -6,6 +6,7 @@ import { OrderTableComponent } from './orders/order-table/order-table.component'
 import { CustomerDetailsComponent } from './customers/customer-details/customer-details.component';
 import { AuthGuard } from 'src/app/services/auth.guard';
 import { AdminGuard } from 'src/app/services/admin.guard';
+import { ContactsComponent } from './contacts/contacts.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,11 @@ const routes: Routes = [
   {
     path: 'client/:email',
     component: CustomerDetailsComponent,
+    canActivate: [AuthGuard, AdminGuard],
+  },
+  {
+    path: 'contacts',
+    component: ContactsComponent,
     canActivate: [AuthGuard, AdminGuard],
   },
 ];

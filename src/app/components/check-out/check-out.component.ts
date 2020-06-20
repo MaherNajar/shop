@@ -5,16 +5,18 @@ import { OrderService } from 'src/app/services/order.service';
 import { Order } from 'src/app/models/order';
 import { Router } from '@angular/router';
 import { LocationService } from 'src/app/services/location.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-check-out',
   templateUrl: './check-out.component.html',
 })
 export class CheckOutComponent {
+  username = '';
   email = '';
   message = '';
 
-  user;
+  user: User;
 
   constructor(
     public cartService: ShoppingCartService,
@@ -31,9 +33,13 @@ export class CheckOutComponent {
   }
 
   async placeOrder() {
-    if (this.user) this.email = this.user.email;
+    if (this.user) {
+      this.username = this.user.displayName;
+      this.email = this.user.email;
+    }
     const { ip, loc } = await this.locService.location$.toPromise();
     const order = new Order(
+      this.username,
       this.email,
       this.message,
       ip,

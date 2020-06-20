@@ -8,7 +8,7 @@
           #query
           type="text"
           class="form-control text-center"
-          placeholder="filter par client..."
+          placeholder="filtrer par nom du client ou son email..."
         />
       </div>
     </div>
@@ -18,7 +18,8 @@
           <th id="date">Date</th>
           <th id="prixTotal">Total</th>
           <th id="statut">Statut</th>
-          <th id="client">Client</th>
+          <th id="fullname">Nom</th>
+          <th id="email">Email</th>
           <th id="details"></th>
         </tr>
       </thead>
@@ -29,6 +30,7 @@
             {{ order.totalPrice | number: "1.0-2" }}
           </td>
           <td>{{ order.status }}</td>
+          <td>{{ order.username }}</td>
           <td>
             <a routerLink="/admin/client/{{ order.email }}">{{
               order.email

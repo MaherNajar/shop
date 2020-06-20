@@ -7,6 +7,7 @@ export class Order {
   status: string = 'confirmée';
 
   constructor(
+    public username: string,
     public email: string,
     public message: string,
     public ip: string,

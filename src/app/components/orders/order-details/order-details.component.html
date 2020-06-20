@@ -38,6 +38,9 @@
         <strong>Commande du : </strong>
         {{ order.datePlaced | date: "long" }}
       </p>
+      <p class="card-text">
+        <strong>Nom & Prénom : </strong> {{ order.username }}
+      </p>
       <p class="card-text"><strong>Email : </strong> {{ order.email }}</p>
       <p class="card-text"><strong>Message : </strong> {{ order.message }}</p>
     </div>
