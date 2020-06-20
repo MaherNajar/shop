@@ -23,6 +23,7 @@
           <th id="shoppingCart">Référence panier</th>
           <th id="ip">Adresse IP</th>
           <th id="loc">Localisation</th>
+          <th id="delete">Supprimer</th>
         </tr>
       </thead>
       <tbody *ngFor="let contact of filteredContacts">
@@ -56,6 +57,13 @@
             </a>
           </td>
           <td>{{ contact.loc }}</td>
+          <td>
+            <a routerLink="/panier/{{ contact.cartId }}">
+              <span title="supprimer" (click)="deleteContact(contact.id)"
+                >🗑️</span
+              >
+            </a>
+          </td>
         </tr>
       </tbody>
     </table>

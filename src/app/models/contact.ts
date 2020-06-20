@@ -1,4 +1,5 @@
 export class Contact {
+  id: string;
   date: number;
 
   constructor(

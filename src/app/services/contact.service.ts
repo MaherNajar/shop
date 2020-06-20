@@ -15,6 +15,10 @@ export class ContactService {
   getContacts() {
     return this.db
       .collection<Contact>('contacts', (ref) => ref.orderBy('date', 'desc'))
-      .valueChanges();
+      .valueChanges({ idField: 'id' });
+  }
+
+  deleteContact(id: string) {
+    return this.db.doc(`contacts/${id}`).delete();
   }
 }
