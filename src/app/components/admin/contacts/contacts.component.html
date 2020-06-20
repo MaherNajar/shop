@@ -39,14 +39,14 @@
           </td>
           <td>{{ contact.message }}</td>
           <td>
-            <a routerLink="/bijoux/{{ contact.productId }}">
+            <span title="bijoux" routerLink="/bijoux/{{ contact.productId }}">
               💎
-            </a>
+            </span>
           </td>
           <td>
-            <a routerLink="/panier/{{ contact.cartId }}">
+            <span title="panier" routerLink="/panier/{{ contact.cartId }}">
               🛒
-            </a>
+            </span>
           </td>
           <td>
             <a
@@ -58,11 +58,9 @@
           </td>
           <td>{{ contact.loc }}</td>
           <td>
-            <a routerLink="/panier/{{ contact.cartId }}">
-              <span title="supprimer" (click)="deleteContact(contact.id)"
-                >🗑️</span
-              >
-            </a>
+            <span title="supprimer" (click)="deleteContact(contact.id)"
+              >🗑️</span
+            >
           </td>
         </tr>
       </tbody>

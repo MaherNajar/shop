@@ -7,6 +7,13 @@ import { ToastService } from 'src/app/services/toast.service';
 @Component({
   selector: 'app-contacts',
   templateUrl: './contacts.component.html',
+  styles: [
+    `
+      span {
+        cursor: pointer;
+      }
+    `,
+  ],
 })
 export class ContactsComponent implements OnInit, OnDestroy {
   contacts: Contact[] = [];
