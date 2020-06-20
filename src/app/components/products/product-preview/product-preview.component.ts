@@ -72,6 +72,7 @@ export class ProductPreviewComponent implements OnInit {
   }
 
   async sendMessage() {
+    if (this.canSetPic) return;
     if (this.user) {
       this.username = this.user.displayName;
       this.email = this.user.email;
@@ -96,6 +97,7 @@ export class ProductPreviewComponent implements OnInit {
         'Message envoyé avec succès !',
         'Nous vous répondrons par email dans les plus brefs délais !'
       );
+      this.message = '';
     } catch (error) {
       this.toastService.show(
         'Echec',
