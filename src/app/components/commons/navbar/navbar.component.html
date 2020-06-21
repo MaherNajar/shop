@@ -1,88 +1,98 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light shadow fixed-top">
-  <a class="navbar-brand" routerLink="/">
-    Acceuil
-    <img
-      style="margin-top: -4px;"
-      height="20px"
-      width="20px"
-      src="assets/prisme.png"
-      alt="logo prisme"
-      [ngStyle]="{ filter: user ? 'initial' : 'grayScale(1)' }"
-  /></a>
+  <div class="container">
+    <a class="navbar-brand" routerLink="/">
+      Acceuil
+      <img
+        style="margin-top: -4px;"
+        height="20px"
+        width="20px"
+        src="assets/prisme.png"
+        alt="logo prisme"
+        [ngStyle]="{ filter: user ? 'initial' : 'grayScale(1)' }"
+    /></a>
 
-  <button
-    class="navbar-toggler"
-    type="button"
-    aria-controls="navbarContent"
-    [attr.aria-expanded]="!collapsed"
-    aria-label="Toggle navigation"
-    (click)="collapsed = !collapsed"
-  >
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <button
+      class="navbar-toggler"
+      type="button"
+      aria-controls="navbarContent"
+      [attr.aria-expanded]="!collapsed"
+      aria-label="Toggle navigation"
+      (click)="collapsed = !collapsed"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-  <div class="navbar-collapse" [class.collapse]="collapsed" id="navbarContent">
-    <ul class="navbar-nav mr-auto">
-      <ng-template #anonymousUser>
-        <li class="nav-item">
-          <a class="nav-link" (click)="googleSignin()">Connexion</a>
-        </li>
-      </ng-template>
-      <li ngbDropdown *ngIf="user; else anonymousUser" class="nav-item">
-        <a ngbDropdownToggle class="nav-link" id="user-menu"
-          >{{ user.displayName }}
-          <img class="avatar" [src]="user.photoURL" alt="avatar" />
-        </a>
-        <div
-          ngbDropdownMenu
-          class="dropdown-menu dropdown-menu-right animate slideIn"
-          aria-labelledby="user-menu"
-        >
-          <a class="dropdown-item" routerLink="/profil/{{ user.uid }}"
-            >Mon profil</a
+    <div
+      class="navbar-collapse"
+      [class.collapse]="collapsed"
+      id="navbarContent"
+    >
+      <ul class="navbar-nav mr-auto">
+        <ng-template #anonymousUser>
+          <li class="nav-item">
+            <a class="nav-link" (click)="googleSignin()">Connexion</a>
+          </li>
+        </ng-template>
+        <li ngbDropdown *ngIf="user; else anonymousUser" class="nav-item">
+          <a ngbDropdownToggle class="nav-link" id="user-menu"
+            >{{ user.displayName }}
+            <img class="avatar" [src]="user.photoURL" alt="avatar" />
+          </a>
+          <div
+            ngbDropdownMenu
+            class="dropdown-menu dropdown-menu-right animate slideIn"
+            aria-labelledby="user-menu"
           >
-
-          <div class="dropdown-divider"></div>
-
-          <ng-container *ngIf="user.isAdmin; else myOrders">
-            <a class="dropdown-item" routerLink="/admin/bijoux">Mes bijoux</a>
-            <a class="dropdown-item" routerLink="/admin/commandes"
-              >Commandes reçues</a
+            <a class="dropdown-item" routerLink="/profil/{{ user.uid }}"
+              >Mon profil</a
             >
-            <a class="dropdown-item" routerLink="/admin/contacts">Messagerie</a>
-          </ng-container>
 
-          <ng-template #myOrders>
-            <a class="dropdown-item" routerLink="/commandes">Mes commandes</a>
-          </ng-template>
+            <div class="dropdown-divider"></div>
 
-          <div class="dropdown-divider"></div>
+            <ng-container *ngIf="user.isAdmin; else myOrders">
+              <a class="dropdown-item" routerLink="/admin/bijoux">Mes bijoux</a>
+              <a class="dropdown-item" routerLink="/admin/commandes"
+                >Commandes reçues</a
+              >
+              <a class="dropdown-item" routerLink="/admin/contacts"
+                >Messagerie</a
+              >
+            </ng-container>
 
-          <a class="dropdown-item" [routerLink]="" (click)="signOut()"
-            >Déconnexion</a
-          >
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/panier">
-          <span
-            class="badge badge-warning mr-1"
-            *ngIf="cartService.cart as cart"
-            >{{ cart.totalItemsCount }}</span
-          >
-          <span>👜</span>
-        </a>
-      </li>
-    </ul>
+            <ng-template #myOrders>
+              <a class="dropdown-item" routerLink="/commandes">Mes commandes</a>
+            </ng-template>
+
+            <div class="dropdown-divider"></div>
+
+            <a class="dropdown-item" [routerLink]="" (click)="signOut()"
+              >Déconnexion</a
+            >
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/panier">
+            <span
+              class="badge badge-warning mr-1"
+              *ngIf="cartService.cart as cart"
+              >{{ cart.totalItemsCount }}</span
+            >
+            <span>👜</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <a
+      class="navbar-brand"
+      target="_blank"
+      title="Page Bijoux Traditionnels Tunisiens"
+      href="https://www.facebook.com/MANONSEG75/"
+    >
+      J'aime
+      <img
+        src="assets/facebook.svg"
+        alt="Lien vers la page facebook"
+        width="24px"
+    /></a>
   </div>
-  <a
-    target="_blank"
-    title="Page Bijoux Traditionnels Tunisiens"
-    href="https://www.facebook.com/MANONSEG75/"
-  >
-    <img
-      src="assets/facebook.svg"
-      alt="Lien vers la page facebook"
-      width="24px"
-  /></a>
 </nav>
