@@ -8,53 +8,7 @@
       les récupérer à notre adresse :
       <strong>160 rue Hédi Chaker la Marsa Erriadh, 2076 Tunis.</strong>
     </div>
-    <form #f="ngForm">
-      <ng-container *ngIf="!user">
-        <div class="form-group">
-          <label for="username">Votre nom</label>
-          <input
-            [(ngModel)]="username"
-            name="username"
-            id="username"
-            type="text"
-            class="form-control"
-            placeholder="..."
-            required
-          />
-        </div>
-        <div class="form-group">
-          <label for="email">Votre email</label>
-          <input
-            [(ngModel)]="email"
-            name="email"
-            id="email"
-            type="email"
-            pattern="^(\D)+(\w)*((\.(\w)+)?)+@(\D)+(\w)*((\.(\D)+(\w)*)+)?(\.)[a-z]{2,}$"
-            class="form-control"
-            placeholder="..."
-            required
-          />
-        </div>
-      </ng-container>
-      <div class="form-group">
-        <label for="message">Votre message</label>
-        <textarea
-          [(ngModel)]="message"
-          name="message"
-          id="message"
-          class="form-control"
-          placeholder="(facultatif)"
-        ></textarea>
-      </div>
-      <button
-        (click)="placeOrder()"
-        [disabled]="f.invalid"
-        type="submit"
-        class="btn btn-warning btn-sm"
-      >
-        Valider ma commande
-      </button>
-    </form>
+    <contact-form (onSendContactForm)="placeOrder($event)"></contact-form>
   </div>
   <div class="col">
     <shopping-cart-summary></shopping-cart-summary>

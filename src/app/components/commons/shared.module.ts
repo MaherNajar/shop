@@ -9,13 +9,22 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ToastsComponent } from './toasts/toasts.component';
 import { SizePipe } from './size.pipe';
 import { NoImgSizePipe } from './no-img-size.pipe';
+import { ContactFormComponent } from './contact-form/contact-form.component';
+import { FormsModule } from '@angular/forms';
 
-const components = [NavbarComponent, ToastsComponent, SizePipe, NoImgSizePipe];
+const components = [
+  NavbarComponent,
+  ToastsComponent,
+  SizePipe,
+  NoImgSizePipe,
+  ContactFormComponent,
+];
 
 const modules = [
   CommonModule,
   HttpClientModule,
   RouterModule,
+  FormsModule,
   NgbToastModule,
   NgbDropdownModule,
 ];

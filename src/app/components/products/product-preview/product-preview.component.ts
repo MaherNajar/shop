@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { ProductService } from 'src/app/services/product.service';
 import { ColorService } from 'src/app/services/colors.service';
@@ -8,8 +8,6 @@ import { Product } from 'src/app/models/product';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'src/environments/environment';
-import { AuthService } from 'src/app/services/auth.service';
-import { User } from 'src/app/models/user';
 import { ContactService } from 'src/app/services/contact.service';
 import { Contact } from 'src/app/models/contact';
 import { ToastService } from 'src/app/services/toast.service';
@@ -33,13 +31,9 @@ import { ToastService } from 'src/app/services/toast.service';
     `,
   ],
 })
-export class ProductPreviewComponent implements OnInit {
+export class ProductPreviewComponent {
   @Input('product') product: Product;
   @Input('canSetPic') canSetPic = false;
-  email = '';
-  message = '';
-  username = '';
-  user: User;
   selectedPicture: number = 0;
   imgNotAvailable = environment.imgNotAvailable;
 
@@ -51,14 +45,9 @@ export class ProductPreviewComponent implements OnInit {
     public colorService: ColorService,
     public locService: LocationService,
     private router: Router,
-    private authService: AuthService,
     private contactService: ContactService,
     private toastService: ToastService
   ) {}
-
-  ngOnInit() {
-    this.authService.user$.subscribe((user) => (this.user = user));
-  }
 
   get mainPicture() {
     return this.product.gallery[this.selectedPicture];
@@ -71,21 +60,18 @@ export class ProductPreviewComponent implements OnInit {
     });
   }
 
-  async sendMessage() {
+  async createContact({ username, email, message }) {
     if (this.canSetPic) return;
-    if (this.user) {
-      this.username = this.user.displayName;
-      this.email = this.user.email;
-    }
 
+    const productId = this.product.id;
     const { ip, loc } = await this.locService.location$.toPromise();
     const cartId = await this.cartService.getOrCreateCartId();
 
     const contact = new Contact(
-      this.username,
-      this.email,
-      this.message,
-      this.product.id,
+      username,
+      email,
+      message,
+      productId,
       cartId,
       ip,
       loc
@@ -97,7 +83,6 @@ export class ProductPreviewComponent implements OnInit {
         'Message envoyé avec succès !',
         'Nous vous répondrons par email dans les plus brefs délais !'
       );
-      this.message = '';
     } catch (error) {
       this.toastService.show(
         'Echec',

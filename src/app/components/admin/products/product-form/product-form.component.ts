@@ -9,7 +9,6 @@ import { ProductService } from 'src/app/services/product.service';
 import { ColorService } from 'src/app/services/colors.service';
 import { StoneService, Stone } from 'src/app/services/stones.service';
 import { Product } from 'src/app/models/product';
-import { LocationService } from 'src/app/services/location.service';
 
 @Component({
   selector: 'product-form',
