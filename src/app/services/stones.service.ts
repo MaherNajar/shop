@@ -8,20 +8,21 @@ export interface Stone {
 
 const Stones: Stone[] = [
   { name: 'Agate', cssColor: 'brown' },
-  { name: 'Améthyste', cssColor: '#884da7' },
   { name: 'Aigue-marine', cssColor: '#7FFFD4' },
+  { name: 'Améthyste', cssColor: '#884da7' },
   { name: 'Aventurine', cssColor: '#989d79' },
-  { name: 'Corail', cssColor: '#FF7F50' },
-  { name: 'Quartz', cssColor: '#f9c9d7' },
   { name: 'Chrysoprase', cssColor: '#a0d3b6' },
-  { name: 'Ruby Zoisite', cssColor: '#e0115f' },
+  { name: 'Corail', cssColor: '#FF7F50' },
+  { name: 'Cornaline', cssColor: '#b31b1b' },
   { name: 'Cristal', cssColor: '#a7d8de' },
   { name: 'Jaspe rouge', cssColor: '#d73b3e' },
-  { name: 'Cornaline', cssColor: '#b31b1b' },
   { name: 'Labradorite', cssColor: '#657b83' },
+  { name: 'Malachite', cssColor: '#1fa055' },
+  { name: 'Perles en bois', cssColor: '#855E42' },
   { name: 'Perles de culture', cssColor: '#eae0c8' },
   { name: 'Perles fantaisies', cssColor: '#c89524' },
-  { name: 'Perles en bois', cssColor: '#855E42' },
+  { name: 'Quartz', cssColor: '#f9c9d7' },
+  { name: 'Ruby Zoisite', cssColor: '#e0115f' },
 ];
 
 const Stories = {
@@ -148,6 +149,15 @@ Il développe l’intuition, donne de l’énergie, du soutien et de la joie.
     `,
     image:
       'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2Fcorail_400x300.jpg?alt=media&token=9c4b7e72-e484-4665-b4ae-b196842eab39',
+  },
+  Malachite: {
+    title: 'Malachite',
+    description: `
+    En lithothérapie la malachite est une pierre très efficace <strong>contre les douleurs</strong> et contre les problèmes articulaires, absorbant les douleurs tel une éponge lorsqu’elle est appliqué sur les zones douloureuses. C’est une pierre <strong>anti-inflammatoire</strong> d’un point de vu énergétique, elle agira là ou sont les inflammations, les douleurs, elle est aussi diurétique.
+La malachite améliore la capacité de persuasion et <strong>libère</strong> les blocages émotionnels du passé qui se sont enfouit au fil du temps dans les profondeurs de l’âme.
+    `,
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2Fmalachite_400x300.jpg?alt=media&token=87367a9f-5652-4ba7-9361-5fed2c89f933',
   },
 };
 
