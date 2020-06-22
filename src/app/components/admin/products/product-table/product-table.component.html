@@ -40,6 +40,7 @@
         <th id="auteur">Auteur</th>
         <th id="title">Intitulé</th>
         <th id="dateCreation">Créé le</th>
+        <th id="poids">Poids</th>
         <th id="pierres">Pierres</th>
         <th id="présentation">Présentation</th>
         <th id="statut">Statut</th>
@@ -60,6 +61,7 @@
         <td>
           {{ p.dateCreation | date }}
         </td>
+        <td>{{ p.weight }}</td>
         <td>{{ p.stones?.join() }}</td>
         <td>
           <a [routerLink]="" (click)="goToPageProduct(p.id)">

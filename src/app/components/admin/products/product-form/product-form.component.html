@@ -65,6 +65,19 @@
         </div>
 
         <div class="form-group">
+          <label for="weight">Poids en grammes</label>
+          <input
+            name="weight"
+            [(ngModel)]="product.weight"
+            id="weight"
+            type="number"
+            class="form-control"
+            min="0"
+            required
+          />
+        </div>
+
+        <div class="form-group">
           <label for="price">Prix en dinars</label>
           <div class="input-group">
             <div class="input-group-prepend">

@@ -3,6 +3,7 @@ export class Product {
   title: string = '';
   price: number = 0;
   priceEU: number = 0;
+  weight: number = 0;
   colors: string[] = [];
   stones: string[] = [];
   gallery: string[] = [];
