@@ -28,7 +28,7 @@
     "bootstrap": "^4.5.0",
     "firebase": "^7.15.5",
     "ngx-infinite-scroll": "^9.0.0",
-    "rxjs": "~6.5.4",
+    "rxjs": "~6.6.0",
     "tslib": "^1.13.0",
     "zone.js": "~0.10.2"
   },
