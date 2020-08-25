@@ -1,6 +1,6 @@
 # Created by https://www.gitignore.io/api/angular,firebase
 # Edit at https://www.gitignore.io/?templates=angular,firebase
-
+service-account-file.json
 ### Angular ###
 ## Angular ##
 # compiled output

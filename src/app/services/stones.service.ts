@@ -23,6 +23,7 @@ const Stones: Stone[] = [
   { name: 'Perles fantaisies', cssColor: '#c89524' },
   { name: 'Quartz', cssColor: '#f9c9d7' },
   { name: 'Ruby Zoisite', cssColor: '#e0115f' },
+  { name: 'Unakite', cssColor: '#808000' },
 ];
 
 const Stories = {
@@ -158,6 +159,18 @@ La malachite améliore la capacité de persuasion et <strong>libère</strong> le
     `,
     image:
       'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2Fmalachite_400x300.jpg?alt=media&token=87367a9f-5652-4ba7-9361-5fed2c89f933',
+  },
+  Unakite: {
+    title: 'Unakite',
+    description: `
+    Sur le plan mental en lithothérapie, la pierre unakite permet à celui ou celle qui la porte de se retrouver face à lui ou elle-même. Si l’unakite est portée par exemple en pendentif unakite, les blocages liés au passé et étant enfouis dans l’inconscient s’éliminent petit à petit. L’<strong>unakite</strong> permet aussi d’apprendre à <strong>relativiser</strong> sur les situations, mais aussi à prendre du recul.
+
+Il est très rare de trouver la pierre unakite à l’état de gemme, mais sous forme alvéolaire. Elle répond parfaitement à des problèmes osseux lorsqu’elle est majoritairement constituée de beige. Autrement, l’unakite répond aux <strong>problèmes de foie, d’intestins et de vésicule biliaire</strong> lorsqu’elle est dotée de touches vert jaune, vert sombre, avec des traces rouges clairs.
+
+Sur le plan physique en lithothérapie, la pierre unakite permet de réguler l’ensemble des fonctions intestinales ainsi que le foie par le biais du chakra du plexus solaire. Les lithothérapeutes travaillent également sur le <strong>chakra</strong> racine afin d’agir directement sur les problèmes osseux, sur les rhumatismes, ainsi que sur les fractures. De façon plus générale, l’unakite vous aidera à <strong>renforcer votre système de défense immunitaire</strong>.
+    `,
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2Funakite_400x300.jpg?alt=media&token=43201012-8b07-4307-a60b-181d0d446fe9',
   },
 };
 
