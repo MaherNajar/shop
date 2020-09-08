@@ -7,7 +7,11 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
+import {
+  AngularFireAnalyticsModule,
+  ScreenTrackingService,
+  UserTrackingService,
+} from '@angular/fire/analytics';
 
 import { environment } from '../environments/environment';
 
@@ -32,7 +36,11 @@ registerLocaleData(localeFr, 'fr');
     }),
     SharedModule,
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'fr' }],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'fr' },
+    ScreenTrackingService,
+    UserTrackingService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
