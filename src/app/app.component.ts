@@ -15,10 +15,7 @@ export class AppComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.swUpdate.available.subscribe((event) => {
-      if (
-        confirm('Update Available. Refresh the page now to update the cache.')
-      )
-        location.reload();
+      location.reload();
     });
 
     setInterval(() => {
