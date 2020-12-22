@@ -37,12 +37,12 @@ export class ProductTableComponent {
     const path = route.snapshot.url;
     if (path.length === 1) {
       productService.getAllProducts().subscribe((products: Product[]) => {
-        this.items = this.products = products;
+        this.items = this.products = products.map((p) => new Product({ ...p }));
       });
     } else {
       this.isArchivePage = true;
       productService.getArchivedProducts().subscribe((products: Product[]) => {
-        this.items = this.products = products;
+        this.items = this.products = products.map((p) => new Product({ ...p }));
       });
     }
   }
