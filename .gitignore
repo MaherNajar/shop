@@ -2,9 +2,7 @@
 # Edit at https://www.gitignore.io/?templates=angular,firebase
 service-account-file.json
 ### Angular ###
-## Angular ##
 # compiled output
-functions/
 public/
 dist/
 tmp/
@@ -41,8 +39,4 @@ e2e/*.map
 ### Firebase Patch ###
 .runtimeconfig.json
 .firebase/
-
-omyshop-db.ts
-batch.service.ts
-
 # End of https://www.gitignore.io/api/angular,firebase
