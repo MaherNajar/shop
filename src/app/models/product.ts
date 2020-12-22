@@ -17,4 +17,9 @@ export class Product {
   constructor(init?: Partial<Product>) {
     Object.assign(this, init);
   }
+
+  get foreignPrice() {
+    if (this.priceEU !== 0) return this.priceEU;
+    return Math.round((this.price / 3.3) * 1.1);
+  }
 }

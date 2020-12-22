@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { take, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -36,8 +37,8 @@ export class Location {
   }
 
   get isInTN() {
-    // return this.loc.includes('TN');
-    return true;
+    return this.loc.includes('TN');
+    // return true;
   }
 
   get displayCurrency() {

@@ -26,9 +26,9 @@
           [ngClass]="{
             'badge-primary': product.status === 'réservé',
             'badge-danger': product.status === 'vendu',
-            'badge-success': product.status === 'disponible'
+            'badge-warning': product.status === 'disponible'
           }"
-          style="font-size: small;"
+          style="font-size: small"
           >{{ product.status }}</span
         >
       </p>
@@ -68,10 +68,25 @@
           </li>
         </ul>
       </div>
-      <h5 class="text-center">
-        <span class="price"> Prix : {{ product.price }} dinars </span>
-        <img src="assets/dinar.png" alt="image devise" />
-      </h5>
+      <ng-container *ngIf="locService.location$ | async as location">
+        <h5 class="text-center">
+          <span class="price">
+            Prix :
+            {{
+              canSetPic
+                ? product.foreignPrice
+                : location.isInTN
+                ? product.price
+                : product.foreignPrice
+            }}
+            {{ canSetPic ? "€" : location.displayCurrency }}
+          </span>
+          <!-- <img
+            src="assets/{{ location.isInTN ? 'dinar' : 'euro' }}.png"
+            alt="image devise"
+          /> -->
+        </h5>
+      </ng-container>
       <div class="mb-3 text-center" *ngIf="cartService.cart as cart">
         <button
           (click)="addToCart()"
@@ -82,7 +97,7 @@
           "
           class="btn btn-warning btn-block"
         >
-          ➕ 👜
+          <strong>Commander</strong> 👜
         </button>
         <ng-template #removeProduct>
           <button

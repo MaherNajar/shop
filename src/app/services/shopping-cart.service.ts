@@ -53,7 +53,7 @@ export class ShoppingCartService {
   }
 
   private async create() {
-    let location = await this.locService.location$.toPromise();
+    const location = await this.locService.location$.toPromise();
     return this.db.collection('shopping-carts/').add({
       dateCreation: Date.now(),
       ...location,
@@ -80,10 +80,14 @@ export class ShoppingCartService {
       .valueChanges()
       .pipe(
         take(1),
-        map((item: ShoppingCartItem) => {
+        map(async (item: ShoppingCartItem) => {
           if (item) docRef.update({ quantity: item.quantity + change });
           else {
-            const { id, price, title, gallery } = product;
+            const location = await this.locService.location$.toPromise();
+            const price = location.isInTN
+              ? product.price
+              : product.foreignPrice;
+            const { id, title, gallery } = product;
             docRef.set({
               id,
               price,

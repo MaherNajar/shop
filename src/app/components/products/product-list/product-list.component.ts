@@ -7,6 +7,9 @@ import { ColorService } from 'src/app/services/colors.service';
 import { StoneService } from 'src/app/services/stones.service';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
+import { LocationService } from 'src/app/services/location.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'product-list',
@@ -16,10 +19,22 @@ import { map } from 'rxjs/operators';
       a:hover {
         text-decoration: none;
       }
+
+      .prod-container {
+        position: relative;
+        text-align: center;
+      }
+
+      .top-right {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+      }
     `,
   ],
 })
 export class ProductListComponent implements OnInit {
+  user: User;
   filteredProducts: Product[] = [];
   category: string = '';
   couleurParam: string = '';
@@ -37,8 +52,12 @@ export class ProductListComponent implements OnInit {
     private route: ActivatedRoute,
     public cartService: ShoppingCartService,
     public colorService: ColorService,
-    public stoneService: StoneService
-  ) {}
+    public stoneService: StoneService,
+    public locationService: LocationService,
+    public authService: AuthService
+  ) {
+    authService.user$.subscribe((user) => (this.user = user));
+  }
 
   ngOnInit() {
     this.getFilteredProducts();
@@ -49,30 +68,32 @@ export class ProductListComponent implements OnInit {
     this.productService.getAllProducts().subscribe((products) => {
       if (url.length === 0) {
         this.category = 'all';
-        this.filteredProducts = products;
+        this.filteredProducts = products.map((x) => new Product({ ...x }));
         this.totalCount = this.filteredProducts.length;
         this.getItems();
       } else {
         switch (url[0].path) {
           case 'colliers':
             this.category = 'colliers';
-            this.filteredProducts = products.filter(
-              (x) => x.category === 'colliers'
-            );
+            this.filteredProducts = products
+              .map((x) => new Product({ ...x }))
+              .filter((x) => x.category === 'colliers');
             this.totalCount = this.filteredProducts.length;
             this.getItems();
             break;
           case 'bracelets-bagues-bo':
             this.category = 'bracelets-bagues-bo';
-            this.filteredProducts = products.filter(
-              (x) => x.category === 'bracelets_bagues_bo'
-            );
+            this.filteredProducts = products
+              .map((x) => new Product({ ...x }))
+              .filter((x) => x.category === 'bracelets_bagues_bo');
             this.totalCount = this.filteredProducts.length;
             this.getItems();
             break;
           case 'exclusifs':
             this.category = 'exclusifs';
-            this.filteredProducts = products.filter((x) => x.exclusif);
+            this.filteredProducts = products
+              .map((x) => new Product({ ...x }))
+              .filter((x) => x.exclusif);
             this.totalCount = this.filteredProducts.length;
             this.getItems();
             break;
@@ -83,9 +104,11 @@ export class ProductListComponent implements OnInit {
                   this.reset();
                   this.pierreParam = params.pierre;
                   this.category = 'pierre';
-                  this.filteredProducts = products.filter((x) =>
-                    x.stones?.some((s) => s === this.pierreParam)
-                  );
+                  this.filteredProducts = products
+                    .map((x) => new Product({ ...x }))
+                    .filter((x) =>
+                      x.stones?.some((s) => s === this.pierreParam)
+                    );
                   this.totalCount = this.filteredProducts.length;
                   this.getItems();
                 })
