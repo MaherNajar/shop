@@ -20,6 +20,6 @@ export class Product {
 
   get foreignPrice() {
     if (this.priceEU !== 0) return this.priceEU;
-    return Math.round((this.price / 3.3) * 1.1);
+    return Math.round((this.price / 3.2) * 1.1);
   }
 }
