@@ -26,7 +26,8 @@ export class ProductTableComponent {
   items: Product[] = [];
   products: Product[];
   imgNotAvailable = environment.imgNotAvailable;
-  isArchivePage = false;
+  // isArchivePage = false;
+  productsState: 'disponibles' | 'vendus' | 'archivés';
   constructor(
     public productService: ProductService,
     private ngbModal: NgbModal,
@@ -36,14 +37,33 @@ export class ProductTableComponent {
   ) {
     const path = route.snapshot.url;
     if (path.length === 1) {
-      productService.getAllProducts().subscribe((products: Product[]) => {
+      this.productsState = 'disponibles';
+      productService.getAvailableProducts().subscribe((products: Product[]) => {
         this.items = this.products = products.map((p) => new Product({ ...p }));
       });
     } else {
-      this.isArchivePage = true;
-      productService.getArchivedProducts().subscribe((products: Product[]) => {
-        this.items = this.products = products.map((p) => new Product({ ...p }));
-      });
+      switch (path[1].path) {
+        case 'archives':
+          this.productsState = 'archivés';
+          productService
+            .getArchivedProducts()
+            .subscribe((products: Product[]) => {
+              this.items = this.products = products.map(
+                (p) => new Product({ ...p })
+              );
+            });
+          break;
+        case 'vendus':
+          this.productsState = 'vendus';
+          productService.getSoldProducts().subscribe((products: Product[]) => {
+            this.items = this.products = products.map(
+              (p) => new Product({ ...p })
+            );
+          });
+          break;
+        default:
+          break;
+      }
     }
   }
 
@@ -70,7 +90,7 @@ export class ProductTableComponent {
   }
 
   goToPageProduct(id) {
-    if (this.isArchivePage) return;
+    if (this.productsState == 'archivés') return;
     this.router.navigate([`/admin/bijoux/${id}`]);
   }
 
@@ -133,7 +153,7 @@ export class ProductTableComponent {
   }
 
   async ArchiveOrRestore(product: Product) {
-    if (this.isArchivePage) await this.restoreProduct(product);
+    if (this.productsState == 'archivés') await this.restoreProduct(product);
     else await this.archiveProduct(product);
   }
 }

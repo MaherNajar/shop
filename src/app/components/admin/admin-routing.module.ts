@@ -20,6 +20,11 @@ const routes: Routes = [
     canActivate: [AuthGuard, AdminGuard],
   },
   {
+    path: 'bijoux/vendus',
+    component: ProductTableComponent,
+    canActivate: [AuthGuard, AdminGuard],
+  },
+  {
     path: 'bijoux/:id',
     component: ProductFormComponent,
     canActivate: [AuthGuard, AdminGuard],

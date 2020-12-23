@@ -46,10 +46,18 @@ export class ProductService {
       .subscribe();
   }
 
-  getAllProducts() {
+  getAvailableProducts() {
     return this.db
       .collection<Product>('products', (ref) =>
-        ref.orderBy('dateCreation', 'desc')
+        ref.where('status', '==', 'disponible').orderBy('dateCreation', 'desc')
+      )
+      .valueChanges({ idField: 'id' });
+  }
+
+  getSoldProducts() {
+    return this.db
+      .collection<Product>('products', (ref) =>
+        ref.where('status', '==', 'vendu').orderBy('dateCreation', 'desc')
       )
       .valueChanges({ idField: 'id' });
   }

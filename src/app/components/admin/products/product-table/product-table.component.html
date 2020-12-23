@@ -1,5 +1,5 @@
 <div class="table-responsive">
-  <h3>{{ isArchivePage ? "Archives" : "Mes bijoux" }}</h3>
+  <h3>Bijoux {{ productsState }}</h3>
   <div class="row">
     <div class="col-md-4 mb-3">
       <div class="input-group">
@@ -18,14 +18,20 @@
       </div>
     </div>
     <div class="col text-right">
-      <ng-container *ngIf="isArchivePage; else goToArchive">
+      <ng-container *ngIf="productsState !== 'disponibles'; else others">
         <button class="btn btn-light btn-lg" routerLink="/admin/bijoux">
           🔙
         </button>
       </ng-container>
-      <ng-template #goToArchive>
-        <button class="btn btn-secondary" routerLink="/admin/bijoux/archives">
-          Archives
+      <ng-template #others>
+        <button class="btn btn-success" routerLink="/admin/bijoux/vendus">
+          Vendus
+        </button>
+        <button
+          class="btn btn-secondary ml-2"
+          routerLink="/admin/bijoux/archives"
+        >
+          Archivés
         </button>
       </ng-template>
     </div>
@@ -33,7 +39,7 @@
   <table
     aria-describedby="admin products"
     class="table table-bordered"
-    style="height: 100px;"
+    style="height: 100px"
   >
     <thead>
       <tr>
@@ -46,9 +52,9 @@
         <th id="statut">Statut</th>
         <th id="prixDT">Prix TND</th>
         <th id="prixEu">Prix €</th>
-        <th *ngIf="!isArchivePage" id="supprimer">Supprimer</th>
+        <th *ngIf="productsState == 'disponibles'" id="supprimer">Supprimer</th>
         <th id="archiverOuRestaurer">
-          {{ isArchivePage ? "Restaurer" : "Archiver" }}
+          {{ productsState == "archivés" ? "Restaurer" : "Archiver" }}
         </th>
       </tr>
     </thead>
@@ -86,7 +92,7 @@
           <p>
             <span
               title="exclusifs"
-              style="font-size: 15px;"
+              style="font-size: 15px"
               (click)="makeExclusif(p)"
               >{{ p.exclusif ? "🌟" : "✸" }}
             </span>
@@ -94,7 +100,7 @@
         </td>
         <td>{{ p.price }}</td>
         <td>{{ p.foreignPrice }}</td>
-        <td *ngIf="!isArchivePage">
+        <td *ngIf="productsState == 'disponibles'">
           <span title="supprimer" (click)="deleteProduct(p)">🗑️</span>
         </td>
         <td>
@@ -110,9 +116,7 @@
   <div></div>
 
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-title">
-      Suppression interdite
-    </h4>
+    <h4 class="modal-title" id="modal-title">Suppression interdite</h4>
   </div>
   <div class="modal-body">
     <p>
