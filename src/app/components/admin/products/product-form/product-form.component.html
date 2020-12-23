@@ -11,10 +11,10 @@
                 name="status"
                 [(ngModel)]="product.status"
               >
-                <label ngbButtonLabel class="btn-success btn-sm">
+                <label ngbButtonLabel class="btn-warning btn-sm">
                   <input ngbButton type="radio" value="disponible" /> Disponible
                 </label>
-                <label ngbButtonLabel class="btn-danger btn-sm">
+                <label ngbButtonLabel class="btn-success btn-sm">
                   <input ngbButton type="radio" value="vendu" /> Vendu
                 </label>
               </div>
@@ -69,7 +69,7 @@
           <div class="input-group">
             <div class="input-group-prepend">
               <div class="input-group-text">
-                <span style="width: 24px; height: 24px;" title="balance"
+                <span style="width: 24px; height: 24px" title="balance"
                   >⚖️</span
                 >
               </div>
@@ -202,8 +202,8 @@
                   [alt]="c.name"
                 />
                 {{ c.name }}</span
-              ></option
-            >
+              >
+            </option>
           </select>
           <div class="mt-2">
             <ul class="list-inline">
