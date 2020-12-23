@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'src/environments/environment';
 import { ToastService } from 'src/app/services/toast.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { WarnModalComponent } from '../warn-modal/warn-modal.component';
 
 @Component({
   templateUrl: './product-table.component.html',
@@ -22,7 +23,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   ],
 })
 export class ProductTableComponent {
-  @ViewChild('modal') modal: ElementRef;
+  @ViewChild('disallowModal') disallowModal: ElementRef;
+  @ViewChild('warnModal') warnModal: ElementRef;
   items: Product[] = [];
   products: Product[];
   imgNotAvailable = environment.imgNotAvailable;
@@ -30,7 +32,7 @@ export class ProductTableComponent {
   productsState: 'disponibles' | 'vendus' | 'archivés';
   constructor(
     public productService: ProductService,
-    private ngbModal: NgbModal,
+    private modalService: NgbModal,
     private toastService: ToastService,
     route: ActivatedRoute,
     private router: Router
@@ -67,11 +69,33 @@ export class ProductTableComponent {
     }
   }
 
-  openModal() {
-    this.ngbModal.open(this.modal, {
+  opendisallowModal() {
+    this.modalService.open(this.disallowModal, {
       centered: true,
       size: 'md',
     });
+  }
+
+  openWarnModal(product: Product) {
+    const modalRef = this.modalService.open(WarnModalComponent);
+    modalRef.componentInstance.product = product;
+    modalRef.result.then(
+      async (result: Product) => {
+        try {
+          await this.productService.delete(result);
+          this.toastService.show(
+            'Suppression',
+            `${result.title} a été supprimé avec succès !`
+          );
+        } catch (error) {
+          this.toastService.show(
+            'Suppression',
+            `Un problème est survenu lors de la suppression de ${result.title} !`
+          );
+        }
+      },
+      (reason) => null
+    );
   }
 
   filter(query: string) {
@@ -99,28 +123,17 @@ export class ProductTableComponent {
     this.productService.update(product);
   }
 
-  async deleteProduct(product: Product) {
+  deleteProduct(product: Product) {
     if (product.status === 'réservé') {
-      return this.openModal();
+      return this.opendisallowModal();
     }
 
-    try {
-      await this.productService.delete(product);
-      this.toastService.show(
-        'Suppression',
-        `${product.title} a été supprimé avec succès !`
-      );
-    } catch (error) {
-      this.toastService.show(
-        'Suppression',
-        `Un problème est survenu lors de la suppression de ${product.title} !`
-      );
-    }
+    this.openWarnModal(product);
   }
 
   async archiveProduct(product: Product) {
     if (product.status === 'réservé') {
-      return this.openModal();
+      return this.opendisallowModal();
     }
 
     try {

@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="col mt-2">
-      <h5 class="text-muted">Total : {{ products.length }}</h5>
+      <h5 class="text-muted">Total : {{ products?.length }}</h5>
     </div>
     <div class="col text-right">
       <ng-container *ngIf="productsState !== 'disponibles'; else others">
@@ -117,7 +117,7 @@
     </tbody>
   </table>
 </div>
-<ng-template #modal>
+<ng-template #disallowModal>
   <div></div>
 
   <div class="modal-header">

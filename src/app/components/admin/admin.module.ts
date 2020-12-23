@@ -16,6 +16,7 @@ import { OrderTableComponent } from './orders/order-table/order-table.component'
 import { CustomerDetailsComponent } from './customers/customer-details/customer-details.component';
 import { ProductPreviewModule } from '../products/product-preview/product-preview.module';
 import { ContactsComponent } from './contacts/contacts.component';
+import { WarnModalComponent } from './products/warn-modal/warn-modal.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ContactsComponent } from './contacts/contacts.component';
     OrderTableComponent,
     CustomerDetailsComponent,
     ContactsComponent,
+    WarnModalComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,38 @@
+.modal-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary);
+  color: white;
+}
+
+.close {
+  font-weight: 100;
+  color: white;
+  text-shadow: none;
+  opacity: 1;
+}
+
+.modal-body {
+  text-align: center;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.modal-footer {
+  background-color: var(--primary);
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+}
+
+.btn-outline-dark {
+  color: white;
+  border-color: white;
+}
+.btn-outline-dark:hover {
+  border-color: #343a40 !important;
+}
