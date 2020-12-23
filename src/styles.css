@@ -19,6 +19,14 @@ h3 {
   cursor: pointer;
 }
 
+.btn-warning.active {
+  box-shadow: 0 0 0 0.2rem rgba(222, 170, 12, 0.5);
+}
+
+.btn-success.active {
+  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
+}
+
 .StoneFilter,
 .ContentLeft {
   font-size: small;
