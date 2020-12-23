@@ -2,11 +2,12 @@
 <div class="row" *ngIf="cartService.cart as cart">
   <div class="col-md-6 mb-3">
     <div class="alert alert-info" role="alert">
-      Tous nos bijoux sont des pièces uniques. Nous ne faisons pas de livraison
-      à domicile ni de paiement par internet. La validation de votre commande
-      vous permettra de réserver les bijoux disponibles en attendant de venir
-      les récupérer à notre adresse :
-      <strong>160 rue Hédi Chaker la Marsa Erriadh, 2076 Tunis.</strong>
+      Une fois votre commande confirmée, je prendrai contact avec vous pour
+      définir un moyen de paiement et récupération ou livraison des bijoux. Mes
+      bijoux sont tous des pièces uniques que je confectionne à mon domicile à
+      l'adresse 160 rue Hédi Chaker la Marsa Erriadh, 2076 Tunis. N'hésitez pas
+      à m'envoyer vos demandes pour les bijoux qui sont déjà vendus. Je peux les
+      refaire sur commande sous réserve de disponibilité des matériaux.
     </div>
     <contact-form (onSendContactForm)="placeOrder($event)"></contact-form>
   </div>

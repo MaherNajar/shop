@@ -38,12 +38,12 @@
     (click)="sendMessage()"
     [disabled]="f.invalid"
     type="submit"
-    class="btn btn-sm"
+    class="btn btn-sm float-right"
     [ngClass]="{
       'btn-secondary': requiredMessage,
       'btn-warning': !requiredMessage
     }"
   >
-    {{ requiredMessage ? "Envoyer" : "Valider ma commande" }}
+    {{ requiredMessage ? "Envoyer" : "J'accepte et je confirme ma commande" }}
   </button>
 </form>

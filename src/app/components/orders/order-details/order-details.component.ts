@@ -4,6 +4,7 @@ import { OrderService } from 'src/app/services/order.service';
 import { Order } from 'src/app/models/order';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { LocationService } from 'src/app/services/location.service';
 
 @Component({
   selector: 'order-details',
@@ -15,7 +16,8 @@ export class OrderDetailsComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private orderService: OrderService,
-    public authService: AuthService
+    public authService: AuthService,
+    public locService: LocationService
   ) {}
 
   async ngOnInit() {

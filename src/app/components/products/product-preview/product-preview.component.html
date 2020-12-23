@@ -88,7 +88,7 @@
         </h5>
       </ng-container>
       <div class="mb-3 text-center" *ngIf="cartService.cart as cart">
-        <button
+        <!-- <button
           (click)="addToCart()"
           *ngIf="
             product.status === 'disponible' &&
@@ -97,17 +97,20 @@
           "
           class="btn btn-warning btn-block"
         >
-          <strong>Commander</strong> 👜
+          <strong>Ajouter au panier</strong>
+        </button> -->
+        <button (click)="addToCart()" class="btn btn-warning btn-block">
+          <strong>Ajouter au panier</strong>
         </button>
-        <ng-template #removeProduct>
+        <!-- <ng-template #removeProduct>
           <button
             (click)="removeFromCart()"
             *ngIf="product.status === 'disponible'"
             class="btn btn-light btn-block"
           >
-            ➖ 👜
+            Retirer du panier
           </button>
-        </ng-template>
+        </ng-template> -->
       </div>
     </div>
   </div>

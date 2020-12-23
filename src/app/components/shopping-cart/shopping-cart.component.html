@@ -1,20 +1,30 @@
-<h3>
-  Mon panier
-</h3>
+<h3>Mon panier</h3>
 
 <ng-container *ngIf="cartService.cart as cart">
   <p class="text-center">
-    Vous avez {{ cart.totalItemsCount }} bijoux dans le panier.
     <button routerLink="/bijoux" type="button" class="btn btn-info btn-sm">
       Continuer mes achats
     </button>
+    <span class="mx-2">
+      {{ cart.totalItemsCount }} article{{
+        cart.totalItemsCount === 1 ? "" : "s"
+      }}
+      dans le 👜
+    </span>
     <button
       routerLink="/caisse"
       type="button"
-      class="btn btn-warning btn-sm ml-2"
+      class="btn btn-warning btn-sm"
       [disabled]="cart.totalItemsCount === 0"
     >
-      Valider mon panier
+      Valider
+    </button>
+    <button
+      (click)="cartService.clearCart()"
+      title="vider"
+      class="btn btn-light btn-sm ml-2 float-right"
+    >
+      🧹
     </button>
   </p>
   <div class="table-responsive">

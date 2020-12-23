@@ -2,7 +2,10 @@
   <div class="card-body">
     <h4 class="card-title">Récapitulatif de la commande</h4>
     <p class="card-text">
-      Vous avez {{ cart.totalItemsCount }} bijoux dans le panier.
+      Vous avez {{ cart.totalItemsCount }} article{{
+        cart.totalItemsCount === 1 ? "" : "s"
+      }}
+      dans le panier.
     </p>
     <ng-container *ngIf="locService.location$ | async as location">
       <ul class="list-group list-group-flush">
