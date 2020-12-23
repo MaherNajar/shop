@@ -17,6 +17,9 @@
         </div>
       </div>
     </div>
+    <div class="col mt-2">
+      <h5 class="text-muted">Total : {{ products.length }}</h5>
+    </div>
     <div class="col text-right">
       <ng-container *ngIf="productsState !== 'disponibles'; else others">
         <button class="btn btn-light btn-lg" routerLink="/admin/bijoux">
@@ -43,6 +46,7 @@
   >
     <thead>
       <tr>
+        <th id="numero">Numéro</th>
         <th id="auteur">Auteur</th>
         <th id="title">Intitulé</th>
         <th id="dateCreation">Créé le</th>
@@ -59,7 +63,8 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let p of items">
+      <tr *ngFor="let p of items; let i = index">
+        <td>{{ i + 1 }}</td>
         <td><span title="auteur" routerLink="/profil/{{ p.uid }}">🕴️</span></td>
         <td>
           {{ p.title }}
