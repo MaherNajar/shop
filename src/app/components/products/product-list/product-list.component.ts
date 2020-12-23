@@ -122,13 +122,15 @@ export class ProductListComponent implements OnInit {
                   this.reset();
                   this.couleurParam = params.couleur;
                   this.category = 'couleur';
-                  this.filteredProducts = products.filter((x) =>
-                    x.colors?.some(
-                      (c) =>
-                        this.colorService.getColorObject(c).name ===
-                        this.couleurParam
-                    )
-                  );
+                  this.filteredProducts = products
+                    .map((x) => new Product({ ...x }))
+                    .filter((x) =>
+                      x.colors?.some(
+                        (c) =>
+                          this.colorService.getColorObject(c).name ===
+                          this.couleurParam
+                      )
+                    );
                   this.totalCount = this.filteredProducts.length;
                   this.getItems();
                 })
