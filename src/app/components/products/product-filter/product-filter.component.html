@@ -1,7 +1,7 @@
-<div class="ContentLeft">
+<div>
   <dl>
     <div>
-      <dt id="MenuTitle">Menu</dt>
+      <!-- <dt id="MenuTitle">Menu</dt> -->
       <dd>
         <ul id="Menu">
           <li>
@@ -49,7 +49,11 @@
         </ul>
       </dd>
     </div>
+  </dl>
+</div>
 
+<div class="ContentLeft">
+  <dl>
     <div id="FilterByStone">
       <dt>Filtrer par :</dt>
       <dd>
@@ -90,7 +94,7 @@
               <br />
               <span
                 *ngIf="color.name === couleur; else space"
-                style="color: #999;"
+                style="color: #999"
                 >{{ count }}</span
               >
               <ng-template #space>

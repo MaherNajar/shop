@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { StoneService } from 'src/app/services/stones.service';
+import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'product-stories',
@@ -17,6 +18,14 @@ import { StoneService } from 'src/app/services/stones.service';
         font-size: 14px;
       }
     `,
+  ],
+  animations: [
+    trigger('fade', [
+      transition('void => *', [
+        style({ opacity: 0 }),
+        animate(350, style({ opacity: 1 })),
+      ]),
+    ]),
   ],
 })
 export class ProductStoriesComponent implements OnInit {

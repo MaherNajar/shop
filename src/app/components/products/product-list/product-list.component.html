@@ -1,9 +1,14 @@
-<h1 class="font-weight-light text-center text-lg-left mt-4">
-  Arc en perles 🌈💎
+<h1
+  @fade
+  id="site-title"
+  style="font-family: 'Cookie', cursive; margin-left: 190px"
+  class="text-center mb-4"
+>
+  <span style="font-size: 65px">Arc en perles</span>
+  🎄🎅🎁
 </h1>
-<hr class="mb-4" />
-
 <product-filter
+  style="position: sticky; top: 220px"
   [count]="totalCount"
   [pierre]="pierreParam"
   [couleur]="couleurParam"
@@ -29,9 +34,8 @@
       >
         <ng-container *ngIf="product.gallery.length > 0; else prisme">
           <ng-container *ngIf="product.loaded">
-            <div class="prod-container">
+            <div @fade class="prod-container">
               <img
-                @fade
                 class="img-fluid shadow mb-2"
                 src="{{ product.gallery[0] | size: '400' }}"
                 alt="{{ product.title }}"

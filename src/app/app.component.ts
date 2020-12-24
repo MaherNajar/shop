@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
     private cartService: ShoppingCartService,
     private swUpdate: SwUpdate
   ) {}
+
   ngOnInit() {
     this.swUpdate.available.subscribe((event) => {
       location.reload();
