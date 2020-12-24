@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
 import { LocationService } from 'src/app/services/location.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
+import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'product-list',
@@ -32,10 +33,18 @@ import { User } from 'src/app/models/user';
       }
     `,
   ],
+  animations: [
+    trigger('fade', [
+      transition('void => *', [
+        style({ opacity: 0 }),
+        animate(350, style({ opacity: 1 })),
+      ]),
+    ]),
+  ],
 })
 export class ProductListComponent implements OnInit {
   user: User;
-  filteredProducts: Product[] = [];
+  filteredProducts: Product[];
   category: string = '';
   couleurParam: string = '';
   pierreParam: string = '';
@@ -70,7 +79,7 @@ export class ProductListComponent implements OnInit {
         this.category = 'all';
         this.filteredProducts = products.map((x) => new Product({ ...x }));
         this.totalCount = this.filteredProducts.length;
-        this.getItems();
+        // this.getItems();
       } else {
         switch (url[0].path) {
           case 'colliers':
@@ -79,7 +88,7 @@ export class ProductListComponent implements OnInit {
               .map((x) => new Product({ ...x }))
               .filter((x) => x.category === 'colliers');
             this.totalCount = this.filteredProducts.length;
-            this.getItems();
+            // this.getItems();
             break;
           case 'bracelets-bagues-bo':
             this.category = 'bracelets-bagues-bo';
@@ -87,7 +96,7 @@ export class ProductListComponent implements OnInit {
               .map((x) => new Product({ ...x }))
               .filter((x) => x.category === 'bracelets_bagues_bo');
             this.totalCount = this.filteredProducts.length;
-            this.getItems();
+            // this.getItems();
             break;
           case 'exclusifs':
             this.category = 'exclusifs';
@@ -95,13 +104,13 @@ export class ProductListComponent implements OnInit {
               .map((x) => new Product({ ...x }))
               .filter((x) => x.exclusif);
             this.totalCount = this.filteredProducts.length;
-            this.getItems();
+            // this.getItems();
             break;
           case 'pierre':
             this.route.params
               .pipe(
                 map((params) => {
-                  this.reset();
+                  // this.reset();
                   this.pierreParam = params.pierre;
                   this.category = 'pierre';
                   this.filteredProducts = products
@@ -110,7 +119,7 @@ export class ProductListComponent implements OnInit {
                       x.stones?.some((s) => s === this.pierreParam)
                     );
                   this.totalCount = this.filteredProducts.length;
-                  this.getItems();
+                  // this.getItems();
                 })
               )
               .subscribe();
@@ -119,7 +128,7 @@ export class ProductListComponent implements OnInit {
             this.route.params
               .pipe(
                 map((params) => {
-                  this.reset();
+                  // this.reset();
                   this.couleurParam = params.couleur;
                   this.category = 'couleur';
                   this.filteredProducts = products
@@ -132,7 +141,7 @@ export class ProductListComponent implements OnInit {
                       )
                     );
                   this.totalCount = this.filteredProducts.length;
-                  this.getItems();
+                  // this.getItems();
                 })
               )
               .subscribe();
@@ -142,29 +151,29 @@ export class ProductListComponent implements OnInit {
     });
   }
 
-  private reset() {
-    this.canLoadMore = true;
-    this.filteredProducts = [];
-    this.items = [];
-    this.position = 0;
-  }
+  // private reset() {
+  //   this.canLoadMore = true;
+  //   this.filteredProducts = [];
+  //   this.items = [];
+  //   this.position = 0;
+  // }
 
-  getItems() {
-    if (this.position === this.totalCount) {
-      this.canLoadMore = false;
-      return;
-    }
+  // getItems() {
+  //   if (this.position === this.totalCount) {
+  //     this.canLoadMore = false;
+  //     return;
+  //   }
 
-    let nextPosition = this.position + this.step;
+  //   let nextPosition = this.position + this.step;
 
-    if (nextPosition > this.totalCount) {
-      nextPosition = this.totalCount;
-      this.canLoadMore = false;
-    }
+  //   if (nextPosition > this.totalCount) {
+  //     nextPosition = this.totalCount;
+  //     this.canLoadMore = false;
+  //   }
 
-    let tmp = [...this.filteredProducts];
-    let nextPhotos = tmp.slice(this.position, nextPosition);
-    this.items.push(...nextPhotos);
-    this.position = nextPosition;
-  }
+  //   let tmp = [...this.filteredProducts];
+  //   let nextPhotos = tmp.slice(this.position, nextPosition);
+  //   this.items.push(...nextPhotos);
+  //   this.position = nextPosition;
+  // }
 }

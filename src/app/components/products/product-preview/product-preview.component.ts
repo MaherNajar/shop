@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
 import { ContactService } from 'src/app/services/contact.service';
 import { Contact } from 'src/app/models/contact';
 import { ToastService } from 'src/app/services/toast.service';
+import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'product-preview',
@@ -29,6 +30,14 @@ import { ToastService } from 'src/app/services/toast.service';
         opacity: 0.6;
       }
     `,
+  ],
+  animations: [
+    trigger('fade', [
+      transition('void => *', [
+        style({ opacity: 0 }),
+        animate(350, style({ opacity: 1 })),
+      ]),
+    ]),
   ],
 })
 export class ProductPreviewComponent {
@@ -54,9 +63,11 @@ export class ProductPreviewComponent {
   }
 
   openModal(content) {
-    this.ngbModal.open(content, {
-      centered: true,
-      size: 'lg',
+    this.product.preloadMainImage(() => {
+      this.ngbModal.open(content, {
+        centered: true,
+        size: 'lg',
+      });
     });
   }
 

@@ -13,13 +13,41 @@ export class Product {
   status: 'disponible' | 'réservé' | 'vendu' = 'disponible';
   exclusif: boolean = false;
   dateCreation: string = '';
+  loaded: boolean = false;
 
   constructor(init?: Partial<Product>) {
     Object.assign(this, init);
+    this.preloadImage();
   }
 
   get foreignPrice() {
     if (this.priceEU !== 0) return this.priceEU;
     return Math.round((this.price / 3.2) * 1.1);
+  }
+
+  preloadImage() {
+    let preload = new Image();
+
+    preload.onload = () => {
+      this.loaded = true;
+    };
+
+    let src = this.gallery[0];
+    let url = src.split('?');
+    url.splice(1, 0, '_400x300?');
+    preload.src = url.join('');
+  }
+
+  preloadMainImage(callback) {
+    this.loaded = false;
+
+    let preload = new Image();
+
+    preload.onload = () => {
+      this.loaded = true;
+      callback();
+    };
+
+    preload.src = this.gallery[0];
   }
 }

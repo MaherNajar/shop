@@ -10,40 +10,48 @@
   [category]="category"
 ></product-filter>
 
-<div
+<!-- <div
   class="search-results"
   infiniteScroll
   [infiniteScrollDistance]="2"
   [infiniteScrollThrottle]="50"
   (scrolled)="getItems()"
->
+> -->
+<ng-container *ngIf="filteredProducts; else loader">
   <div class="row">
-    <div *ngFor="let product of items" class="col-lg-3 col-md-4 col-6">
+    <div
+      *ngFor="let product of filteredProducts"
+      class="col-lg-3 col-md-4 col-6"
+    >
       <a
         routerLink="/bijoux/{{ product.id }}"
         class="d-block mb-4 h-100 text-center"
       >
         <ng-container *ngIf="product.gallery.length > 0; else prisme">
-          <div class="prod-container">
-            <img
-              class="img-fluid shadow mb-2"
-              src="{{ product.gallery[0] | size: '400' }}"
-              alt="{{ product.title }}"
-            />
-            <span
-              class="badge badge-pill top-right"
-              [ngClass]="{
-                'badge-primary': product.status === 'réservé',
-                'badge-success': product.status === 'vendu',
-                'badge-warning': product.status === 'disponible'
-              }"
-              style="font-size: small; opacity: 0.5"
-              >{{ product.status }}
-            </span>
-          </div>
+          <ng-container *ngIf="product.loaded">
+            <div class="prod-container">
+              <img
+                @fade
+                class="img-fluid shadow mb-2"
+                src="{{ product.gallery[0] | size: '400' }}"
+                alt="{{ product.title }}"
+              />
+              <span
+                class="badge badge-pill top-right"
+                [ngClass]="{
+                  'badge-primary': product.status === 'réservé',
+                  'badge-success': product.status === 'vendu',
+                  'badge-warning': product.status === 'disponible'
+                }"
+                style="font-size: small; opacity: 0.5"
+                >{{ product.status }}
+              </span>
+            </div>
+          </ng-container>
         </ng-container>
         <ng-template #prisme>
           <img
+            @fade
             [src]="imgNotAvailable | noImgSize: '400'"
             alt="photo non disponible"
             class="img-fluid shadow mb-2"
@@ -64,9 +72,17 @@
       </a>
     </div>
   </div>
-  <div *ngIf="totalCount > 0 && canLoadMore" class="text-center">
-    <div class="spinner-border" role="status">
-      <span class="sr-only">Loading...</span>
-    </div>
+</ng-container>
+<ng-template #loader>
+  <img
+    alt="loader"
+    style="display: block; margin-left: auto; margin-right: auto"
+    src="assets/loader-100.gif"
+  />
+</ng-template>
+<!-- <div *ngIf="totalCount > 0 && canLoadMore" class="text-center">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
   </div>
-</div>
+</div> -->
+<!-- </div> -->

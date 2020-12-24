@@ -5,6 +5,7 @@
         *ngIf="product.gallery.length > 0; else prisme"
         (click)="openModal(content)"
         ><img
+          @fade
           class="img-fluid pointer shadow"
           src="{{ mainPicture | size: '400' }}"
           alt="{{ product.title }}"
@@ -12,6 +13,7 @@
       /></span>
       <ng-template #prisme>
         <img
+          @fade
           class="img-fluid"
           src="{{ imgNotAvailable | noImgSize: '400' }}"
           alt="photo non disponible"
@@ -59,6 +61,7 @@
               >
                 <img
                   class="Color"
+                  @fade
                   src="assets/colors/{{ color.key }}.png"
                   [alt]="color.name"
                   [title]="color.name"
@@ -141,6 +144,7 @@
   <ng-template #content let-modal>
     <img
       (click)="modal.dismiss('Cross click')"
+      @fade
       alt="{{ product.title }}"
       class="img-fluid"
       src="{{ mainPicture }}"
