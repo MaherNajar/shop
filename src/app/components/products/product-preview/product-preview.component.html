@@ -6,7 +6,7 @@
         (click)="openModal(content)"
         ><img
           @fade
-          class="img-fluid pointer shadow"
+          class="img-fluid pointer shadow rounded"
           src="{{ mainPicture | size: '400' }}"
           alt="{{ product.title }}"
           id="mainpic"
@@ -129,7 +129,7 @@
             notSelected: selectedPicture !== i
           }"
           @fade
-          class="img-fluid shadow"
+          class="img-fluid shadow rounded"
           src="{{ picture | size: '100' }}"
           alt="{{ product.title }}"
       /></a>
@@ -147,7 +147,7 @@
       (click)="modal.dismiss('Cross click')"
       @fade
       alt="{{ product.title }}"
-      class="img-fluid"
+      class="img-fluid rounded"
       src="{{ mainPicture }}"
     />
   </ng-template>
