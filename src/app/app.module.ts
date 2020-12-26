@@ -14,9 +14,10 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { SharedModule } from './components/commons/shared.module';
+import { SnowflakesComponent } from './components/snowflakes/snowflakes.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, SnowflakesComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
