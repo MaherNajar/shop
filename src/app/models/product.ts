@@ -33,6 +33,7 @@ export class Product {
     };
 
     let src = this.gallery[0];
+    if (!src) return;
     let url = src.split('?');
     url.splice(1, 0, '_400x300?');
     preload.src = url.join('');
