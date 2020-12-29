@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './components/commons/shared.module';
 import { SnowflakesComponent } from './components/snowflakes/snowflakes.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent, SnowflakesComponent],
@@ -22,6 +23,7 @@ import { SnowflakesComponent } from './components/snowflakes/snowflakes.componen
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,

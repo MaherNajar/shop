@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Product } from 'src/app/models/product';
 import { AuthService } from './auth.service';
-import { switchMap, take } from 'rxjs/operators';
+import { map, switchMap, take } from 'rxjs/operators';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { User } from '../models/user';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +14,8 @@ export class ProductService {
   constructor(
     private db: AngularFirestore,
     private authService: AuthService,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private http: HttpClient
   ) {}
 
   get(id: string) {
@@ -43,6 +45,14 @@ export class ProductService {
             .update({ ...product, uid });
         })
       )
+      .subscribe();
+  }
+
+  // new API .NET CORE
+  createProduct(product) {
+    return this.http
+      .post('https://localhost:44314/api/products', product)
+      .pipe(map((res) => console.log(res)))
       .subscribe();
   }
 
