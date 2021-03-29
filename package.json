@@ -28,7 +28,7 @@
     "bootstrap": "^4.6.0",
     "firebase": "^8.2.10",
     "ngx-infinite-scroll": "^10.0.1",
-    "rxjs": "~6.6.3",
+    "rxjs": "~6.6.7",
     "tslib": "^2.1.0"
   },
   "devDependencies": {
