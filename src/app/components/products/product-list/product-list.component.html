@@ -39,6 +39,7 @@
                 alt="{{ product.title }}"
               />
               <span
+                *ngIf="user?.isAdmin"
                 class="badge badge-pill top-right"
                 [ngClass]="{
                   'badge-primary': product.status === 'réservé',

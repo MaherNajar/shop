@@ -74,7 +74,7 @@ export class ProductListComponent implements OnInit {
 
   private getFilteredProducts() {
     const { url } = this.route.snapshot;
-    this.productService.getAvailableProducts().subscribe((products) => {
+    this.productService.getAll().subscribe((products) => {
       if (url.length === 0) {
         this.category = 'all';
         this.filteredProducts = products.map((x) => new Product({ ...x }));

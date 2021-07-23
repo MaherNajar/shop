@@ -56,6 +56,14 @@ export class ProductService {
       .subscribe();
   }
 
+  getAll() {
+    return this.db
+      .collection<Product>('products', (ref) =>
+        ref.orderBy('dateCreation', 'desc')
+      )
+      .valueChanges({ idField: 'id' });
+  }
+
   getAvailableProducts() {
     return this.db
       .collection<Product>('products', (ref) =>
