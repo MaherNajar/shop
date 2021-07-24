@@ -1,154 +1,165 @@
-<div class="h-100 mb-3">
-  <div class="row">
-    <div class="col-6 mt-4">
-      <span
-        *ngIf="product.gallery.length > 0; else prisme"
-        (click)="openModal(content)"
-        ><img
-          @fade
-          class="img-fluid pointer shadow rounded"
-          src="{{ mainPicture | size: '400' }}"
-          alt="{{ product.title }}"
-          id="mainpic"
-      /></span>
-      <ng-template #prisme>
-        <img
-          @fade
-          class="img-fluid"
-          src="{{ imgNotAvailable | noImgSize: '400' }}"
-          alt="photo non disponible"
-          id="imgNonDisponible"
-        />
-      </ng-template>
-    </div>
-    <div class="col m-3">
-      <p *ngIf="canSetPic" class="text-right">
+<ng-container
+  *ngIf="product && locService.location$ | async as location; else loader"
+>
+  <div class="h-100 mb-3">
+    <div class="row">
+      <div class="col-6 mt-4">
         <span
-          class="badge badge-pill"
-          [ngClass]="{
-            'badge-primary': product.status === 'réservé',
-            'badge-success': product.status === 'vendu',
-            'badge-warning': product.status === 'disponible'
-          }"
-          style="font-size: small"
-          >{{ product.status }}</span
-        >
-      </p>
-      <h5 class="text-center">
-        {{ product.title }}
-      </h5>
-      <div>
-        <ul class="list-inline mt-3">
-          <li *ngFor="let s of product.stones" class="list-inline-item">
-            <ng-container *ngIf="stoneService.getStoneObject(s) as stone">
-              <span
-                (click)="queryByParam({ pierre: stone.name })"
-                class="StoneFilter pointer"
-                [ngStyle]="{ color: stone.cssColor }"
-                >{{ stone.name }}</span
-              >
-            </ng-container>
-          </li>
-        </ul>
+          *ngIf="product.gallery.length > 0; else prisme"
+          (click)="openModal(content)"
+          ><img
+            @fade
+            class="img-fluid pointer shadow rounded"
+            src="{{ mainPicture | size: '400' }}"
+            alt="{{ product.title }}"
+            id="mainpic"
+        /></span>
+        <ng-template #prisme>
+          <img
+            @fade
+            class="img-fluid"
+            src="{{ imgNotAvailable | noImgSize: '400' }}"
+            alt="photo non disponible"
+            id="imgNonDisponible"
+          />
+        </ng-template>
       </div>
-      <div>
-        <ul class="list-inline">
-          <li *ngFor="let c of product.colors" class="list-inline-item">
-            <ng-container *ngIf="colorService.getColorObject(c) as color"
-              ><span
-                class="pointer"
-                (click)="queryByParam({ couleur: color.name })"
-              >
-                <img
-                  class="Color"
-                  @fade
-                  src="assets/colors/{{ color.key }}.png"
-                  [alt]="color.name"
-                  [title]="color.name"
-                />
-              </span>
-            </ng-container>
-          </li>
-        </ul>
-      </div>
-      <ng-container *ngIf="locService.location$ | async as location">
-        <h5 class="text-center">
-          <span class="price">
-            Prix :
-            {{
-              canSetPic
-                ? product.foreignPrice
-                : location.isInTN
-                ? product.price
-                : product.foreignPrice
-            }}
-            {{ canSetPic ? "€" : location.displayCurrency }}
-          </span>
-          <!-- <img
-            src="assets/{{ location.isInTN ? 'dinar' : 'euro' }}.png"
-            alt="image devise"
-          /> -->
-        </h5>
-      </ng-container>
-      <div class="mb-3 text-center" *ngIf="cartService.cart as cart">
-        <!-- <button
-          (click)="addToCart()"
-          *ngIf="
-            product.status === 'disponible' &&
-              cartService.cart.getItemQuantity(product.id) === 0;
-            else removeProduct
-          "
-          class="btn btn-warning btn-block"
-        >
-          <strong>Ajouter au panier</strong>
-        </button> -->
-        <button (click)="addToCart()" class="btn btn-warning btn-block">
-          <strong>Ajouter au panier</strong>
-        </button>
-        <!-- <ng-template #removeProduct>
-          <button
-            (click)="removeFromCart()"
-            *ngIf="product.status === 'disponible'"
-            class="btn btn-light btn-block"
+      <div class="col m-3">
+        <p *ngIf="canSetPic" class="text-right">
+          <span
+            class="badge badge-pill"
+            [ngClass]="{
+              'badge-primary': product.status === 'réservé',
+              'badge-success': product.status === 'vendu',
+              'badge-warning': product.status === 'disponible'
+            }"
+            style="font-size: small"
+            >{{ product.status }}</span
           >
-            Retirer du panier
+        </p>
+        <h5 class="text-center">
+          {{ product.title }}
+        </h5>
+        <div>
+          <ul class="list-inline mt-3">
+            <li *ngFor="let s of product.stones" class="list-inline-item">
+              <ng-container *ngIf="stoneService.getStoneObject(s) as stone">
+                <span
+                  (click)="queryByParam({ pierre: stone.name })"
+                  class="StoneFilter pointer"
+                  [ngStyle]="{ color: stone.cssColor }"
+                  >{{ stone.name }}</span
+                >
+              </ng-container>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <ul class="list-inline">
+            <li *ngFor="let c of product.colors" class="list-inline-item">
+              <ng-container *ngIf="colorService.getColorObject(c) as color"
+                ><span
+                  class="pointer"
+                  (click)="queryByParam({ couleur: color.name })"
+                >
+                  <img
+                    class="Color"
+                    @fade
+                    src="assets/colors/{{ color.key }}.png"
+                    [alt]="color.name"
+                    [title]="color.name"
+                  />
+                </span>
+              </ng-container>
+            </li>
+          </ul>
+        </div>
+        <ng-container>
+          <h5 class="text-center">
+            <span class="price">
+              Prix :
+              {{
+                canSetPic
+                  ? product.foreignPrice
+                  : location.isInTN
+                  ? product.price
+                  : product.foreignPrice
+              }}
+              {{ canSetPic ? "€" : location.displayCurrency }}
+            </span>
+            <!-- <img
+              src="assets/{{ location.isInTN ? 'dinar' : 'euro' }}.png"
+              alt="image devise"
+              /> -->
+          </h5>
+        </ng-container>
+        <div class="mb-3 text-center" *ngIf="cartService.cart as cart">
+          <!-- <button
+              (click)="addToCart()"
+              *ngIf="
+              product.status === 'disponible' &&
+              cartService.cart.getItemQuantity(product.id) === 0;
+              else removeProduct
+              "
+              class="btn btn-warning btn-block"
+              >
+              <strong>Ajouter au panier</strong>
+            </button> -->
+          <button (click)="addToCart()" class="btn btn-warning btn-block">
+            <strong>Ajouter au panier</strong>
           </button>
-        </ng-template> -->
+          <!-- <ng-template #removeProduct>
+              <button
+              (click)="removeFromCart()"
+              *ngIf="product.status === 'disponible'"
+              class="btn btn-light btn-block"
+              >
+              Retirer du panier
+            </button>
+          </ng-template> -->
+        </div>
       </div>
     </div>
-  </div>
-  <ul *ngIf="product.gallery.length > 0" class="list-inline mt-1">
-    <li
-      class="list-inline-item my-1"
-      *ngFor="let picture of product.gallery; let i = index"
-    >
-      <a (dblclick)="setPic()" (click)="selectedPicture = i" [routerLink]=""
-        ><img
-          [ngClass]="{
-            selected: selectedPicture === i,
-            notSelected: selectedPicture !== i
-          }"
-          @fade
-          class="img-fluid shadow rounded"
-          src="{{ picture | size: '100' }}"
-          alt="{{ product.title }}"
-      /></a>
-    </li>
-  </ul>
-  <ng-container *ngIf="!canSetPic">
-    <contact-form
-      [requiredMessage]="true"
-      (onSendContactForm)="createContact($event)"
-    ></contact-form>
-  </ng-container>
+    <ul *ngIf="product.gallery.length > 0" class="list-inline mt-1">
+      <li
+        class="list-inline-item my-1"
+        *ngFor="let picture of product.gallery; let i = index"
+      >
+        <a (dblclick)="setPic()" (click)="selectedPicture = i" [routerLink]=""
+          ><img
+            [ngClass]="{
+              selected: selectedPicture === i,
+              notSelected: selectedPicture !== i
+            }"
+            @fade
+            class="img-fluid shadow rounded"
+            src="{{ picture | size: '100' }}"
+            alt="{{ product.title }}"
+        /></a>
+      </li>
+    </ul>
+    <ng-container *ngIf="!canSetPic">
+      <contact-form
+        [requiredMessage]="true"
+        (onSendContactForm)="createContact($event)"
+      ></contact-form>
+    </ng-container>
 
-  <ng-template #content let-modal>
-    <img
-      (click)="modal.dismiss('Cross click')"
-      @fade
-      alt="{{ product.title }}"
-      class="img-fluid rounded"
-      src="{{ mainPicture }}"
-    />
-  </ng-template>
-</div>
+    <ng-template #content let-modal>
+      <img
+        (click)="modal.dismiss('Cross click')"
+        @fade
+        alt="{{ product.title }}"
+        class="img-fluid rounded"
+        src="{{ mainPicture }}"
+      />
+    </ng-template>
+  </div>
+</ng-container>
+<ng-template #loader>
+  <img
+    alt="loader"
+    style="display: block; margin-left: auto; margin-right: auto"
+    src="assets/loader-100.gif"
+  />
+</ng-template>

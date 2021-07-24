@@ -20,7 +20,12 @@
   [infiniteScrollThrottle]="50"
   (scrolled)="getItems()"
 > -->
-<ng-container *ngIf="filteredProducts; else loader">
+<ng-container
+  *ngIf="
+    filteredProducts && locationService.location$ | async as location;
+    else loader
+  "
+>
   <div class="row">
     <div
       *ngFor="let product of filteredProducts"
@@ -60,7 +65,7 @@
             class="img-fluid shadow mb-2"
           />
         </ng-template>
-        <ng-container *ngIf="locationService.location$ | async as location">
+        <ng-container>
           <span class="price"
             >{{
               user?.isAdmin
