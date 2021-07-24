@@ -19,7 +19,9 @@ export class AppComponent implements OnInit {
       location.reload();
     });
 
-    this.swUpdate.checkForUpdate();
+    setInterval(() => {
+      this.swUpdate.checkForUpdate();
+    }, 1000);
     this.locService.getLocation();
     this.cartService.getCart();
   }
