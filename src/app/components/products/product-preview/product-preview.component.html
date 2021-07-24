@@ -22,7 +22,7 @@
       </ng-template>
     </div>
     <div class="col m-3">
-      <p class="text-right">
+      <p *ngIf="canSetPic" class="text-right">
         <span
           class="badge badge-pill"
           [ngClass]="{
