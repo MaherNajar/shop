@@ -1,7 +1,7 @@
 import { ShoppingCartService } from './shopping-cart.service';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { switchMap } from 'rxjs/operators';
 import { Order } from '../models/order';
 import { AuthService } from './auth.service';

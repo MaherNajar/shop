@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Product } from 'src/app/models/product';
 import { AuthService } from './auth.service';
 import { map, switchMap, take } from 'rxjs/operators';
-import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { User } from '../models/user';
 import { HttpClient } from '@angular/common/http';
 
