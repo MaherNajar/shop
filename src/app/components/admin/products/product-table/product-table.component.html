@@ -75,7 +75,7 @@
         <td>{{ p.weight }}</td>
         <td>{{ p.stones?.join() }}</td>
         <td>
-          <a [routerLink]="" (click)="goToPageProduct(p.id)">
+          <a [routerLink]="[]" (click)="goToPageProduct(p.id)">
             <img
               *ngIf="p.gallery.length > 0; else prisme"
               alt="{{ p.title }}"

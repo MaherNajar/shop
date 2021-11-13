@@ -125,7 +125,7 @@
         class="list-inline-item my-1"
         *ngFor="let picture of product.gallery; let i = index"
       >
-        <a (dblclick)="setPic()" (click)="selectedPicture = i" [routerLink]=""
+        <a (dblclick)="setPic()" (click)="selectedPicture = i" [routerLink]="[]"
           ><img
             [ngClass]="{
               selected: selectedPicture === i,
