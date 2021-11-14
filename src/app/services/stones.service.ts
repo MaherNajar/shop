@@ -17,7 +17,9 @@ const Stones: Stone[] = [
   { name: 'Cristal', cssColor: '#a7d8de' },
   { name: 'Jaspe rouge', cssColor: '#d73b3e' },
   { name: 'Labradorite', cssColor: '#657b83' },
+  { name: 'Lapis Lazuli', cssColor: '#26619c' },
   { name: 'Malachite', cssColor: '#1fa055' },
+  { name: 'Œil de tigre', cssColor: '#e08d3c' },
   { name: 'Perles en bois', cssColor: '#855E42' },
   { name: 'Perles de culture', cssColor: '#eae0c8' },
   { name: 'Perles fantaisies', cssColor: '#c89524' },
@@ -103,6 +105,17 @@ const Stories = {
     image:
       'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2Flabradorite_400x300.jpg?alt=media&token=c592f84f-dbcf-4dbd-aa9e-556b0658760c',
   },
+  'Lapis Lazuli': {
+    title: 'Lapis Lazuli',
+    description: `
+    Le Lapis Lazuli est reconnu pour <strong>réduire le stress</strong>
+     et les différents symptômes qui y sont liés : migraines, maux de ventre, inflammations diverses sont moins forts, 
+     voire même éradiqués grâce à l'action apaisante de la pierre. 
+     Elle contribue aussi à <strong>améliorer le sommeil</strong>, les allergies et les difficultés respiratoires.
+    `,
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2FLapis%20Lazuli.jpg?alt=media&token=c8551bd1-09f9-492f-bafb-e147c683eeba',
+  },
 
   'Perles de culture': {
     title: 'Perles de culture',
@@ -171,6 +184,15 @@ Sur le plan physique en lithothérapie, la pierre unakite permet de réguler l�
     `,
     image:
       'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2Funakite_400x300.jpg?alt=media&token=43201012-8b07-4307-a60b-181d0d446fe9',
+  },
+  'Œil de tigre': {
+    title: 'Œil de tigre',
+    description: `
+    Un nom mystérieux et des couleurs envoûtantes pour cette pierre aux nombreuses vertus. 
+    Porté par les guerriers et les soldats pendant les combats, l’œil de tigre <strong>protège et apporte force et courage</strong>.
+    `,
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2FOeil%20de%20tigre.jpg?alt=media&token=94a94640-1148-4e32-9486-9bb33a923a6d',
   },
 };
 
