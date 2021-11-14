@@ -200,7 +200,7 @@ Sur le plan physique en lithothérapie, la pierre unakite permet de réguler l�
     description: `
     Avec sa couleur solaire, la pierre héliolite est un symbole d'optimisme, de bonheur, de <strong>vitalité et de spontanéité.</strong>
     En lithothérapie, une des principales propriétés de la pierre de soleil est de véhiculer une </strong>énergie revigorante</strong>, aussi bien chez les femmes que chez les hommes.
-    Cette pierre fine orange exerce un effet très purificateur sur le sang. De plus, elle </strong>renforce le système immunitaire</strong> et régule le cœur à l'aide de ses inclusions d'hématite ferreux.
+    Cette pierre fine orange exerce un effet très purificateur sur le sang. De plus, elle <strong>renforce le système immunitaire</strong> et régule le cœur à l'aide de ses inclusions d'hématite ferreux.
     Placée au niveau du plexus solaire, une pierre polie en pierre de soleil permet un bon fonctionnement du système digestif et du transit intestinal et a pour bienfait d'éviter les ballonnements.
     `,
     image:
