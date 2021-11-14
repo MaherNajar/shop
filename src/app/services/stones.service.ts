@@ -23,6 +23,7 @@ const Stones: Stone[] = [
   { name: 'Perles en bois', cssColor: '#855E42' },
   { name: 'Perles de culture', cssColor: '#eae0c8' },
   { name: 'Perles fantaisies', cssColor: '#c89524' },
+  { name: 'Pierre de soleil', cssColor: '#e7c4ac' },
   { name: 'Quartz', cssColor: '#f9c9d7' },
   { name: 'Ruby Zoisite', cssColor: '#e0115f' },
   { name: 'Unakite', cssColor: '#808000' },
@@ -193,6 +194,17 @@ Sur le plan physique en lithothérapie, la pierre unakite permet de réguler l�
     `,
     image:
       'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2FOeil%20de%20tigre.jpg?alt=media&token=94a94640-1148-4e32-9486-9bb33a923a6d',
+  },
+  'Pierre de soleil': {
+    title: 'Pierre de soleil',
+    description: `
+    Avec sa couleur solaire, la pierre héliolite est un symbole d'optimisme, de bonheur, de <strong>vitalité et de spontanéité.</strong>
+    En lithothérapie, une des principales propriétés de la pierre de soleil est de véhiculer une </strong>énergie revigorante</strong>, aussi bien chez les femmes que chez les hommes.
+    Cette pierre fine orange exerce un effet très purificateur sur le sang. De plus, elle </strong>renforce le système immunitaire</strong> et régule le cœur à l'aide de ses inclusions d'hématite ferreux.
+    Placée au niveau du plexus solaire, une pierre polie en pierre de soleil permet un bon fonctionnement du système digestif et du transit intestinal et a pour bienfait d'éviter les ballonnements.
+    `,
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2FPierre%20de%20soleil.jpg?alt=media&token=d5fe5692-911a-4ed9-b638-983375e92339',
   },
 };
 
