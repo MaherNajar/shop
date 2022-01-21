@@ -26,7 +26,7 @@
     "@angular/service-worker": "~13.1.1",
     "@ng-bootstrap/ng-bootstrap": "^11.0.0",
     "bootstrap": "^4.6.1",
-    "firebase": "^9.6.1",
+    "firebase": "^9.6.4",
     "ngx-infinite-scroll": "^10.0.1",
     "rxfire": "^6.0.0",
     "rxjs": "^6.6.7",
