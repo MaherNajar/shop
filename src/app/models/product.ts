@@ -25,6 +25,10 @@ export class Product {
     return Math.round((this.price / 3.2) * 1.1);
   }
 
+  get isAvailable() {
+    return this.status != 'vendu';
+  }
+
   preloadImage() {
     let preload = new Image();
 

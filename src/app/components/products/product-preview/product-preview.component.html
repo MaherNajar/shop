@@ -74,7 +74,7 @@
             </li>
           </ul>
         </div>
-        <ng-container>
+        <ng-container *ngIf="product.isAvailable">
           <h5 class="text-center">
             <span class="price">
               Prix :
@@ -105,7 +105,11 @@
               >
               <strong>Ajouter au panier</strong>
             </button> -->
-          <button (click)="addToCart()" class="btn btn-warning btn-block">
+          <button
+            *ngIf="product.isAvailable"
+            (click)="addToCart()"
+            class="btn btn-warning btn-block"
+          >
             <strong>Ajouter au panier</strong>
           </button>
           <!-- <ng-template #removeProduct>

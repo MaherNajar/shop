@@ -65,7 +65,7 @@
             class="img-fluid shadow mb-2"
           />
         </ng-template>
-        <ng-container *ngIf="product.status != 'vendu'">
+        <ng-container *ngIf="product.isAvailable">
           <span class="price"
             >{{
               user?.isAdmin
