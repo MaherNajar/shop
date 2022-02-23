@@ -6,7 +6,7 @@
         <ul id="Menu">
           <li>
             <a
-              [ngClass]="{ underline: category === 'all' }"
+              [ngClass]="{ 'text-decoration-underline': category === 'all' }"
               routerLink="/bijoux"
             >
               Collection complète
@@ -15,7 +15,9 @@
           </li>
           <li>
             <a
-              [ngClass]="{ underline: category === 'colliers' }"
+              [ngClass]="{
+                'text-decoration-underline': category === 'colliers'
+              }"
               routerLink="/bijoux/colliers"
             >
               Colliers
@@ -25,7 +27,7 @@
           <li class="mb-2">
             <a
               [ngClass]="{
-                underline: category === 'bracelets-bagues-bo'
+                'text-decoration-underline': category === 'bracelets-bagues-bo'
               }"
               routerLink="/bijoux/bracelets-bagues-bo"
             >
@@ -39,7 +41,9 @@
             <a
               id="exclusifs"
               class="text-nowrap"
-              [ngClass]="{ underline: category === 'exclusifs' }"
+              [ngClass]="{
+                'text-decoration-underline': category === 'exclusifs'
+              }"
               routerLink="/bijoux/exclusifs"
             >
               EXCLUSIFS
@@ -63,7 +67,7 @@
               [ngStyle]="{
                 color: stone.cssColor
               }"
-              [ngClass]="{ underline: stone.name === pierre }"
+              [ngClass]="{ 'text-decoration-underline': stone.name === pierre }"
               routerLink="/bijoux/pierre/{{ stone.name }}"
               >{{ stone.name
               }}<span *ngIf="stone.name === pierre"> ({{ count }})</span></a

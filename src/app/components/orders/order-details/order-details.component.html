@@ -27,9 +27,9 @@
         ><span
           class="badge"
           [ngClass]="{
-            'badge-primary': order.status === 'confirmée',
-            'badge-warning': order.status === 'annulée',
-            'badge-success': order.status === 'terminée'
+            'bg-primary': order.status === 'confirmée',
+            'bg-warning': order.status === 'annulée',
+            'bg-success': order.status === 'terminée'
           }"
           >{{ order.status }}</span
         >

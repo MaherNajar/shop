@@ -45,11 +45,11 @@
               />
               <span
                 *ngIf="user?.isAdmin"
-                class="badge badge-pill top-right"
+                class="badge rounded-pill top-right"
                 [ngClass]="{
-                  'badge-primary': product.status === 'réservé',
-                  'badge-success': product.status === 'vendu',
-                  'badge-warning': product.status === 'disponible'
+                  'bg-primary': product.status === 'réservé',
+                  'bg-success': product.status === 'vendu',
+                  'bg-warning': product.status === 'disponible'
                 }"
                 style="font-size: small; opacity: 0.5"
                 >{{ product.status }}

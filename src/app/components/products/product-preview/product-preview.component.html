@@ -27,11 +27,11 @@
       <div class="col m-3">
         <p *ngIf="canSetPic" class="text-right">
           <span
-            class="badge badge-pill"
+            class="badge rounded-pill"
             [ngClass]="{
-              'badge-primary': product.status === 'réservé',
-              'badge-success': product.status === 'vendu',
-              'badge-warning': product.status === 'disponible'
+              'bg-primary': product.status === 'réservé',
+              'bg-success': product.status === 'vendu',
+              'bg-warning': product.status === 'disponible'
             }"
             style="font-size: small"
             >{{ product.status }}</span
