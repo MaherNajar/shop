@@ -6,16 +6,29 @@
           <div class="offset-md-3 col-md-4">
             <div class="form-group text-center">
               <div
-                class="btn-group btn-group-toggle"
+                class="btn-group"
                 ngbRadioGroup
+                role="group"
                 name="status"
                 [(ngModel)]="product.status"
               >
                 <label ngbButtonLabel class="btn-warning btn-sm">
-                  <input ngbButton type="radio" value="disponible" /> Disponible
+                  <input
+                    ngbButton
+                    type="radio"
+                    class="btn-check"
+                    value="disponible"
+                  />
+                  Disponible
                 </label>
                 <label ngbButtonLabel class="btn-success btn-sm">
-                  <input ngbButton type="radio" value="vendu" /> Vendu
+                  <input
+                    ngbButton
+                    type="radio"
+                    class="btn-check"
+                    value="vendu"
+                  />
+                  Vendu
                 </label>
               </div>
             </div>
@@ -24,7 +37,7 @@
             <button
               type="button"
               (click)="onReturn()"
-              class="btn btn-light btn-lg float-right"
+              class="btn btn-light btn-lg float-end"
             >
               🔙
             </button>
@@ -32,7 +45,7 @@
               type="submit"
               (click)="save()"
               [disabled]="f.invalid"
-              class="btn btn-light btn-lg float-right"
+              class="btn btn-light btn-lg float-end"
             >
               💾
             </button>
@@ -139,7 +152,7 @@
         <div class="form-group">
           <label for="catégorie">Catégorie</label>
           <select
-            class="custom-select"
+            class="form-select"
             id="catégorie"
             [(ngModel)]="product.category"
             name="catégorie"
@@ -185,7 +198,7 @@
         <div class="form-group">
           <label for="couleur">Couleurs</label>
           <select
-            class="custom-select"
+            class="form-select"
             id="couleur"
             (change)="addColor($event.target.value)"
             name="colors"

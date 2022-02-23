@@ -1,11 +1,11 @@
 <div class="row no-gutters">
   <div class="col-2">
-    <button (click)="removeFromCart()" class="btn btn-secondary float-left">
+    <button (click)="removeFromCart()" class="btn btn-secondary float-start">
       -
     </button>
   </div>
   <div class="col text-center mt-2">
     {{ cartService.cart.getItemQuantity(product.id) }} dans le panier
   </div>
-  <button (click)="addToCart()" class="btn btn-secondary float-right">+</button>
+  <button (click)="addToCart()" class="btn btn-secondary float-end">+</button>
 </div>

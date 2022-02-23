@@ -11,7 +11,7 @@
           placeholder="filter par l'intitulé..."
         />
         <div class="input-group-append">
-          <button routerLink="/admin/bijoux/nouveau" class="btn btn-info">
+          <button routerLink="/admin/bijoux/nouveau" class="btn btn-secondary">
             Créer
           </button>
         </div>
@@ -22,19 +22,25 @@
     </div>
     <div class="col text-right">
       <ng-container *ngIf="productsState !== 'disponibles'; else others">
-        <button class="btn btn-light btn-lg" routerLink="/admin/bijoux">
+        <button
+          class="btn btn-light btn-lg float-end"
+          routerLink="/admin/bijoux"
+        >
           🔙
         </button>
       </ng-container>
       <ng-template #others>
-        <button class="btn btn-success" routerLink="/admin/bijoux/vendus">
-          Vendus
-        </button>
         <button
-          class="btn btn-secondary ml-2"
+          class="btn btn-secondary mx-2 float-end"
           routerLink="/admin/bijoux/archives"
         >
           Archivés
+        </button>
+        <button
+          class="btn btn-success float-end"
+          routerLink="/admin/bijoux/vendus"
+        >
+          Vendus
         </button>
       </ng-template>
     </div>

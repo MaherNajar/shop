@@ -59,7 +59,7 @@
       <li class="font-weight-bold list-group-item">
         Total
         <ng-container *ngIf="locService.location$ | async as location">
-          <span class="float-right"
+          <span class="float-end"
             >{{ order.totalPrice | number: "1.0-2" }}
             {{ location.displayCurrency }}</span
           >
