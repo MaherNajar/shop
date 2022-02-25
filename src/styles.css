@@ -104,3 +104,12 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+tbody,
+td,
+tfoot,
+th,
+thead,
+tr {
+  border-width: initial;
+}
