@@ -1,14 +1,14 @@
 <h3>Confirmation</h3>
 <div class="row" *ngIf="cartService.cart as cart">
   <div class="col-md-6 mb-3">
-    <div class="alert alert-info" role="alert">
+    <!-- <div class="alert alert-info" role="alert">
       Une fois votre commande confirmée, je prendrai contact avec vous pour
       définir un moyen de paiement et récupération ou livraison des bijoux. Mes
       bijoux sont tous des pièces uniques que je confectionne à mon domicile à
       l'adresse 160 rue Hédi Chaker la Marsa Erriadh, 2076 Tunis. N'hésitez pas
       à m'envoyer vos demandes pour les bijoux qui sont déjà vendus. Je peux les
       refaire sur commande sous réserve de disponibilité des matériaux.
-    </div>
+    </div> -->
     <contact-form (onSendContactForm)="placeOrder($event)"></contact-form>
   </div>
   <div class="col">
