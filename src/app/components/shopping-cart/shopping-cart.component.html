@@ -1,33 +1,22 @@
 <h3>Mon panier</h3>
 
 <ng-container *ngIf="cartService.cart as cart">
-  <p class="text-center">
-    <button routerLink="/bijoux" type="button" class="btn btn-info btn-sm">
-      Continuer mes achats
-    </button>
-    <span class="mx-2">
-      {{ cart.totalItemsCount }} article{{
-        cart.totalItemsCount === 1 ? "" : "s"
-      }}
-      dans le 👜
-    </span>
-    <button
-      routerLink="/caisse"
-      type="button"
-      class="btn btn-warning btn-sm"
-      [disabled]="cart.totalItemsCount === 0"
-    >
-      Valider
-    </button>
-    <button
-      (click)="cartService.clearCart()"
-      title="vider"
-      class="btn btn-light btn-sm ml-2 float-end"
-    >
-      🧹
-    </button>
-  </p>
   <div class="table-responsive">
+    <p class="text-center">
+      <span class="offset-1">
+        {{ cart.totalItemsCount }} article{{
+          cart.totalItemsCount === 1 ? "" : "s"
+        }}
+        dans le panier
+      </span>
+      <button
+        (click)="cartService.clearCart()"
+        title="vider"
+        class="btn btn-secondary btn-sm float-end mb-3"
+      >
+        Tout nettoyer 🧹
+      </button>
+    </p>
     <ng-container *ngIf="locService.location$ | async as location">
       <table aria-describedby="panier" class="table table-bordered">
         <thead>
@@ -76,4 +65,21 @@
       </table>
     </ng-container>
   </div>
+  <p>
+    <button
+      routerLink="/caisse"
+      type="button"
+      class="btn btn-warning btn-sm float-end"
+      [disabled]="cart.totalItemsCount === 0"
+    >
+      Valider le panier
+    </button>
+    <button
+      routerLink="/bijoux"
+      type="button"
+      class="btn btn-info btn-sm float-end mx-2"
+    >
+      Continuer mes achats
+    </button>
+  </p>
 </ng-container>
