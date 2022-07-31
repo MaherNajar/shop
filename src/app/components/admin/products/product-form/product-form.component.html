@@ -5,29 +5,30 @@
         <div class="row">
           <div class="offset-md-3 col-md-4">
             <div class="form-group text-center">
-              <div
-                class="btn-group"
-                ngbRadioGroup
-                role="group"
-                name="status"
-                [(ngModel)]="product.status"
-              >
-                <label ngbButtonLabel class="btn-warning btn-sm">
-                  <input
-                    ngbButton
-                    type="radio"
-                    class="btn-check"
-                    value="disponible"
-                  />
+              <div class="btn-group" role="group">
+                <input
+                  type="radio"
+                  class="btn-check"
+                  id="btnRadioDispo"
+                  [(ngModel)]="product.status"
+                  name="status"
+                  value="disponible"
+                  autocomplete="off"
+                />
+                <label class="btn btn-warning btn-sm" for="btnRadioDispo">
                   Disponible
                 </label>
-                <label ngbButtonLabel class="btn-success btn-sm">
-                  <input
-                    ngbButton
-                    type="radio"
-                    class="btn-check"
-                    value="vendu"
-                  />
+
+                <input
+                  type="radio"
+                  class="btn-check"
+                  id="btnRadioVendu"
+                  [(ngModel)]="product.status"
+                  name="status"
+                  value="vendu"
+                  autocomplete="off"
+                />
+                <label class="btn btn-success btn-sm" for="btnRadioVendu">
                   Vendu
                 </label>
               </div>

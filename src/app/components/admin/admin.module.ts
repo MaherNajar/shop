@@ -8,7 +8,6 @@ import { ProductTableComponent } from './products/product-table/product-table.co
 import { ProductFormComponent } from './products/product-form/product-form.component';
 import {
   NgbTypeaheadModule,
-  NgbButtonsModule,
   NgbProgressbarModule,
 } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from '../commons/shared.module';
@@ -33,7 +32,6 @@ import { WarnModalComponent } from './products/warn-modal/warn-modal.component';
     FormsModule,
     AngularFireStorageModule,
     NgbTypeaheadModule,
-    NgbButtonsModule,
     NgbProgressbarModule,
     SharedModule,
     ProductPreviewModule,
