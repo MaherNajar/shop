@@ -28,7 +28,7 @@
       </thead>
       <tbody *ngFor="let contact of filteredContacts">
         <tr>
-          <td>{{ contact.date | date: "short" }}</td>
+          <td>{{ contact.date | date: "medium":"+0200":"fr" }}</td>
           <td>
             {{ contact.username }}
           </td>
