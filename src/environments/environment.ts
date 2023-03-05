@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: 'AIzaSyCuYAd5eyVzqVPULsqOJDUXD8JG6UVnbsY',
+    apiKey: '#{FIREBASE_API_KEY}#',
     authDomain: 'omyperles.firebaseapp.com',
     databaseURL: 'https://omyperles.firebaseio.com',
     projectId: 'omyperles',

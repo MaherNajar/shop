@@ -16,6 +16,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16.13.2
+      - uses: cschleiden/replace-tokens@v1
+        with:
+          files: '["**/environment.prod.ts"]'
+        env:
+          FIREBASE_API_KEY: ${{secrets.FIREBASE_API_KEY}}
       - run: npm ci
       - run: npm run build
       - run: npm run deploy
