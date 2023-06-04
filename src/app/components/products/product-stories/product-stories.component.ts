@@ -10,7 +10,8 @@ import { trigger, style, animate, transition } from '@angular/animations';
     `
       p,
       h4 {
-        font-family: 'Comic Sans MS', cursive, sans-serif;
+        /* font-family: 'Comic Sans MS', cursive, sans-serif; */
+        font-family: 'arial', sans-serif;
         text-align: justify;
       }
 

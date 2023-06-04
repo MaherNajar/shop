@@ -53,9 +53,10 @@
     <thead>
       <tr>
         <th id="numero">Numéro</th>
-        <th id="auteur">Auteur</th>
+        <!-- <th id="auteur">Auteur</th> -->
         <th id="title">Intitulé</th>
         <th id="dateCreation">Créé le</th>
+        <th id="dimensions">Dimensions</th>
         <th id="poids">Poids</th>
         <th id="pierres">Pierres</th>
         <th id="présentation">Présentation</th>
@@ -71,13 +72,14 @@
     <tbody>
       <tr *ngFor="let p of items; let i = index">
         <td>{{ i + 1 }}</td>
-        <td><span title="auteur" routerLink="/profil/{{ p.uid }}">🕴️</span></td>
+        <!-- <td><span title="auteur" routerLink="/profil/{{ p.uid }}">🕴️</span></td> -->
         <td>
           {{ p.title }}
         </td>
         <td>
-          {{ p.dateCreation | date: "mediumDate":"+0200":"fr" }}
+          {{ p.dateCreation | date : "mediumDate" : "+0200" : "fr" }}
         </td>
+        <td>{{ p.dimension }} {{ p.dimension ? "cm" : "" }}</td>
         <td>{{ p.weight }}</td>
         <td>{{ p.stones?.join() }}</td>
         <td>
@@ -85,11 +87,11 @@
             <img
               *ngIf="p.gallery.length > 0; else prisme"
               alt="{{ p.title }}"
-              src="{{ p.gallery[0] | size: '100' }}"
+              src="{{ p.gallery[0] | size : '100' }}"
             />
             <ng-template #prisme>
               <img
-                [src]="imgNotAvailable | noImgSize: '100'"
+                [src]="imgNotAvailable | noImgSize : '100'"
                 alt="photo non disponible"
                 class="img-fluid"
               />

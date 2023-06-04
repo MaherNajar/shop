@@ -10,7 +10,7 @@
           ><img
             @fade
             class="img-fluid pointer shadow rounded"
-            src="{{ mainPicture | size: '400' }}"
+            src="{{ mainPicture | size : '400' }}"
             alt="{{ product.title }}"
             id="mainpic"
         /></span>
@@ -18,7 +18,7 @@
           <img
             @fade
             class="img-fluid"
-            src="{{ imgNotAvailable | noImgSize: '400' }}"
+            src="{{ imgNotAvailable | noImgSize : '400' }}"
             alt="photo non disponible"
             id="imgNonDisponible"
           />
@@ -73,6 +73,9 @@
               </ng-container>
             </li>
           </ul>
+        </div>
+        <div *ngIf="product.dimension" class="mb-5">
+          Dimensions : {{ product.dimension }} cm
         </div>
         <ng-container *ngIf="product.isAvailable">
           <h5 class="text-center">
@@ -137,7 +140,7 @@
             }"
             @fade
             class="img-fluid shadow rounded"
-            src="{{ picture | size: '100' }}"
+            src="{{ picture | size : '100' }}"
             alt="{{ product.title }}"
         /></a>
       </li>
