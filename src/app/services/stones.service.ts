@@ -26,6 +26,7 @@ const Stones: Stone[] = [
   { name: 'Pierre de soleil', cssColor: '#e7c4ac' },
   { name: 'Quartz', cssColor: '#f9c9d7' },
   { name: 'Ruby Zoisite', cssColor: '#e0115f' },
+  { name: 'Turquoise', cssColor: '#40E0D0' },
   { name: 'Unakite', cssColor: '#808000' },
 ];
 
@@ -110,8 +111,8 @@ const Stories = {
     title: 'Lapis Lazuli',
     description: `
     Le Lapis Lazuli est reconnu pour <strong>réduire le stress</strong>
-     et les différents symptômes qui y sont liés : migraines, maux de ventre, inflammations diverses sont moins forts, 
-     voire même éradiqués grâce à l'action apaisante de la pierre. 
+     et les différents symptômes qui y sont liés : migraines, maux de ventre, inflammations diverses sont moins forts,
+     voire même éradiqués grâce à l'action apaisante de la pierre.
      Elle contribue aussi à <strong>améliorer le sommeil</strong>, les allergies et les difficultés respiratoires.
     `,
     image:
@@ -122,14 +123,14 @@ const Stories = {
     title: 'Perles de culture',
     description: `
     C’est la pierre de la sincérité.
-Elle soulagerait les problèmes d’<strong>infection des yeux</strong> (vision, cataracte,…)
-Elle régulerait les palpitations du cœur et l’<strong>hypertension</strong>.
-On l’utilise pour les <strong>problèmes de digestion</strong>.
-La perle de culture augmenterait la <strong>fertilité</strong>.
-Elle serait utile pour les traitements de la <strong>bipolarité</strong>.
-Elle améliorerait le fonctionnement <strong>rénal</strong>.
-La perle de culture aiderait dans les problèmes d’<strong>arthrite</strong>, de </strong>rhumatisme<strong> et du </strong>système lymphatique</strong>.
-Elle soulagerait des problèmes <strong>cutanés</strong>.
+    Elle soulagerait les problèmes d’<strong>infection des yeux</strong> (vision, cataracte,…)
+    Elle régulerait les palpitations du cœur et l’<strong>hypertension</strong>.
+    On l’utilise pour les <strong>problèmes de digestion</strong>.
+    La perle de culture augmenterait la <strong>fertilité</strong>.
+    Elle serait utile pour les traitements de la <strong>bipolarité</strong>.
+    Elle améliorerait le fonctionnement <strong>rénal</strong>.
+    La perle de culture aiderait dans les problèmes d’<strong>arthrite</strong>, de </strong>rhumatisme<strong> et du </strong>système lymphatique</strong>.
+    Elle soulagerait des problèmes <strong>cutanés</strong>.
     `,
     image:
       'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2Fperles-de-culture_400x300.jpg?alt=media&token=539b5461-e902-476a-ad02-0d311825a336',
@@ -149,18 +150,18 @@ Elle soulagerait des problèmes <strong>cutanés</strong>.
     title: 'Corail',
     description: `
     Le corail rouge est efficace pour les <strong>troubles de la circulation sanguine</strong>, telles que les varices, les hémorroïdes.
-Il compense les <strong>carences en globules rouges et blanches</strong>.
-Il est efficace pour le <strong>cholestérol</strong>, les problèmes de poids ou la <strong>fécondité</strong>.
-Il <strong>fortifie le coeur</strong> et résorbe les verrues.
-Il combat l’anémie.
-il facilite la digestion et supprime la constipation.
-Le corail blanc <strong>renforce la dentition</strong>.
-Il est fréquemment indiqué lors de décalcification.
-Il est souvent utilisé pour les greffes osseuses.
-Le corail noir combat les énergies négatives
-D’un précieux réconfort, il <strong>lutte contre la dépression</strong>.
-D’une façon générale, le corail apporte une stabilité, ouvre à l’amour et au dévouement.
-Il développe l’intuition, donne de l’énergie, du soutien et de la joie.
+    Il compense les <strong>carences en globules rouges et blanches</strong>.
+    Il est efficace pour le <strong>cholestérol</strong>, les problèmes de poids ou la <strong>fécondité</strong>.
+    Il <strong>fortifie le coeur</strong> et résorbe les verrues.
+    Il combat l’anémie.
+    il facilite la digestion et supprime la constipation.
+    Le corail blanc <strong>renforce la dentition</strong>.
+    Il est fréquemment indiqué lors de décalcification.
+    Il est souvent utilisé pour les greffes osseuses.
+    Le corail noir combat les énergies négatives
+    D’un précieux réconfort, il <strong>lutte contre la dépression</strong>.
+    D’une façon générale, le corail apporte une stabilité, ouvre à l’amour et au dévouement.
+    Il développe l’intuition, donne de l’énergie, du soutien et de la joie.
     `,
     image:
       'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2Fcorail_400x300.jpg?alt=media&token=9c4b7e72-e484-4665-b4ae-b196842eab39',
@@ -174,14 +175,27 @@ La malachite améliore la capacité de persuasion et <strong>libère</strong> le
     image:
       'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2Fmalachite_400x300.jpg?alt=media&token=87367a9f-5652-4ba7-9361-5fed2c89f933',
   },
+  Turquoise: {
+    title: 'Turquoise',
+    description: `
+    En lithothérapie, la turquoise est connue pour son action purificatrice sur tous les fluides du corps humain. Elle renforce le système immunitaire, combat les maladies ainsi que les empoisonnements, les intoxications et l'excès de cholestérol.
+    La pierre bleue fine est un bon régulateur du système nerveux, qui est responsable de la coordination des mouvements et de la communication entre les différentes parties du corps.
+    Elle contribue également à maintenir les yeux en bonne santé et à améliorer la vue. Porter de la turquoise rétablit une bonne circulation sanguine, favorise l'irrigation dans les tissus musculaires et permet ainsi une meilleure récupération des douleurs musculaires, tendinites, ou autre déchirures.
+    La turquoise protège les muqueuses de la gorge, du nez, du crâne et des yeux et limite les infections associées à ces zones.
+    Il est possible d'utiliser la turquoise sous forme d'élixir. Elle a un puissant effet revitalisant et tonifiant et peut détruire toutes les migraines et tous les maux de tête.
+    La turquoise aide à surmonter la souffrance et les peurs pour ce montrer telle qu'on est vraiment. Cela aide à s'installer dans le moment présent pour profiter de chaque instant de joie. Elle influence directement le système immunitaire, les poumons et l'estomac. Ainsi, elle peut être combinée avec de l'apatite ou de l'amazonite mais aussi moi connu de la cavensite.
+    La turquoise, comme de nombreuses autres pierres bleues, est également associée au chakra de la gorge. Il favorise la communication, l'écoute et la parole. Ainsi, elle peut être associée à l'aigue-marine, la calcédoine, le larimar ou le lapis-lazuli.
+    Son rôle de bouclier protecteur peut être renforcé par des pierres de type œil, comme l'œil de tigre.
+    `,
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2FTurquoise.jpg?alt=media&token=96796796-9d74-4cdd-a65c-e4f026d0db7c&_gl=1*ymib8u*_ga*MTgzODI3NTcyMi4xNjg2MzMwNDQy*_ga_CW55HF8NVT*MTY4NjMzMDQ0Mi4xLjEuMTY4NjMzMDcxNS4wLjAuMA..',
+  },
   Unakite: {
     title: 'Unakite',
     description: `
     Sur le plan mental en lithothérapie, la pierre unakite permet à celui ou celle qui la porte de se retrouver face à lui ou elle-même. Si l’unakite est portée par exemple en pendentif unakite, les blocages liés au passé et étant enfouis dans l’inconscient s’éliminent petit à petit. L’<strong>unakite</strong> permet aussi d’apprendre à <strong>relativiser</strong> sur les situations, mais aussi à prendre du recul.
-
-Il est très rare de trouver la pierre unakite à l’état de gemme, mais sous forme alvéolaire. Elle répond parfaitement à des problèmes osseux lorsqu’elle est majoritairement constituée de beige. Autrement, l’unakite répond aux <strong>problèmes de foie, d’intestins et de vésicule biliaire</strong> lorsqu’elle est dotée de touches vert jaune, vert sombre, avec des traces rouges clairs.
-
-Sur le plan physique en lithothérapie, la pierre unakite permet de réguler l’ensemble des fonctions intestinales ainsi que le foie par le biais du chakra du plexus solaire. Les lithothérapeutes travaillent également sur le <strong>chakra</strong> racine afin d’agir directement sur les problèmes osseux, sur les rhumatismes, ainsi que sur les fractures. De façon plus générale, l’unakite vous aidera à <strong>renforcer votre système de défense immunitaire</strong>.
+    Il est très rare de trouver la pierre unakite à l’état de gemme, mais sous forme alvéolaire. Elle répond parfaitement à des problèmes osseux lorsqu’elle est majoritairement constituée de beige. Autrement, l’unakite répond aux <strong>problèmes de foie, d’intestins et de vésicule biliaire</strong> lorsqu’elle est dotée de touches vert jaune, vert sombre, avec des traces rouges clairs.
+    Sur le plan physique en lithothérapie, la pierre unakite permet de réguler l’ensemble des fonctions intestinales ainsi que le foie par le biais du chakra du plexus solaire. Les lithothérapeutes travaillent également sur le <strong>chakra</strong> racine afin d’agir directement sur les problèmes osseux, sur les rhumatismes, ainsi que sur les fractures. De façon plus générale, l’unakite vous aidera à <strong>renforcer votre système de défense immunitaire</strong>.
     `,
     image:
       'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2Funakite_400x300.jpg?alt=media&token=43201012-8b07-4307-a60b-181d0d446fe9',
@@ -189,7 +203,7 @@ Sur le plan physique en lithothérapie, la pierre unakite permet de réguler l�
   'Œil de tigre': {
     title: 'Œil de tigre',
     description: `
-    Un nom mystérieux et des couleurs envoûtantes pour cette pierre aux nombreuses vertus. 
+    Un nom mystérieux et des couleurs envoûtantes pour cette pierre aux nombreuses vertus.
     Porté par les guerriers et les soldats pendant les combats, l’œil de tigre <strong>protège et apporte force et courage</strong>.
     `,
     image:
