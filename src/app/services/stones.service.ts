@@ -12,6 +12,7 @@ const Stones: Stone[] = [
   { name: 'Améthyste', cssColor: '#884da7' },
   { name: 'Aventurine', cssColor: '#989d79' },
   { name: 'Chrysoprase', cssColor: '#a0d3b6' },
+  { name: 'Citrine', cssColor: '#ffc52b' },
   { name: 'Corail', cssColor: '#FF7F50' },
   { name: 'Cornaline', cssColor: '#b31b1b' },
   { name: 'Cristal', cssColor: '#a7d8de' },
@@ -72,6 +73,22 @@ const Stories = {
       "Redonne <strong>confiance en soi</strong>. Selon Hildegarde de Bingen, d\u00E9toxique le corps (action filtrante sur l'\u00E9nergie du &nbsp;foie et la v\u00E9sicule biliaire) et\r\n    l'esprit (permet de chasser les pens\u00E9es n\u00E9gatives et blocages entrainant des probl\u00E8mes relationnels ou sexuels). Elle la recommande \u00E9galement pour \u00E9viter de prononcer de mauvaises paroles sous\r\n    l'action de la col\u00E8re.Permet d'\u00EAtre plus <strong>positif</strong> envers soi-m\u00EAme, de se <strong>satisfaire de sa vie</strong> sans \u00EAtre jaloux des autres.",
     image:
       'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2Fchrysoprase_400x300.jpg?alt=media&token=f99746f7-7492-4c85-9a54-2df9961cadc2',
+  },
+  Citrine: {
+    title: 'Citrine',
+    description: `
+      La citrine est une pierre de joie et d’abondance. On dit également que c’est une pierre qui réchauffe le corps et l’esprit.
+      Associé au chakra du plexus solaire, elle est vraiment positive et rayonne de joie et de bonne humeur. Elle aide à trouver la paix intérieure, réchauffe l'esprit, tonifie le corps, prévient la fatigue et favorise la concentration.
+      La citrine est également une pierre de protection qui a le pouvoir d'éloigner les influences négatives, les maladies, la nervosité, la fatigue, l'anxiété et le stress. Nous conseillons de la porter en bracelet ou en pierre roulée pour l'avoir toujours avec vous.
+      Elle est excellente pour les révisions d'examens, le travail intellectuel intense et la mémoire, car elle favorise la concentration.
+      Sur un plan plus spirituel, la citrine jaune aide aux changements de vie, pour plus de prospérité. Très utilisée dans le Feng Shui, la pierre jaune attire l'abondance, la richesse et le succès. Cette pierre rayonnante renforce la personnalité de son possesseur.
+      C'est un trésor de positivité qui nous prouve qu'il est beaucoup plus puissant de gagner avec la joie, la gaieté, le respect des autres, la générosité qu'avec la violence et la force.
+      Dans l'environnement, la citrine diffuse des ondes positives et bienveillantes. Elle protège la personne qui est en contact avec elle.
+      La citrine est une pierre de vie. Elle est particulièrement recommandée dans la chambre d'une personne malade ou convalescente. Plusieurs pierres de citrine polies placées près du lit accélèrent le rétablissement et la guérison.
+      En renforçant la production d'enzymes digestifs, une fine pierre de citrine favorise la digestion et aide à réguler les troubles liés au diabète.
+      `,
+    image:
+      'https://firebasestorage.googleapis.com/v0/b/omyperles.appspot.com/o/pierres%2FCitrine.jpg?alt=media&token=9d9183ff-80c0-42e2-a9ce-fce2fb67148e',
   },
   'Aigue-marine': {
     title: 'Aigue-marine',
