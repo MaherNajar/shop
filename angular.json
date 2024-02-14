@@ -79,21 +79,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "omyperles:build"
+            "buildTarget": "omyperles:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "omyperles:build:production"
+              "buildTarget": "omyperles:build:production"
             },
             "local": {
-              "browserTarget": "omyperles:build:local"
+              "buildTarget": "omyperles:build:local"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "omyperles:build"
+            "buildTarget": "omyperles:build"
           }
         },
         "test": {
