@@ -5,8 +5,8 @@ import { Observable } from 'rxjs';
 import { User } from 'src/app/models/user';
 
 @Component({
-  selector: 'profile',
-  template: `
+    selector: 'profile',
+    template: `
     <div *ngIf="user$ | async as user" class="text-center">
       <img
         width="200px"
@@ -18,6 +18,7 @@ import { User } from 'src/app/models/user';
       <p>Email : {{ user.email }}</p>
     </div>
   `,
+    standalone: false
 })
 export class ProfileComponent implements OnInit {
   user$: Observable<User>;

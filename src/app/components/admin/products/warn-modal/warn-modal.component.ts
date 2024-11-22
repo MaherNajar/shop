@@ -3,9 +3,10 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Product } from 'src/app/models/product';
 
 @Component({
-  selector: 'app-warn-modal',
-  templateUrl: './warn-modal.component.html',
-  styleUrls: ['./warn-modal.component.css'],
+    selector: 'app-warn-modal',
+    templateUrl: './warn-modal.component.html',
+    styleUrls: ['./warn-modal.component.css'],
+    standalone: false
 })
 export class WarnModalComponent {
   product: Product;

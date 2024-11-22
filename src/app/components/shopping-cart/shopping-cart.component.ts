@@ -3,8 +3,9 @@ import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { LocationService } from 'src/app/services/location.service';
 
 @Component({
-  selector: 'shopping-cart',
-  templateUrl: './shopping-cart.component.html',
+    selector: 'shopping-cart',
+    templateUrl: './shopping-cart.component.html',
+    standalone: false
 })
 export class ShoppingCartComponent {
   constructor(

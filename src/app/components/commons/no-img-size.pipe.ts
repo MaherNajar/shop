@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'noImgSize',
+    name: 'noImgSize',
+    standalone: false
 })
 export class NoImgSizePipe implements PipeTransform {
   transform(url: string, size: '100' | '400'): string {

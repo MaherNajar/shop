@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 
 @Component({
-  template: `
+    template: `
     <h3>
       Erreur 404 : Cette page n'existe pas !
     </h3>
   `,
-  styles: [],
+    styles: [],
+    standalone: false
 })
 export class PageNotFoundComponent {}

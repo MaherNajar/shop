@@ -6,8 +6,9 @@ import { Router } from '@angular/router';
 import { LocationService } from 'src/app/services/location.service';
 
 @Component({
-  selector: 'app-check-out',
-  templateUrl: './check-out.component.html',
+    selector: 'app-check-out',
+    templateUrl: './check-out.component.html',
+    standalone: false
 })
 export class CheckOutComponent {
   constructor(

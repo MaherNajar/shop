@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'size',
+    name: 'size',
+    standalone: false
 })
 export class SizePipe implements PipeTransform {
   transform(url: string, size: '100' | '400'): string {

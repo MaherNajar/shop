@@ -3,9 +3,10 @@ import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'contact-form',
-  templateUrl: './contact-form.component.html',
-  styles: [],
+    selector: 'contact-form',
+    templateUrl: './contact-form.component.html',
+    styles: [],
+    standalone: false
 })
 export class ContactFormComponent implements OnInit {
   constructor(private authService: AuthService) {}

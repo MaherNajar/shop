@@ -4,7 +4,8 @@ import { Order } from 'src/app/models/order';
 import { Observable } from 'rxjs';
 
 @Component({
-  templateUrl: './order-list.component.html',
+    templateUrl: './order-list.component.html',
+    standalone: false
 })
 export class OrderListComponent implements OnInit {
   orders$: Observable<Order[]>;

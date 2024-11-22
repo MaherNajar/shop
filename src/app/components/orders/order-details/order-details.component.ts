@@ -7,8 +7,9 @@ import { AuthService } from 'src/app/services/auth.service';
 import { LocationService } from 'src/app/services/location.service';
 
 @Component({
-  selector: 'order-details',
-  templateUrl: './order-details.component.html',
+    selector: 'order-details',
+    templateUrl: './order-details.component.html',
+    standalone: false
 })
 export class OrderDetailsComponent implements OnInit, OnDestroy {
   order: Order;

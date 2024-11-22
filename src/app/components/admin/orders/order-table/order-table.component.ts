@@ -4,7 +4,8 @@ import { OrderService } from 'src/app/services/order.service';
 import { Order } from 'src/app/models/order';
 
 @Component({
-  templateUrl: './order-table.component.html',
+    templateUrl: './order-table.component.html',
+    standalone: false
 })
 export class OrderTableComponent implements OnInit, OnDestroy {
   orders: Order[] = [];

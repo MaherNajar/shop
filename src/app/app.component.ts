@@ -4,8 +4,9 @@ import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { LocationService } from './services/location.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    standalone: false
 })
 export class AppComponent implements OnInit {
   constructor(

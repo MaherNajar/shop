@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  template: `
+    template: `
     <div class="jumbotron text-center my-5">
       <h1>Merci beaucoups !</h1>
       <p class="lead">
@@ -14,6 +14,7 @@ import { Component } from '@angular/core';
       <img src="assets/prisme.png" alt="coeur prisme logo" width="70px" />
     </div>
   `,
-  styles: [],
+    styles: [],
+    standalone: false
 })
 export class RemerciementsComponent {}

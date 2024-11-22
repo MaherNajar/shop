@@ -14,10 +14,10 @@ import { ToastService } from 'src/app/services/toast.service';
 import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
-  selector: 'product-preview',
-  templateUrl: './product-preview.component.html',
-  styles: [
-    `
+    selector: 'product-preview',
+    templateUrl: './product-preview.component.html',
+    styles: [
+        `
       .selected {
         border: 1px groove lightgrey;
       }
@@ -30,15 +30,16 @@ import { trigger, style, animate, transition } from '@angular/animations';
         opacity: 0.6;
       }
     `,
-  ],
-  animations: [
-    trigger('fade', [
-      transition('void => *', [
-        style({ opacity: 0 }),
-        animate(350, style({ opacity: 1 })),
-      ]),
-    ]),
-  ],
+    ],
+    animations: [
+        trigger('fade', [
+            transition('void => *', [
+                style({ opacity: 0 }),
+                animate(350, style({ opacity: 1 })),
+            ]),
+        ]),
+    ],
+    standalone: false
 })
 export class ProductPreviewComponent {
   @Input('product') product: Product;

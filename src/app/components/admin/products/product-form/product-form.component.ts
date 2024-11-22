@@ -11,8 +11,9 @@ import { StoneService, Stone } from 'src/app/services/stones.service';
 import { Product } from 'src/app/models/product';
 
 @Component({
-  selector: 'product-form',
-  templateUrl: './product-form.component.html',
+    selector: 'product-form',
+    templateUrl: './product-form.component.html',
+    standalone: false
 })
 export class ProductFormComponent implements OnInit {
   product: Product;

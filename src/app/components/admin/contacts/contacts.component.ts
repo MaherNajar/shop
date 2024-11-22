@@ -5,15 +5,16 @@ import { Subscription } from 'rxjs';
 import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
-  selector: 'app-contacts',
-  templateUrl: './contacts.component.html',
-  styles: [
-    `
+    selector: 'app-contacts',
+    templateUrl: './contacts.component.html',
+    styles: [
+        `
       span {
         cursor: pointer;
       }
     `,
-  ],
+    ],
+    standalone: false
 })
 export class ContactsComponent implements OnInit, OnDestroy {
   contacts: Contact[] = [];

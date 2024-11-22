@@ -5,8 +5,9 @@ import { Product } from 'src/app/models/product';
 import { take, map } from 'rxjs/operators';
 
 @Component({
-  templateUrl: './product-page.component.html',
-  styles: [],
+    templateUrl: './product-page.component.html',
+    styles: [],
+    standalone: false
 })
 export class ProductPageComponent implements OnInit {
   product: Product;

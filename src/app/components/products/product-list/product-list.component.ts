@@ -13,10 +13,10 @@ import { User } from 'src/app/models/user';
 import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
-  selector: 'product-list',
-  templateUrl: './product-list.component.html',
-  styles: [
-    `
+    selector: 'product-list',
+    templateUrl: './product-list.component.html',
+    styles: [
+        `
       a:hover {
         text-decoration: none;
       }
@@ -32,15 +32,16 @@ import { trigger, style, animate, transition } from '@angular/animations';
         right: 5px;
       }
     `,
-  ],
-  animations: [
-    trigger('fade', [
-      transition('void => *', [
-        style({ opacity: 0 }),
-        animate(350, style({ opacity: 1 })),
-      ]),
-    ]),
-  ],
+    ],
+    animations: [
+        trigger('fade', [
+            transition('void => *', [
+                style({ opacity: 0 }),
+                animate(350, style({ opacity: 1 })),
+            ]),
+        ]),
+    ],
+    standalone: false
 })
 export class ProductListComponent implements OnInit {
   user: User;

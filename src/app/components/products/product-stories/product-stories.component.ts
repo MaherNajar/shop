@@ -4,10 +4,10 @@ import { StoneService } from 'src/app/services/stones.service';
 import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
-  selector: 'product-stories',
-  templateUrl: './product-stories.component.html',
-  styles: [
-    `
+    selector: 'product-stories',
+    templateUrl: './product-stories.component.html',
+    styles: [
+        `
       p,
       h4 {
         /* font-family: 'Comic Sans MS', cursive, sans-serif; */
@@ -19,15 +19,16 @@ import { trigger, style, animate, transition } from '@angular/animations';
         font-size: 14px;
       }
     `,
-  ],
-  animations: [
-    trigger('fade', [
-      transition('void => *', [
-        style({ opacity: 0 }),
-        animate(350, style({ opacity: 1 })),
-      ]),
-    ]),
-  ],
+    ],
+    animations: [
+        trigger('fade', [
+            transition('void => *', [
+                style({ opacity: 0 }),
+                animate(350, style({ opacity: 1 })),
+            ]),
+        ]),
+    ],
+    standalone: false
 })
 export class ProductStoriesComponent implements OnInit {
   @Input('product') product: Product;

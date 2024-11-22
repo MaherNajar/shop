@@ -5,9 +5,10 @@ import { CustomerService } from 'src/app/services/customer.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-customer-details',
-  templateUrl: './customer-details.component.html',
-  styles: [],
+    selector: 'app-customer-details',
+    templateUrl: './customer-details.component.html',
+    styles: [],
+    standalone: false
 })
 export class CustomerDetailsComponent {
   customer$: Observable<Customer>;

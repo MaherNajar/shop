@@ -8,9 +8,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { WarnModalComponent } from '../warn-modal/warn-modal.component';
 
 @Component({
-  templateUrl: './product-table.component.html',
-  styles: [
-    `
+    templateUrl: './product-table.component.html',
+    styles: [
+        `
       td {
         vertical-align: middle;
         padding: 0;
@@ -20,7 +20,8 @@ import { WarnModalComponent } from '../warn-modal/warn-modal.component';
         cursor: pointer;
       }
     `,
-  ],
+    ],
+    standalone: false
 })
 export class ProductTableComponent {
   @ViewChild('disallowModal') disallowModal: ElementRef;
