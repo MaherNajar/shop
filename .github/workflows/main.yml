@@ -21,6 +21,6 @@ jobs:
           files: '["**/environment.prod.ts"]'
         env:
           FIREBASE_API_KEY: ${{secrets.FIREBASE_API_KEY}}
-      - run: npm ci
+      - run: npm install
       - run: npm run build
       - run: npm run deploy
