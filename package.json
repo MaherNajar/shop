@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "firebase deploy --debug --token \"$FIREBASE_TOKEN\" --only hosting --project omyperles",
+    "deploy": "firebase deploy --debug --token \"$FIREBASE_TOKEN\" --only hosting:arcenperles",
     "analyser": "webpack-bundle-analyzer public/stats-es2015.json"
   },
   "private": true,
