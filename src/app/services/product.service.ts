@@ -6,7 +6,7 @@ import { switchMap, take, catchError, tap } from 'rxjs/operators';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { User } from '../models/user';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -28,15 +28,16 @@ export class ProductService {
       take(1),
       switchMap((user: User) => {
         const uid = user.uid;
-        return this.db
-          .collection('products')
-          .add({ ...product, uid })
-          .pipe(
-            catchError((error) => {
-              console.error('Erreur lors de la création du produit:', error);
-              return throwError(() => error);
-            }),
-          );
+        return from(
+          this.db
+            .collection('products')
+            .add({ ...product, uid })
+        ).pipe(
+          catchError((error) => {
+            console.error('Erreur lors de la création du produit:', error);
+            return throwError(() => error);
+          }),
+        );
       }),
     );
   }
@@ -46,15 +47,16 @@ export class ProductService {
       take(1),
       switchMap((user: User) => {
         const uid = user.uid;
-        return this.db
-          .doc(`products/${product.id}`)
-          .update({ ...product, uid })
-          .pipe(
-            catchError((error) => {
-              console.error('Erreur lors de la mise à jour du produit:', error);
-              return throwError(() => error);
-            }),
-          );
+        return from(
+          this.db
+            .doc(`products/${product.id}`)
+            .update({ ...product, uid })
+        ).pipe(
+          catchError((error) => {
+            console.error('Erreur lors de la mise à jour du produit:', error);
+            return throwError(() => error);
+          }),
+        );
       }),
     );
   }
