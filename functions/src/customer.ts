@@ -46,10 +46,12 @@ export const lockOrderedProduct = functions
   .onCreate(async (snapshot, context) => {
     const { items } = snapshot.data();
 
-    items.forEach(async (item: any) => {
-      const productRef = db.doc(`products/${item.id}`);
-      await productRef.update({ status: 'réservé' });
-    });
+    await Promise.all(
+      items.map(async (item: any) => {
+        const productRef = db.doc(`products/${item.id}`);
+        await productRef.update({ status: 'réservé' });
+      }),
+    );
 
     return;
   });
@@ -60,10 +62,12 @@ export const unlockOrderedProduct = functions
   .onUpdate(async (snapshot, context) => {
     const { items } = snapshot.after.data();
 
-    items.forEach(async (item: any) => {
-      const productRef = db.doc(`products/${item.id}`);
-      await productRef.update({ status: 'disponible' });
-    });
+    await Promise.all(
+      items.map(async (item: any) => {
+        const productRef = db.doc(`products/${item.id}`);
+        await productRef.update({ status: 'disponible' });
+      }),
+    );
 
     return;
   });

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { take, map } from 'rxjs/operators';
+import { firstValueFrom } from 'rxjs';
 import { ShoppingCart } from '../models/shopping-cart';
 import { Product } from '../models/product';
 import { ShoppingCartItem } from '../models/shopping-cart-item';
@@ -12,7 +13,7 @@ import { LocationService } from './location.service';
 export class ShoppingCartService {
   constructor(
     private db: AngularFirestore,
-    private locService: LocationService
+    private locService: LocationService,
   ) {}
 
   cart: ShoppingCart;
@@ -46,14 +47,14 @@ export class ShoppingCartService {
       .pipe(
         take(1),
         map((items) =>
-          items.map((item) => this.getItem(cartId, item.id).delete())
-        )
+          items.map((item) => this.getItem(cartId, item.id).delete()),
+        ),
       )
       .subscribe();
   }
 
   private async create() {
-    const location = await this.locService.location$.toPromise();
+    const location = await firstValueFrom(this.locService.location$);
     return this.db.collection('shopping-carts/').add({
       dateCreation: Date.now(),
       ...location,
@@ -96,7 +97,7 @@ export class ShoppingCartService {
               quantity: 1,
             });
           }
-        })
+        }),
       )
       .subscribe();
   }
