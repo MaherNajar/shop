@@ -21,25 +21,25 @@ export class Product {
     this.preloadImage();
   }
 
-  get foreignPrice() {
+  get foreignPrice(): number {
     if (this.priceEU !== 0) return this.priceEU;
     return Math.round((this.price / 3.2) * 1.1);
   }
 
-  get isAvailable() {
-    return this.status != 'vendu';
+  get isAvailable(): boolean {
+    return this.status !== 'vendu';
   }
 
-  preloadImage() {
-    let preload = new Image();
+  preloadImage(): void {
+    const preload = new Image();
 
     preload.onload = () => {
       this.loaded = true;
     };
 
-    let src = this.gallery[0];
+    const src = this.gallery[0];
     if (!src) return;
-    let url = src.split('?');
+    const url = src.split('?');
     url.splice(1, 0, '_400x300?');
     preload.src = url.join('');
   }
