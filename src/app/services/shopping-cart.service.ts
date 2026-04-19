@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { take, map, catchError } from 'rxjs/operators';
-import { firstValueFrom, throwError } from 'rxjs';
+import { firstValueFrom, throwError, Observable } from 'rxjs';
 import { ShoppingCart } from '../models/shopping-cart';
 import { Product } from '../models/product';
 import { ShoppingCartItem } from '../models/shopping-cart-item';
@@ -23,6 +23,13 @@ export class ShoppingCartService {
       const cartId = await this.getOrCreateCartId();
       const items = await firstValueFrom(
         this.getItems(cartId).pipe(
+          map((itemsArray) => {
+            const itemsMap: { [itemId: string]: ShoppingCartItem } = {};
+            itemsArray.forEach((item) => {
+              itemsMap[item.id] = item;
+            });
+            return itemsMap;
+          }),
           catchError((error) => {
             console.error('Erreur lors de la récupération du panier:', error);
             return throwError(() => error);
@@ -35,10 +42,10 @@ export class ShoppingCartService {
     }
   }
 
-  getItems(cartId: string) {
+  getItems(cartId: string): Observable<ShoppingCartItem[]> {
     return this.db
       .collection('shopping-carts/' + cartId + '/items')
-      .valueChanges();
+      .valueChanges() as Observable<ShoppingCartItem[]>;
   }
 
   addToCart(product: Product) {

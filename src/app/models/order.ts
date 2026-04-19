@@ -18,8 +18,9 @@ export class Order {
   ) {
     this.datePlaced = Date.now();
     this.totalPrice = shoppingCart.totalPrice;
-    this.items = shoppingCart.items.map((x) => {
-      return { ...x };
-    });
+    this.items = shoppingCart.items.map((x) => ({
+      ...x,
+      totalPrice: x.totalPrice,
+    }));
   }
 }
