@@ -5,9 +5,6 @@ on:
     branches:
       - master
 
-env:
-  FIREBASE_TOKEN: ${{secrets.FIREBASE_TOKEN}}
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,4 +20,9 @@ jobs:
           FIREBASE_API_KEY: ${{secrets.FIREBASE_API_KEY}}
       - run: npm install
       - run: npm run build
-      - run: npm run deploy
+      - name: Deploy to Firebase Hosting
+        uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT }}"
+          projectId: "omyperles"
