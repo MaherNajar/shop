@@ -29,9 +29,7 @@ export class ProductService {
       switchMap((user: User) => {
         const uid = user.uid;
         return from(
-          this.db
-            .collection('products')
-            .add({ ...product, uid })
+          this.db.collection('products').add({ ...product, uid }),
         ).pipe(
           catchError((error) => {
             console.error('Erreur lors de la création du produit:', error);
@@ -48,9 +46,7 @@ export class ProductService {
       switchMap((user: User) => {
         const uid = user.uid;
         return from(
-          this.db
-            .doc(`products/${product.id}`)
-            .update({ ...product, uid })
+          this.db.doc(`products/${product.id}`).update({ ...product, uid }),
         ).pipe(
           catchError((error) => {
             console.error('Erreur lors de la mise à jour du produit:', error);

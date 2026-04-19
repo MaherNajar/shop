@@ -20,7 +20,7 @@ export class Order {
     this.totalPrice = shoppingCart.totalPrice;
     this.items = shoppingCart.items.map((x) => ({
       ...x,
-      totalPrice: x.totalPrice
+      totalPrice: x.totalPrice,
     }));
   }
 }
