@@ -44,7 +44,7 @@ export class Product {
     preload.src = url.join('');
   }
 
-  preloadMainImage(callback) {
+  preloadMainImage(callback: () => void) {
     this.loaded = false;
 
     let preload = new Image();

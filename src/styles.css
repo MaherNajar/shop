@@ -7,6 +7,31 @@ body {
   overflow-y: scroll;
 }
 
+.site-title {
+  font-family: "Cookie", cursive;
+  margin-left: 190px;
+  font-size: 65px;
+}
+
+.img-fluid {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.img-fluid:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.btn {
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
 h3 {
   text-align: center;
   margin-bottom: 15px;

@@ -1,10 +1,5 @@
-<h1
-  @fade
-  id="site-title"
-  style="font-family: 'Cookie', cursive; margin-left: 190px"
-  class="text-center mb-4"
->
-  <span style="font-size: 65px">Arc en perles</span>
+<h1 @fade id="site-title" class="text-center mb-4 site-title">
+  <span>Arc en perles</span>
 </h1>
 <product-filter
   [count]="totalCount"
@@ -28,7 +23,7 @@
 >
   <div class="row">
     <div
-      *ngFor="let product of filteredProducts"
+      *ngFor="let product of filteredProducts; trackBy: trackByProductId"
       class="col-lg-3 col-md-4 col-6"
     >
       <a
@@ -49,7 +44,7 @@
                 [ngClass]="{
                   'bg-primary': product.status === 'réservé',
                   'bg-success': product.status === 'vendu',
-                  'bg-warning': product.status === 'disponible'
+                  'bg-warning': product.status === 'disponible',
                 }"
                 style="font-size: small; opacity: 0.5"
                 >{{ product.status }}
@@ -71,8 +66,8 @@
               user?.isAdmin
                 ? product.foreignPrice
                 : location.isInTN
-                ? product.price
-                : product.foreignPrice
+                  ? product.price
+                  : product.foreignPrice
             }}
             {{ user?.isAdmin ? "€" : location.displayCurrency }}</span
           >
