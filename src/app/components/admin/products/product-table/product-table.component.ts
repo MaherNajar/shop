@@ -1,4 +1,10 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  ElementRef,
+  OnInit,
+  OnDestroy,
+} from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/services/product.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -6,11 +12,13 @@ import { environment } from 'src/environments/environment';
 import { ToastService } from 'src/app/services/toast.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { WarnModalComponent } from '../warn-modal/warn-modal.component';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
-    templateUrl: './product-table.component.html',
-    styles: [
-        `
+  templateUrl: './product-table.component.html',
+  styles: [
+    `
       td {
         vertical-align: middle;
         padding: 0;
@@ -20,10 +28,10 @@ import { WarnModalComponent } from '../warn-modal/warn-modal.component';
         cursor: pointer;
       }
     `,
-    ],
-    standalone: false
+  ],
+  standalone: false,
 })
-export class ProductTableComponent {
+export class ProductTableComponent implements OnInit, OnDestroy {
   @ViewChild('disallowModal') disallowModal: ElementRef;
   @ViewChild('warnModal') warnModal: ElementRef;
   items: Product[] = [];
@@ -31,43 +39,61 @@ export class ProductTableComponent {
   imgNotAvailable = environment.imgNotAvailable;
   // isArchivePage = false;
   productsState: 'disponibles' | 'vendus' | 'archivés';
+  private destroy$ = new Subject<void>();
+
   constructor(
     public productService: ProductService,
     private modalService: NgbModal,
     private toastService: ToastService,
-    route: ActivatedRoute,
-    private router: Router
-  ) {
-    const path = route.snapshot.url;
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {}
+
+  ngOnInit() {
+    const path = this.route.snapshot.url;
     if (path.length === 1) {
       this.productsState = 'disponibles';
-      productService.getAvailableProducts().subscribe((products: Product[]) => {
-        this.items = this.products = products.map((p) => new Product({ ...p }));
-      });
+      this.productService
+        .getAvailableProducts()
+        .pipe(takeUntil(this.destroy$))
+        .subscribe((products: Product[]) => {
+          this.items = this.products = products.map(
+            (p) => new Product({ ...p }),
+          );
+        });
     } else {
       switch (path[1].path) {
         case 'archives':
           this.productsState = 'archivés';
-          productService
+          this.productService
             .getArchivedProducts()
+            .pipe(takeUntil(this.destroy$))
             .subscribe((products: Product[]) => {
               this.items = this.products = products.map(
-                (p) => new Product({ ...p })
+                (p) => new Product({ ...p }),
               );
             });
           break;
         case 'vendus':
           this.productsState = 'vendus';
-          productService.getSoldProducts().subscribe((products: Product[]) => {
-            this.items = this.products = products.map(
-              (p) => new Product({ ...p })
-            );
-          });
+          this.productService
+            .getSoldProducts()
+            .pipe(takeUntil(this.destroy$))
+            .subscribe((products: Product[]) => {
+              this.items = this.products = products.map(
+                (p) => new Product({ ...p }),
+              );
+            });
           break;
         default:
           break;
       }
     }
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   opendisallowModal() {
@@ -86,23 +112,23 @@ export class ProductTableComponent {
           await this.productService.delete(result);
           this.toastService.show(
             'Suppression',
-            `${result.title} a été supprimé avec succès !`
+            `${result.title} a été supprimé avec succès !`,
           );
         } catch (error) {
           this.toastService.show(
             'Suppression',
-            `Un problème est survenu lors de la suppression de ${result.title} !`
+            `Un problème est survenu lors de la suppression de ${result.title} !`,
           );
         }
       },
-      (reason) => null
+      (reason) => null,
     );
   }
 
   filter(query: string) {
     this.items = query
       ? this.products.filter((p) =>
-          this.noralized(p.title).includes(this.noralized(query))
+          this.noralized(p.title).includes(this.noralized(query)),
         )
       : this.products;
   }
@@ -141,12 +167,12 @@ export class ProductTableComponent {
       await this.productService.archive(product);
       this.toastService.show(
         'Archivage',
-        `${product.title} a été archivé avec succès !`
+        `${product.title} a été archivé avec succès !`,
       );
     } catch (error) {
       this.toastService.show(
         'Archivage',
-        `Un problème est survenu lors de l'archivage de ${product.title} !`
+        `Un problème est survenu lors de l'archivage de ${product.title} !`,
       );
     }
   }
@@ -156,12 +182,12 @@ export class ProductTableComponent {
       await this.productService.restore(product);
       this.toastService.show(
         'Restauration',
-        `${product.title} a été restauré avec succès !`
+        `${product.title} a été restauré avec succès !`,
       );
     } catch (error) {
       this.toastService.show(
         'Restauration',
-        `Un problème est survenu lors de la restauration de ${product.title} !`
+        `Un problème est survenu lors de la restauration de ${product.title} !`,
       );
     }
   }
