@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Product } from 'src/app/models/product';
 import { AuthService } from './auth.service';
-import { map, switchMap, take } from 'rxjs/operators';
+import { switchMap, take, catchError, tap } from 'rxjs/operators';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { User } from '../models/user';
 import { HttpClient } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -15,51 +16,64 @@ export class ProductService {
     private db: AngularFirestore,
     private authService: AuthService,
     private storage: AngularFireStorage,
-    private http: HttpClient
+    private http: HttpClient,
   ) {}
 
   get(id: string) {
     return this.db.doc<Product>('products/' + id).valueChanges();
   }
 
-  create(product: Product) {
-    return this.authService.user$
-      .pipe(
-        take(1),
-        switchMap((user: User) => {
-          const uid = user.uid;
-          return this.db.collection('products').add({ ...product, uid });
-        })
-      )
-      .subscribe();
+  create(product: Product): Observable<any> {
+    return this.authService.user$.pipe(
+      take(1),
+      switchMap((user: User) => {
+        const uid = user.uid;
+        return this.db
+          .collection('products')
+          .add({ ...product, uid })
+          .pipe(
+            catchError((error) => {
+              console.error('Erreur lors de la création du produit:', error);
+              return throwError(() => error);
+            }),
+          );
+      }),
+    );
   }
 
-  update(product: Product) {
-    return this.authService.user$
-      .pipe(
-        take(1),
-        switchMap((user: User) => {
-          const uid = user.uid;
-          return this.db
-            .doc(`products/${product.id}`)
-            .update({ ...product, uid });
-        })
-      )
-      .subscribe();
+  update(product: Product): Observable<void> {
+    return this.authService.user$.pipe(
+      take(1),
+      switchMap((user: User) => {
+        const uid = user.uid;
+        return this.db
+          .doc(`products/${product.id}`)
+          .update({ ...product, uid })
+          .pipe(
+            catchError((error) => {
+              console.error('Erreur lors de la mise à jour du produit:', error);
+              return throwError(() => error);
+            }),
+          );
+      }),
+    );
   }
 
   // new API .NET CORE
-  createProduct(product) {
-    return this.http
-      .post('https://localhost:44314/api/products', product)
-      .pipe(map((res) => console.log(res)))
-      .subscribe();
+  createProduct(product: Product): Observable<any> {
+    return this.http.post('https://localhost:44314/api/products', product).pipe(
+      tap((res) => console.log('Produit créé avec succès:', res)),
+      catchError((error) => {
+        console.error('Erreur lors de la création du produit via API:', error);
+        return throwError(() => error);
+      }),
+    );
   }
 
   getAll() {
     return this.db
       .collection<Product>('products', (ref) =>
-        ref.orderBy('dateCreation', 'desc')
+        ref.orderBy('dateCreation', 'desc'),
       )
       .valueChanges({ idField: 'id' });
   }
@@ -67,7 +81,7 @@ export class ProductService {
   getAvailableProducts() {
     return this.db
       .collection<Product>('products', (ref) =>
-        ref.where('status', '==', 'disponible').orderBy('dateCreation', 'desc')
+        ref.where('status', '==', 'disponible').orderBy('dateCreation', 'desc'),
       )
       .valueChanges({ idField: 'id' });
   }
@@ -75,7 +89,7 @@ export class ProductService {
   getSoldProducts() {
     return this.db
       .collection<Product>('products', (ref) =>
-        ref.where('status', '==', 'vendu').orderBy('dateCreation', 'desc')
+        ref.where('status', '==', 'vendu').orderBy('dateCreation', 'desc'),
       )
       .valueChanges({ idField: 'id' });
   }
@@ -86,17 +100,17 @@ export class ProductService {
       switchMap((user) =>
         this.db
           .collection('products', (ref) =>
-            ref.where('uid', '==', user.uid).orderBy('dateCreation', 'desc')
+            ref.where('uid', '==', user.uid).orderBy('dateCreation', 'desc'),
           )
-          .valueChanges({ idField: 'id' })
-      )
+          .valueChanges({ idField: 'id' }),
+      ),
     );
   }
 
   getArchivedProducts() {
     return this.db
       .collection<Product>('archives', (ref) =>
-        ref.orderBy('dateCreation', 'desc')
+        ref.orderBy('dateCreation', 'desc'),
       )
       .valueChanges({ idField: 'id' });
   }

@@ -1,10 +1,12 @@
 import { ShoppingCart } from './shopping-cart';
+import { ShoppingCartItem } from './shopping-cart-item';
+
 export class Order {
-  id: string;
+  id: string = '';
   datePlaced: number;
-  items: any[];
+  items: ShoppingCartItem[];
   totalPrice: number;
-  status: string = 'confirmée';
+  status: 'confirmée' | 'en cours' | 'livrée' | 'annulée' = 'confirmée';
 
   constructor(
     public username: string,
@@ -12,7 +14,7 @@ export class Order {
     public message: string,
     public ip: string,
     public loc: string,
-    shoppingCart: ShoppingCart
+    shoppingCart: ShoppingCart,
   ) {
     this.datePlaced = Date.now();
     this.totalPrice = shoppingCart.totalPrice;
