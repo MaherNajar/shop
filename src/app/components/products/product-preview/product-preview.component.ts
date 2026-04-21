@@ -63,7 +63,7 @@ export class ProductPreviewComponent {
     return this.product.gallery[this.selectedPicture];
   }
 
-  openModal(content) {
+  openModal(content: unknown) {
     this.product.preloadMainImage(() => {
       this.ngbModal.open(content, {
         centered: true,
@@ -103,7 +103,7 @@ export class ProductPreviewComponent {
     }
   }
 
-  queryByParam(param) {
+  queryByParam(param: Record<string, string>) {
     if (this.canSetPic) return;
     const key = Object.keys(param)[0];
     const value = param[key];

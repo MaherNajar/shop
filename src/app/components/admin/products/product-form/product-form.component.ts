@@ -1,6 +1,6 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { Subscription, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize, map, take } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
@@ -18,7 +18,6 @@ import { Product } from 'src/app/models/product';
 export class ProductFormComponent implements OnInit {
   product: Product;
   uploadPercent: Observable<number>;
-  subscription: Subscription;
   enteredStone: Stone;
   enteredColor: string;
   constructor(
@@ -78,7 +77,7 @@ export class ProductFormComponent implements OnInit {
     this.router.navigate(['/admin/bijoux']);
   }
 
-  async imageUpload(e) {
+  async imageUpload(e: Event & { target: HTMLInputElement }) {
     try {
       await this.upload(e.target.files);
     } catch (error) {
@@ -86,7 +85,7 @@ export class ProductFormComponent implements OnInit {
     }
   }
 
-  async upload(files) {
+  async upload(files: FileList) {
     const iStart = this.product.gallery.length;
     const remaining = 5 - iStart;
 
@@ -111,7 +110,7 @@ export class ProductFormComponent implements OnInit {
     }
   }
 
-  private async pushDownloadUrl(fileRef) {
+  private async pushDownloadUrl(fileRef: import('@angular/fire/compat/storage').AngularFireStorageReference) {
     this.product.gallery.push(await fileRef.getDownloadURL().toPromise());
   }
 
