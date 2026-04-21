@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
-import { Subject } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { tap, takeUntil } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { ShoppingCart } from 'src/app/models/shopping-cart';
 
 @Component({
@@ -11,10 +11,9 @@ import { ShoppingCart } from 'src/app/models/shopping-cart';
   styles: [],
   standalone: false,
 })
-export class ShoppingCartDetailsComponent implements OnInit, OnDestroy {
-  cart: ShoppingCart;
-  private destroy$ = new Subject<void>();
-
+export class ShoppingCartDetailsComponent implements OnInit {
+  cart;
+  subscription: Subscription;
   constructor(
     private cartService: ShoppingCartService,
     private route: ActivatedRoute,
@@ -23,17 +22,9 @@ export class ShoppingCartDetailsComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const cartId = this.route.snapshot.paramMap.get('id');
 
-    this.cartService
+    this.subscription = this.cartService
       .getItems(cartId)
-      .pipe(
-        tap((items: any) => (this.cart = new ShoppingCart(items))),
-        takeUntil(this.destroy$),
-      )
+      .pipe(map((items: any) => (this.cart = new ShoppingCart(items))))
       .subscribe();
-  }
-
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 }
