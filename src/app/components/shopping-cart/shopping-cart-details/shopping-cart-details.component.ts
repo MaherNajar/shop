@@ -26,7 +26,7 @@ export class ShoppingCartDetailsComponent implements OnInit, OnDestroy {
     this.cartService
       .getItems(cartId)
       .pipe(
-        tap((items) => (this.cart = new ShoppingCart(items))),
+        tap((items: any) => (this.cart = new ShoppingCart(items))),
         takeUntil(this.destroy$),
       )
       .subscribe();

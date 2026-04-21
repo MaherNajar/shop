@@ -1,8 +1,8 @@
 import { Router, ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { finalize, map, take } from 'rxjs/operators';
+import { finalize, map, take, takeUntil } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -119,7 +119,9 @@ export class ProductFormComponent implements OnInit, OnDestroy {
     }
   }
 
-  private async pushDownloadUrl(fileRef: import('@angular/fire/compat/storage').AngularFireStorageReference) {
+  private async pushDownloadUrl(
+    fileRef: import('@angular/fire/compat/storage').AngularFireStorageReference,
+  ) {
     this.product.gallery.push(await fileRef.getDownloadURL().toPromise());
   }
 
