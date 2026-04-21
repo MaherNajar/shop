@@ -2,8 +2,9 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
       
-      match /shopping-carts/{document=**} {
-      	allow read,write:if true;
+      match /shopping-carts/{cartId} {
+        allow read, write: if isSignedIn() && belongsTo(cartId);
+        allow read, write: if isAdmin();
       }
       
       match /users/{userId} {
@@ -20,9 +21,10 @@ service cloud.firestore {
       }
       
       match /orders/{orderId} {
-      	allow create,get, update:if true;
-        allow list:if isSignedIn() && (isCustomer() || isAdmin());
-        allow delete:if isSignedIn() && isAdmin();
+        allow create: if isSignedIn();
+        allow get, update: if isSignedIn() && (isCustomer() || isAdmin());
+        allow list: if isSignedIn() && (isCustomer() || isAdmin());
+        allow delete: if isSignedIn() && isAdmin();
       }
       
       function isSignedIn() {
