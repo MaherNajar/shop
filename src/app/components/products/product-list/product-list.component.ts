@@ -6,7 +6,7 @@ import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { ColorService } from 'src/app/services/colors.service';
 import { StoneService } from 'src/app/services/stones.service';
 import { environment } from 'src/environments/environment';
-import { map, takeUntil } from 'rxjs/operators';
+import { map, tap, takeUntil } from 'rxjs/operators';
 import { LocationService } from 'src/app/services/location.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
@@ -115,7 +115,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
               this.route.params
                 .pipe(
                   takeUntil(this.destroy$),
-                  map((params) => {
+                  tap((params) => {
                     this.pierreParam = params.pierre;
                     this.category = 'pierre';
                     this.filteredProducts = products
@@ -124,7 +124,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
                         x.stones?.some((s) => s === this.pierreParam),
                       );
                     this.totalCount = this.filteredProducts.length;
-                    // this.getItems();
                   }),
                 )
                 .subscribe();
@@ -133,7 +132,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
               this.route.params
                 .pipe(
                   takeUntil(this.destroy$),
-                  map((params) => {
+                  tap((params) => {
                     this.couleurParam = params.couleur;
                     this.category = 'couleur';
                     this.filteredProducts = products
@@ -146,7 +145,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
                         ),
                       );
                     this.totalCount = this.filteredProducts.length;
-                    // this.getItems();
                   }),
                 )
                 .subscribe();
