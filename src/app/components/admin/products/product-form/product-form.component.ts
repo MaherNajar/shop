@@ -1,6 +1,6 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription, Observable, firstValueFrom } from 'rxjs';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize, map, take } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth.service';
@@ -111,8 +111,8 @@ export class ProductFormComponent implements OnInit {
     }
   }
 
-  private async pushDownloadUrl(fileRef) {
-    this.product.gallery.push(await fileRef.getDownloadURL().toPromise());
+  private async pushDownloadUrl(fileRef: import('@angular/fire/compat/storage').AngularFireStorageReference) {
+    this.product.gallery.push(await firstValueFrom(fileRef.getDownloadURL()));
   }
 
   formatter = (x: { name: string }) => x.name;
