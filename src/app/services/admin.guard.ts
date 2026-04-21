@@ -21,7 +21,7 @@ export class AdminGuard implements CanActivate, CanLoad {
 
   canActivate(
     next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    state: RouterStateSnapshot,
   ):
     | Observable<boolean | UrlTree>
     | Promise<boolean | UrlTree>
@@ -31,17 +31,14 @@ export class AdminGuard implements CanActivate, CanLoad {
   }
   canLoad(
     route: Route,
-    segments: UrlSegment[]
+    segments: UrlSegment[],
   ): Observable<boolean> | Promise<boolean> | boolean {
     return this.isAdmin();
   }
 
-  private isAdmin() {
+  private isAdmin(): Observable<boolean> {
     return this.authService.user$.pipe(
-      map((user: User) => {
-        if (user) return user.isAdmin;
-        return false;
-      })
+      map((user: User) => !!user && user.isAdmin),
     );
   }
 }

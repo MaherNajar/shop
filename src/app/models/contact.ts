@@ -1,5 +1,5 @@
 export class Contact {
-  id: string;
+  id: string = '';
   date: number;
 
   constructor(
@@ -9,7 +9,7 @@ export class Contact {
     public productId: string,
     public cartId: string,
     public ip: string,
-    public loc: string
+    public loc: string,
   ) {
     this.date = Date.now();
   }

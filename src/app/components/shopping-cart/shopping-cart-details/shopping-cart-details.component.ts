@@ -6,10 +6,10 @@ import { tap, takeUntil } from 'rxjs/operators';
 import { ShoppingCart } from 'src/app/models/shopping-cart';
 
 @Component({
-    selector: 'app-shopping-cart-details',
-    templateUrl: './shopping-cart-details.component.html',
-    styles: [],
-    standalone: false
+  selector: 'app-shopping-cart-details',
+  templateUrl: './shopping-cart-details.component.html',
+  styles: [],
+  standalone: false,
 })
 export class ShoppingCartDetailsComponent implements OnInit, OnDestroy {
   cart: ShoppingCart;
@@ -17,7 +17,7 @@ export class ShoppingCartDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private cartService: ShoppingCartService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
 
   ngOnInit() {

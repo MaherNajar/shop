@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { take, map } from 'rxjs/operators';
+import { take, map, catchError } from 'rxjs/operators';
+import { firstValueFrom, throwError, Observable } from 'rxjs';
 import { ShoppingCart } from '../models/shopping-cart';
 import { Product } from '../models/product';
 import { ShoppingCartItem } from '../models/shopping-cart-item';
@@ -12,22 +13,39 @@ import { LocationService } from './location.service';
 export class ShoppingCartService {
   constructor(
     private db: AngularFirestore,
-    private locService: LocationService
+    private locService: LocationService,
   ) {}
 
   cart: ShoppingCart;
 
-  async getCart() {
-    let cartId = await this.getOrCreateCartId();
-    this.getItems(cartId)
-      .pipe(map((items: any) => (this.cart = new ShoppingCart(items))))
-      .subscribe();
+  async getCart(): Promise<void> {
+    try {
+      const cartId = await this.getOrCreateCartId();
+      const items = await firstValueFrom(
+        this.getItems(cartId).pipe(
+          map((itemsArray) => {
+            const itemsMap: { [itemId: string]: ShoppingCartItem } = {};
+            itemsArray.forEach((item) => {
+              itemsMap[item.id] = item;
+            });
+            return itemsMap;
+          }),
+          catchError((error) => {
+            console.error('Erreur lors de la récupération du panier:', error);
+            return throwError(() => error);
+          }),
+        ),
+      );
+      this.cart = new ShoppingCart(items);
+    } catch (error) {
+      console.error('Erreur dans getCart:', error);
+    }
   }
 
-  getItems(cartId: string) {
+  getItems(cartId: string): Observable<ShoppingCartItem[]> {
     return this.db
       .collection('shopping-carts/' + cartId + '/items')
-      .valueChanges();
+      .valueChanges() as Observable<ShoppingCartItem[]>;
   }
 
   addToCart(product: Product) {
@@ -38,22 +56,34 @@ export class ShoppingCartService {
     this.updateItem(product, -1);
   }
 
-  async clearCart() {
-    let cartId = await this.getOrCreateCartId();
-    this.db
-      .collection<ShoppingCartItem>(`shopping-carts/${cartId}/items`)
-      .valueChanges()
-      .pipe(
-        take(1),
-        map((items) =>
-          items.map((item) => this.getItem(cartId, item.id).delete())
-        )
-      )
-      .subscribe();
+  async clearCart(): Promise<void> {
+    try {
+      const cartId = await this.getOrCreateCartId();
+      const items = await firstValueFrom(
+        this.db
+          .collection<ShoppingCartItem>(`shopping-carts/${cartId}/items`)
+          .valueChanges()
+          .pipe(
+            take(1),
+            catchError((error) => {
+              console.error(
+                'Erreur lors de la récupération des articles du panier:',
+                error,
+              );
+              return throwError(() => error);
+            }),
+          ),
+      );
+      await Promise.all(
+        items.map((item) => this.getItem(cartId, item.id).delete()),
+      );
+    } catch (error) {
+      console.error('Erreur lors du vidage du panier:', error);
+    }
   }
 
   private async create() {
-    const location = await this.locService.location$.toPromise();
+    const location = await firstValueFrom(this.locService.location$);
     return this.db.collection('shopping-carts/').add({
       dateCreation: Date.now(),
       ...location,
@@ -73,31 +103,41 @@ export class ShoppingCartService {
     return result.id;
   }
 
-  private async updateItem(product: Product, change: number) {
-    let cartId = await this.getOrCreateCartId();
-    let docRef = this.getItem(cartId, product.id);
-    docRef
-      .valueChanges()
-      .pipe(
-        take(1),
-        map(async (item: ShoppingCartItem) => {
-          if (item) docRef.update({ quantity: item.quantity + change });
-          else {
-            const location = await this.locService.location$.toPromise();
-            const price = location.isInTN
-              ? product.price
-              : product.foreignPrice;
-            const { id, title, gallery } = product;
-            docRef.set({
-              id,
-              price,
-              title,
-              mainPicture: gallery.length > 0 ? gallery[0] : '',
-              quantity: 1,
-            });
-          }
-        })
-      )
-      .subscribe();
+  private async updateItem(product: Product, change: number): Promise<void> {
+    try {
+      const cartId = await this.getOrCreateCartId();
+      const docRef = this.getItem(cartId, product.id);
+      const item = await firstValueFrom(
+        docRef.valueChanges().pipe(
+          take(1),
+          catchError((error) => {
+            console.error(
+              "Erreur lors de la récupération de l'article:",
+              error,
+            );
+            return throwError(() => error);
+          }),
+        ),
+      );
+
+      if (item) {
+        await docRef.update({
+          quantity: (item as ShoppingCartItem).quantity + change,
+        });
+      } else {
+        const location = await firstValueFrom(this.locService.location$);
+        const price = location.isInTN ? product.price : product.foreignPrice;
+        const { id, title, gallery } = product;
+        await docRef.set({
+          id,
+          price,
+          title,
+          mainPicture: gallery.length > 0 ? gallery[0] : '',
+          quantity: 1,
+        });
+      }
+    } catch (error) {
+      console.error('Erreur lors de la mise à jour du panier:', error);
+    }
   }
 }

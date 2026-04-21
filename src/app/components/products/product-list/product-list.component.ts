@@ -53,11 +53,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
   totalCount: number = 0;
   imgNotAvailable: string = environment.imgNotAvailable;
 
-  items: Product[] = [];
-  step: number = 12;
-  position = 0;
-  canLoadMore = true;
-
   private destroy$ = new Subject<void>();
 
   constructor(
@@ -93,7 +88,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
           this.category = 'all';
           this.filteredProducts = products.map((x) => new Product({ ...x }));
           this.totalCount = this.filteredProducts.length;
-          // this.getItems();
         } else {
           switch (url[0].path) {
             case 'colliers':
@@ -102,7 +96,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
                 .map((x) => new Product({ ...x }))
                 .filter((x) => x.category === 'colliers');
               this.totalCount = this.filteredProducts.length;
-              // this.getItems();
               break;
             case 'bracelets-bagues-bo':
               this.category = 'bracelets-bagues-bo';
@@ -110,7 +103,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
                 .map((x) => new Product({ ...x }))
                 .filter((x) => x.category === 'bracelets_bagues_bo');
               this.totalCount = this.filteredProducts.length;
-              // this.getItems();
               break;
             case 'exclusifs':
               this.category = 'exclusifs';
@@ -118,7 +110,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
                 .map((x) => new Product({ ...x }))
                 .filter((x) => x.exclusif);
               this.totalCount = this.filteredProducts.length;
-              // this.getItems();
               break;
             case 'pierre':
               this.route.params
@@ -162,32 +153,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
         }
       });
   }
-
-  // private reset() {
-  //   this.canLoadMore = true;
-  //   this.filteredProducts = [];
-  //   this.items = [];
-  //   this.position = 0;
-  // }
-
-  // getItems() {
-  //   if (this.position === this.totalCount) {
-  //     this.canLoadMore = false;
-  //     return;
-  //   }
-
-  //   let nextPosition = this.position + this.step;
-
-  //   if (nextPosition > this.totalCount) {
-  //     nextPosition = this.totalCount;
-  //     this.canLoadMore = false;
-  //   }
-
-  //   let tmp = [...this.filteredProducts];
-  //   let nextPhotos = tmp.slice(this.position, nextPosition);
-  //   this.items.push(...nextPhotos);
-  //   this.position = nextPosition;
-  // }
 
   trackByProductId(index: number, product: Product): string {
     return product.id;

@@ -1,24 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ProductService } from './product.service';
 import { Product } from '../models/product';
-
-@Injectable({
-  providedIn: 'root',
-})
-export class ColorService {
-  constructor(private ps: ProductService) {}
-  get allColors() {
-    return Colors;
-  }
-
-  getFilteredColors(product: Product) {
-    return Colors.filter((x) => product.colors.every((c) => c !== x.key));
-  }
-
-  getColorObject(c) {
-    return Colors.find((x) => x.key === c);
-  }
-}
 
 export interface Color {
   key: string;
@@ -44,3 +25,22 @@ const Colors: Color[] = [
   { key: '10034', name: 'Blanc' },
   { key: '10035', name: 'Jaune' },
 ];
+
+@Injectable({
+  providedIn: 'root',
+})
+export class ColorService {
+  constructor() {}
+
+  get allColors(): Color[] {
+    return Colors;
+  }
+
+  getFilteredColors(product: Product): Color[] {
+    return Colors.filter((x) => !product.colors.includes(x.key));
+  }
+
+  getColorObject(colorKey: string): Color | undefined {
+    return Colors.find((x) => x.key === colorKey);
+  }
+}
