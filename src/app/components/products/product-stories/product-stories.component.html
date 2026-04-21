@@ -3,7 +3,7 @@
     <h4>
       {{ story.title }}
     </h4>
-    <p [innerHTML]="story.description" class="mb-3"></p>
+    <p class="mb-3" [innerHTML]="sanitizeHtml(story.description)"></p>
     <img [src]="story.image" [alt]="story.title" />
   </div>
 </ng-container>

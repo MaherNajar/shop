@@ -12,6 +12,7 @@ import { ContactService } from 'src/app/services/contact.service';
 import { Contact } from 'src/app/models/contact';
 import { ToastService } from 'src/app/services/toast.service';
 import { trigger, style, animate, transition } from '@angular/animations';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
     selector: 'product-preview',
@@ -76,7 +77,7 @@ export class ProductPreviewComponent {
     if (this.canSetPic) return;
 
     const productId = this.product.id;
-    const { ip, loc } = await this.locService.location$.toPromise();
+    const { ip, loc } = await firstValueFrom(this.locService.location$);
     const cartId = await this.cartService.getOrCreateCartId();
 
     const contact = new Contact(

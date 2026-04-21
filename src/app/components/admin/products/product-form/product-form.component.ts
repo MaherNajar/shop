@@ -11,15 +11,17 @@ import { StoneService, Stone } from 'src/app/services/stones.service';
 import { Product } from 'src/app/models/product';
 
 @Component({
-    selector: 'product-form',
-    templateUrl: './product-form.component.html',
-    standalone: false
+  selector: 'product-form',
+  templateUrl: './product-form.component.html',
+  standalone: false,
 })
-export class ProductFormComponent implements OnInit {
+export class ProductFormComponent implements OnInit, OnDestroy {
   product: Product;
   uploadPercent: Observable<number>;
   enteredStone: Stone;
   enteredColor: string;
+  private destroy$ = new Subject<void>();
+
   constructor(
     private router: Router,
     public productService: ProductService,
@@ -28,8 +30,9 @@ export class ProductFormComponent implements OnInit {
     public authService: AuthService,
     public colorService: ColorService,
     public stoneService: StoneService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {}
+
   async ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
 
@@ -42,15 +45,21 @@ export class ProductFormComponent implements OnInit {
         .get(id)
         .pipe(
           take(1),
+          takeUntil(this.destroy$),
           map((product) => {
             if (!product) this.router.navigate(['/bijoux']);
             else {
               this.product = new Product({ ...product, id });
             }
-          })
+          }),
         )
         .subscribe();
     }
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   addStone() {
@@ -96,7 +105,7 @@ export class ProductFormComponent implements OnInit {
 
     for (let i = iStart; i < iStart + files.length; i++) {
       const fileRef = this.storage.ref(
-        `colliers/${this.product.uploadRefDate}-${i}`
+        `colliers/${this.product.uploadRefDate}-${i}`,
       );
 
       const task = fileRef.put(files[i]);
@@ -124,10 +133,10 @@ export class ProductFormComponent implements OnInit {
           : this.stoneService
               .getFilteredStones(this.product)
               .filter(
-                (v) => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1
+                (v) => v.name.toLowerCase().indexOf(term.toLowerCase()) > -1,
               )
-              .slice(0, 10)
-      )
+              .slice(0, 10),
+      ),
     );
 
   onReturn() {
