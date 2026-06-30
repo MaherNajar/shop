@@ -80,8 +80,8 @@ export class ProductFormComponent implements OnInit, OnDestroy {
   }
 
   save() {
-    if (this.product.id) this.productService.update(this.product);
-    else this.productService.create(this.product);
+    if (this.product.id) this.productService.update(this.product).subscribe();
+    else this.productService.create(this.product).subscribe();
 
     this.router.navigate(['/admin/bijoux']);
   }
