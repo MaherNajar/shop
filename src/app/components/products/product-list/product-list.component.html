@@ -1,4 +1,23 @@
-<h1 @fade id="site-title" class="text-center mb-4 site-title">
+<section *ngIf="category === 'all'" @fade class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Créations artisanales · Pierres semi-précieuses</p>
+    <h1 class="hero-title">Arc en perles</h1>
+    <p class="hero-subtitle">
+      Colliers, bracelets et bijoux uniques façonnés à la main, en perles et
+      pierres naturelles.
+    </p>
+    <a routerLink="/bijoux/colliers" class="btn btn-warning hero-cta">
+      Découvrir la collection
+    </a>
+  </div>
+</section>
+
+<h1
+  *ngIf="category !== 'all'"
+  @fade
+  id="site-title"
+  class="text-center mb-4 site-title"
+>
   <span>Arc en perles</span>
 </h1>
 <product-filter

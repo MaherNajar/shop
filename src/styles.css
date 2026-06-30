@@ -1,40 +1,158 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* ===================================================================
+   Design tokens — palette « élégant & épuré » (crème / taupe / or)
+   =================================================================== */
+:root {
+  --color-bg: #faf7f2;
+  --color-surface: #ffffff;
+  --color-text: #2e2a26;
+  --color-muted: #8b8178;
+  --color-taupe: #8b7355;
+  --color-taupe-dark: #6f5b41;
+  --color-gold: #c9a86a;
+  --color-gold-dark: #b8945a;
+  --color-border: #ece6dd;
+  --color-success: #6f8f6a;
+  --color-danger: #b9614f;
+
+  --font-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  --radius: 14px;
+  --radius-sm: 10px;
+  --shadow-sm: 0 2px 10px rgba(46, 42, 38, 0.06);
+  --shadow-md: 0 10px 30px rgba(46, 42, 38, 0.1);
+  --transition: 0.25s ease;
+
+  /* Surcharges Bootstrap 5 (variables natives --bs-*) */
+  --bs-primary: var(--color-taupe);
+  --bs-primary-rgb: 139, 115, 85;
+  --bs-body-bg: var(--color-bg);
+  --bs-body-color: var(--color-text);
+  --bs-body-font-family: var(--font-sans);
+  --bs-link-color: var(--color-taupe);
+  --bs-link-hover-color: var(--color-taupe-dark);
+  --bs-border-color: var(--color-border);
+}
+
+/* ===================================================================
+   Base
+   =================================================================== */
 body {
-  padding-top: 80px;
-  background-color: #f8f8f8;
-  font-family: Helvetica, sans-serif;
-  font-size: 13px;
+  padding-top: 84px;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  letter-spacing: 0.1px;
   overflow-y: scroll;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.site-title {
-  font-family: "Cookie", cursive;
-  margin-left: 190px;
-  font-size: 65px;
-}
-
-.img-fluid {
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-}
-
-.img-fluid:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.btn {
-  transition: all 0.2s ease;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: var(--color-text);
 }
 
 h3 {
   text-align: center;
   margin-bottom: 15px;
+}
+
+a {
+  color: var(--color-taupe);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+a:hover {
+  color: var(--color-taupe-dark);
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ===================================================================
+   Titre du site
+   =================================================================== */
+.site-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(2.6rem, 7vw, 4.5rem);
+  text-align: center;
+  color: var(--color-taupe);
+  margin: 0.4rem 0 1.6rem;
+  letter-spacing: 1px;
+}
+
+.site-title::after {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 2px;
+  margin: 0.5rem auto 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-gold),
+    transparent
+  );
+}
+
+/* ===================================================================
+   Boutons
+   =================================================================== */
+.btn {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  border-radius: 999px;
+  padding: 0.55rem 1.5rem;
+  transition: all var(--transition);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Le bouton « Ajouter au panier » utilise btn-warning -> on l'habille en taupe */
+.btn-warning,
+.btn-warning:focus {
+  background-color: var(--color-taupe);
+  border-color: var(--color-taupe);
+  color: #fff;
+}
+
+.btn-warning:hover {
+  background-color: var(--color-taupe-dark);
+  border-color: var(--color-taupe-dark);
+  color: #fff;
+}
+
+.btn-warning.active {
+  box-shadow: 0 0 0 0.2rem rgba(201, 168, 106, 0.45);
+}
+
+.btn-success.active {
+  box-shadow: 0 0 0 0.2rem rgba(111, 143, 106, 0.4);
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
 }
 
 .btn,
@@ -44,90 +162,154 @@ h3 {
   cursor: pointer;
 }
 
-.btn-warning.active {
-  box-shadow: 0 0 0 0.2rem rgba(222, 170, 12, 0.5);
+/* ===================================================================
+   Cartes produits & images
+   =================================================================== */
+.prod-container {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
 }
 
-.btn-success.active {
-  box-shadow: 0 0 0 0.2rem rgba(72, 180, 97, 0.5);
+.img-fluid {
+  border-radius: var(--radius-sm);
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
 }
 
+a:hover .img-fluid,
+.img-fluid:hover {
+  transform: scale(1.04);
+  box-shadow: var(--shadow-md);
+}
+
+/* Atténue l'ombre Bootstrap par défaut au profit d'une ombre douce */
+.shadow {
+  box-shadow: var(--shadow-sm) !important;
+}
+
+/* ===================================================================
+   Menu de navigation des catégories
+   =================================================================== */
+#Menu {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+#Menu li {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.92rem;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  display: inline-block;
+  margin: 0 0.7rem 0.4rem;
+}
+
+#Menu a {
+  color: var(--color-muted);
+  padding-bottom: 3px;
+  border-bottom: 2px solid transparent;
+}
+
+#Menu a:hover {
+  color: var(--color-taupe);
+}
+
+#Menu a.text-decoration-underline {
+  text-decoration: none !important;
+  color: var(--color-taupe);
+  border-bottom-color: var(--color-gold);
+}
+
+#exclusifs {
+  color: var(--color-gold-dark);
+  font-weight: 600;
+}
+
+/* ===================================================================
+   Filtres latéraux (pierres & couleurs)
+   =================================================================== */
 .StoneFilter,
 .ContentLeft {
-  font-size: small;
-  font-weight: bold;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 500;
   float: left;
   width: 190px;
 }
 
-ul {
-  list-style: none;
+.ContentLeft dt {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.6rem;
 }
 
-#Menu {
-  text-align: center;
-  margin-left: 190px;
+.ContentLeft a {
+  display: inline-block;
+  padding: 1px 0;
 }
 
-#Menu li {
+.ContentLeft a.text-decoration-underline {
+  text-decoration: none !important;
   font-weight: 700;
-  display: inline;
-  margin-left: 5px;
-  margin-right: 5px;
-}
-
-@media (max-width: 575.98px) {
-  #FilterByStone,
-  #FilterByColor {
-    display: none;
-  }
-
-  #site-title {
-    margin-left: 0px !important;
-  }
-
-  #Menu {
-    margin-left: 0px;
-  }
-
-  .ContentLeft {
-    float: none;
-    width: 100%;
-  }
 }
 
 .Color {
   width: 30px;
   height: 18px;
   padding: 2px;
-  border: 1px solid #dedddd;
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  transition: transform var(--transition);
 }
 
-.table-responsive {
-  text-align: center;
+.Color:hover {
+  transform: scale(1.15);
 }
 
-table {
-  background-color: white;
-  width: 100%;
-}
-
+/* ===================================================================
+   Prix & badges
+   =================================================================== */
 .price {
-  color: #222;
-  font-weight: 800;
-  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  color: var(--color-text);
+  font-weight: 600;
+  font-family: var(--font-sans);
+  font-size: 1.02rem;
+  letter-spacing: 0.3px;
+}
+
+.badge.rounded-pill {
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  padding: 0.4em 0.75em;
 }
 
 .rounded-pill {
   right: 18px !important;
 }
 
-a {
-  text-decoration: none;
+.badge.bg-warning {
+  background-color: var(--color-gold) !important;
+  color: #fff;
 }
 
-a:hover {
-  text-decoration: underline;
+/* ===================================================================
+   Tableaux (panier, admin)
+   =================================================================== */
+.table-responsive {
+  text-align: center;
+}
+
+table {
+  background-color: var(--color-surface);
+  width: 100%;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
 }
 
 tbody,
@@ -137,4 +319,34 @@ th,
 thead,
 tr {
   border-width: initial;
+}
+
+th {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: var(--color-muted);
+}
+
+/* ===================================================================
+   Responsive
+   =================================================================== */
+@media (max-width: 575.98px) {
+  #FilterByStone,
+  #FilterByColor {
+    display: none;
+  }
+
+  #site-title {
+    margin-left: 0 !important;
+  }
+
+  #Menu {
+    margin-left: 0;
+  }
+
+  .ContentLeft {
+    float: none;
+    width: 100%;
+  }
 }

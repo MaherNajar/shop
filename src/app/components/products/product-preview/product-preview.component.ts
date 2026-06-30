@@ -20,15 +20,103 @@ import { firstValueFrom } from 'rxjs';
     styles: [
         `
       .selected {
-        border: 1px groove lightgrey;
+        border: 2px solid var(--color-gold, #c9a86a);
+        opacity: 1;
       }
       .notSelected {
-        transition: opacity 0.1s;
-        transition-property: opacity;
-        transition-duration: 0.1s;
-        transition-timing-function: ease;
-        transition-delay: 0s;
-        opacity: 0.6;
+        transition: opacity 0.2s ease;
+        opacity: 0.55;
+      }
+      .notSelected:hover {
+        opacity: 1;
+      }
+
+      /* ---- Bloc d'informations produit ---- */
+      .product-info {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .product-title {
+        font-family: var(--font-serif, 'Cormorant Garamond', serif);
+        font-size: 1.9rem;
+        font-weight: 600;
+        line-height: 1.2;
+        color: var(--color-text, #2e2a26);
+        margin-bottom: 0.5rem;
+      }
+
+      .product-title::after {
+        content: '';
+        display: block;
+        width: 56px;
+        height: 2px;
+        margin: 0.6rem auto 0;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--color-gold, #c9a86a),
+          transparent
+        );
+      }
+
+      .stone-list {
+        margin-bottom: 0.5rem;
+      }
+
+      .stone-list .StoneFilter {
+        display: inline-block;
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        padding: 0.2rem 0.7rem;
+        border: 1px solid var(--color-border, #ece6dd);
+        border-radius: 999px;
+        background: #fff;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+      }
+
+      .stone-list .StoneFilter:hover {
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-sm, 0 2px 10px rgba(46, 42, 38, 0.06));
+      }
+
+      .color-list {
+        margin-bottom: 1rem;
+      }
+
+      .product-dim {
+        font-size: 0.9rem;
+        color: var(--color-muted, #8b8178);
+      }
+
+      /* ---- Bloc prix ---- */
+      .price-block {
+        background: var(--color-bg, #faf7f2);
+        border: 1px solid var(--color-border, #ece6dd);
+        border-radius: 14px;
+        padding: 0.9rem 1rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .price-label {
+        display: block;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        font-size: 0.66rem;
+        font-weight: 600;
+        color: var(--color-muted, #8b8178);
+        margin-bottom: 0.15rem;
+      }
+
+      .price-block .price {
+        font-family: var(--font-serif, 'Cormorant Garamond', serif);
+        font-size: 1.8rem;
+        font-weight: 600;
+        color: var(--color-taupe, #8b7355);
       }
     `,
     ],

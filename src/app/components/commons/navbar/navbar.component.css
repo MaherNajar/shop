@@ -1,7 +1,62 @@
+.site-navbar {
+  background-color: rgba(250, 247, 242, 0.92);
+  backdrop-filter: saturate(140%) blur(10px);
+  -webkit-backdrop-filter: saturate(140%) blur(10px);
+  border-bottom: 1px solid var(--color-border, #ece6dd);
+  box-shadow: 0 2px 14px rgba(46, 42, 38, 0.05);
+  padding-top: 0.6rem;
+  padding-bottom: 0.6rem;
+}
+
+.site-navbar .navbar-brand {
+  font-family: var(--font-serif, "Cormorant Garamond", serif);
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--color-taupe, #8b7355);
+  letter-spacing: 0.3px;
+}
+
+.site-navbar .nav-link {
+  font-family: var(--font-sans, "Inter", sans-serif);
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  color: var(--color-text, #2e2a26);
+  transition: color 0.25s ease;
+}
+
+.site-navbar .nav-link:hover {
+  color: var(--color-taupe, #8b7355);
+}
+
+.site-navbar .dropdown-menu {
+  border: 1px solid var(--color-border, #ece6dd);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(46, 42, 38, 0.12);
+  padding: 0.4rem;
+}
+
+.site-navbar .dropdown-item {
+  border-radius: 8px;
+  font-weight: 500;
+  padding: 0.5rem 0.9rem;
+}
+
+.site-navbar .dropdown-item:hover {
+  background-color: var(--color-bg, #faf7f2);
+  color: var(--color-taupe, #8b7355);
+}
+
+.site-navbar .badge.bg-warning {
+  background-color: var(--color-gold, #c9a86a) !important;
+  color: #fff;
+}
+
 .avatar {
-  width: 1.75em;
+  width: 1.85em;
   border-radius: 50%;
   margin: 0 10px 0;
+  border: 1.5px solid var(--color-gold, #c9a86a);
+  padding: 1px;
 }
 
 @media (min-width: 992px) {

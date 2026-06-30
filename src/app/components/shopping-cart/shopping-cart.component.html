@@ -1,85 +1,88 @@
 <h3>Mon panier</h3>
 
 <ng-container *ngIf="cartService.cart as cart">
-  <div class="table-responsive">
-    <p class="text-center">
-      <span class="offset-1">
+  <div class="cart-wrapper">
+    <div class="cart-toolbar">
+      <span class="cart-count">
         {{ cart.totalItemsCount }} article{{
           cart.totalItemsCount === 1 ? "" : "s"
         }}
         dans le panier
       </span>
       <button
+        *ngIf="cart.totalItemsCount > 0"
         (click)="cartService.clearCart()"
         title="vider"
-        class="btn btn-secondary btn-sm float-end mb-3"
+        class="btn btn-outline-secondary btn-sm"
       >
         Tout nettoyer 🧹
       </button>
-    </p>
+    </div>
+
     <ng-container *ngIf="locService.location$ | async as location">
-      <table aria-describedby="panier" class="table table-bordered">
-        <thead>
-          <tr>
-            <th id="article">Article</th>
-            <th id="image">Présentation</th>
-            <th id="prix">Prix</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of cart.items">
-            <td>
-              <p>
-                {{ item.title }}
-              </p>
-              <span class="pointer" (click)="cartService.removeFromCart(item)">
-                ❌
+      <div *ngIf="cart.totalItemsCount > 0; else emptyCart">
+        <div class="cart-list">
+          <div *ngFor="let item of cart.items" class="cart-item">
+            <a routerLink="/bijoux/{{ item.id }}" class="cart-item__img">
+              <img
+                alt="{{ item.title }}"
+                src="{{ item.mainPicture | size: '100' }}"
+              />
+            </a>
+            <div class="cart-item__info">
+              <p class="cart-item__title">{{ item.title }}</p>
+              <span class="cart-item__qty" *ngIf="item.quantity > 1">
+                Quantité : {{ item.quantity }}
               </span>
-            </td>
-            <td>
-              <a routerLink="/bijoux/{{ item.id }}">
-                <img
-                  alt="{{ item.title }}"
-                  src="{{ item.mainPicture | size: '100' }}"
-                />
-              </a>
-            </td>
-            <td>
-              <p>
-                {{ item.totalPrice | number: "1.0-2" }}
-                {{ location.displayCurrency }}
-              </p>
-            </td>
-          </tr>
-        </tbody>
-        <tfoot>
-          <th id="blanc1"></th>
-          <th id="blanc2"></th>
-          <th id="prixTotal">
-            <strong>
-              {{ cart.totalPrice | number: "1.0-2" }}
+              <button
+                class="cart-item__remove"
+                (click)="cartService.removeFromCart(item)"
+              >
+                Retirer
+              </button>
+            </div>
+            <div class="cart-item__price">
+              {{ item.totalPrice | number: "1.0-2" }}
               {{ location.displayCurrency }}
-            </strong>
-          </th>
-        </tfoot>
-      </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="cart-total">
+          <span>Total</span>
+          <strong>
+            {{ cart.totalPrice | number: "1.0-2" }}
+            {{ location.displayCurrency }}
+          </strong>
+        </div>
+      </div>
+
+      <ng-template #emptyCart>
+        <div class="cart-empty">
+          <p>Votre panier est vide pour le moment.</p>
+          <a routerLink="/bijoux" class="btn btn-warning">
+            Parcourir la collection
+          </a>
+        </div>
+      </ng-template>
     </ng-container>
+
+    <div class="cart-actions">
+      <button
+        routerLink="/bijoux"
+        type="button"
+        class="btn btn-outline-secondary"
+      >
+        Continuer mes achats
+      </button>
+      <button
+        routerLink="/caisse"
+        type="button"
+        class="btn btn-warning"
+        [disabled]="cart.totalItemsCount === 0"
+      >
+        Valider le panier
+      </button>
+    </div>
   </div>
-  <p>
-    <button
-      routerLink="/caisse"
-      type="button"
-      class="btn btn-warning btn-sm float-end"
-      [disabled]="cart.totalItemsCount === 0"
-    >
-      Valider le panier
-    </button>
-    <button
-      routerLink="/bijoux"
-      type="button"
-      class="btn btn-info btn-sm float-end mx-2"
-    >
-      Continuer mes achats
-    </button>
-  </p>
 </ng-container>
